@@ -7,6 +7,7 @@ using API.Entities;
 using API.Interfaces;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using Backend.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Data
@@ -53,6 +54,18 @@ namespace API.Data
             return await _context.Users
             .Include(p => p.Characters)
             .ToListAsync();
+        }
+
+        public async Task<IEnumerable<Enemy>> GetMonstersAsync()
+        {
+            return await _context.Monsters
+            .ToListAsync();
+        }
+
+        public async Task<Enemy> GetMonsterAsync(string monsterName)
+        {
+            return await _context.Monsters
+            .SingleOrDefaultAsync(x => x.EnemyName == monsterName);
         }
 
         public async Task<bool> SaveAllAsync()

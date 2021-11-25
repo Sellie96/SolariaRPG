@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\farne\\IdeaProjects\\SolariaRPG\\Backend\\Backend.csproj": {}
+    "C:\\Users\\farne\\Documents\\Programming\\SolariaRPG\\Backend\\Backend.csproj": {}
   },
   "projects": {
-    "C:\\Users\\farne\\IdeaProjects\\SolariaRPG\\Backend\\Backend.csproj": {
+    "C:\\Users\\farne\\Documents\\Programming\\SolariaRPG\\Backend\\Backend.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\farne\\IdeaProjects\\SolariaRPG\\Backend\\Backend.csproj",
+        "projectUniqueName": "C:\\Users\\farne\\Documents\\Programming\\SolariaRPG\\Backend\\Backend.csproj",
         "projectName": "Backend",
-        "projectPath": "C:\\Users\\farne\\IdeaProjects\\SolariaRPG\\Backend\\Backend.csproj",
+        "projectPath": "C:\\Users\\farne\\Documents\\Programming\\SolariaRPG\\Backend\\Backend.csproj",
         "packagesPath": "C:\\Users\\farne\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\farne\\IdeaProjects\\SolariaRPG\\Backend\\obj\\",
+        "outputPath": "C:\\Users\\farne\\Documents\\Programming\\SolariaRPG\\Backend\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\farne\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -83,7 +83,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
