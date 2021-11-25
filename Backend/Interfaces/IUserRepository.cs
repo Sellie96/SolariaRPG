@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using API.DTOs;
 using API.Entities;
+using Backend.Entities;
 
 namespace API.Interfaces
 {
@@ -20,5 +21,9 @@ namespace API.Interfaces
         Task<IEnumerable<MemberDto>> GetMembersAsync();
 
         Task<MemberDto> GetMemberAsync(string username);
+
+        Task<IEnumerable<Enemy>> GetMonstersAsync();
+
+        Task<Enemy> GetMonsterAsync(string username);
     }
 }
