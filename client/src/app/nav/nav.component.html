@@ -8,9 +8,10 @@
                 <a class="nav-link" aria-current="page" routerLink='/players' routerLinkActive="active">Players</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" routerLink='/battle' routerLinkActive="active">Battle</a>
+                <div *ngIf="(accountService.currentUser$ | async) as user">
+                  <a class="nav-link" routerLink="/battle/{{user.username}}"> Battle</a>
+                </div>
               </li>
-            </ng-container>
             <li class="nav-item">
               <a class="nav-link" routerLink='/shop' routerLinkActive="active">Shop</a>
             </li>
@@ -26,6 +27,8 @@
             <li class="nav-item">
               <a class="nav-link" routerLink='/errors' routerLinkActive="active">Errors</a>
             </li>
+          </ng-container>
+        
           </ul>
 
           <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as user" dropdown>

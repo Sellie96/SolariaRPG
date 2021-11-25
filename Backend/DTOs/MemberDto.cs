@@ -1,7 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace API.DTOs
 {
@@ -18,7 +16,7 @@ namespace API.DTOs
 
          public string GameMode { get; set; }
 
-        //  public ICollection<PhotoDto> Photos { get; set; }
+         public ICollection<CharacterDto> Characters { get; set; }
 
     }
 }

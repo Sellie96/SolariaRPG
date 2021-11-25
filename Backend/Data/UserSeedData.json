@@ -1,0 +1,44 @@
+[
+    {
+      "UserName": "test2",
+      "KnownAs": "test2",
+      "Created": "2021-11-11T14:56:31.3546651",
+      "LastActive": "2021-11-11T14:56:31.3546725",
+      "GameMode": "Hardcore",
+      "Characters": [
+        {
+          "Level": 1,
+          "HpMax": 100,
+          "HpCurrent": 100,
+          "XpMax": 100,
+          "XpCurrent": 0,
+          "Damage": 5,
+          "Accuracy": 1000,
+          "Armour": 0,
+          "Evasion": 1000,
+          "CritChance": 1
+        }
+      ]
+    },
+    {
+      "UserName": "tomsmells",
+      "KnownAs": "tomsmells",
+      "Created": "2021-11-11T14:56:31.3546651",
+      "LastActive": "2021-11-11T14:56:31.3546725",
+      "GameMode": "Hardcore",
+      "Characters": [
+        {
+          "Level": 10,
+          "HpMax": 150,
+          "HpCurrent": 150,
+          "XpMax": 100,
+          "XpCurrent": 0,
+          "Damage": 15,
+          "Accuracy": 2000,
+          "Armour": 10,
+          "Evasion": 2000,
+          "CritChance": 2
+        }
+      ]
+    }
+]

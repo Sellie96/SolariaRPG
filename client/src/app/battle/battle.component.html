@@ -1,0 +1,48 @@
+<div class="row" *ngIf="member">
+    <div class="col-4">
+        <div class="card gameMode">
+            <div class="gameMode">
+                <strong>{{member.knownAs}}</strong>
+            </div>
+            <div class="gameMode">
+                <strong>{{member.gameMode}}</strong>
+            </div>
+            <img src="{{'./assets/player_1.svg'}}" alt="{{member.knownAs}}" class="card-image-top img-thumbnail">
+            <div class="card-body">
+                <div>
+                    <strong></strong>
+                </div>
+                <div>
+                    <strong>Level: {{member.characters[0].level}}</strong>
+                </div>
+                <accordion>
+                    <accordion-group heading="Statistics" panelClass="customClass">
+                        <div>
+                            <strong>Health: {{member.characters[0].hpCurrent}} / {{member.characters[0].hpMax}}</strong>
+                        </div>
+                        <div>
+                            <strong>Xp: {{member.characters[0].xpCurrent}}/{{member.characters[0].xpMax}}</strong>
+                        </div>
+                        <div>
+                            <strong>Damage: {{member.characters[0].damage}}</strong>
+                        </div>
+                        <div>
+                            <strong>Accuracy: {{member.characters[0].accuracy}}</strong>
+                        </div>
+                        <div>
+                            <strong>Armour: {{member.characters[0].armour}}</strong>
+                        </div>
+                        <div>
+                            <strong>Evasion: {{member.characters[0].evasion}}</strong>
+                        </div>
+                        <div>
+                            <strong>Critical Chance: {{member.characters[0].critChance}}%</strong>
+                        </div>
+                    </accordion-group>
+                </accordion>
+            </div>
+        </div>
+    </div>
+    <div class="col-8">
+    </div>
+</div>

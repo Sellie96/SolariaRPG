@@ -3,6 +3,13 @@
         <div class="card">
             <img src="{{'./assets/player_1.svg'}}" alt="{{member.knownAs}}" class="card-image-top img-thumbnail">
             <div class="card-body">
+
+                <div>
+                    <strong>Player: {{member.knownAs}}</strong>
+                </div>
+                <div>
+                    <strong>Level: {{member.characters[0].level}}</strong>
+                </div>
                 <div>
                     <strong>Game Mode: {{member.gameMode}}</strong>
                 </div>
@@ -25,9 +32,29 @@
     </div>
     <div class="col-8">
         <tabset class="member-tabset">
-            <tab heading='About {{member.knownAs}}'>
+            <tab heading='Statistics {{member.knownAs}}'>
                 <h4>Statistics</h4>
-                <p>{{member.introduction}}</p>
+                <div>
+                    <strong>Health: {{member.characters[0].hpCurrent}} / {{member.characters[0].hpMax}}</strong>
+                </div>
+                <div>
+                    <strong>Xp: {{member.characters[0].xpCurrent}}/{{member.characters[0].xpMax}}</strong>
+                </div>
+                <div>
+                    <strong>Damage: {{member.characters[0].damage}}</strong>
+                </div>
+                <div>
+                    <strong>Accuracy: {{member.characters[0].accuracy}}</strong>
+                </div>
+                <div>
+                    <strong>Armour: {{member.characters[0].armour}}</strong>
+                </div>
+                <div>
+                    <strong>Evasion: {{member.characters[0].evasion}}</strong>
+                </div>
+                <div>
+                    <strong>Critical Chance: {{member.characters[0].critChance}}%</strong>
+                </div>
             </tab>   
             <tab heading='Achievements'>
                 <h4>Achievements</h4>

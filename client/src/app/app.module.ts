@@ -26,6 +26,8 @@ import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 import { TextInputComponent } from './_forms/text-input/text-input.component';
 import { DateInputComponent } from './_forms/date-input/date-input.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { BattleComponent } from './battle/battle.component';
+import { AccordionModule } from 'ngx-bootstrap/accordion';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     MemberCardComponent,
     MemberEditsComponent,
     TextInputComponent,
-    DateInputComponent
+    DateInputComponent,
+    BattleComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +57,8 @@ import { ModalModule } from 'ngx-bootstrap/modal';
     ReactiveFormsModule,
     SharedModule,
     NgxSpinnerModule,
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    AccordionModule.forRoot()
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

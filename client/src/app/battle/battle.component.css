@@ -1,0 +1,18 @@
+.img-thumbnail {
+    margin: 25px;
+    width: 85%;
+    height: 85%;
+}
+
+.card-body {
+    padding: 0 25px;
+}
+
+.gameMode {
+    text-align: center;
+}
+
+.customClass {
+    color: white;
+    color: white;
+}

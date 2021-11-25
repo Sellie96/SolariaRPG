@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Backend.Entities;
 
 namespace API.Entities
 {
@@ -22,12 +23,6 @@ namespace API.Entities
 
         public string GameMode { get; set; }
 
-        // public ICollection<Character> Character { get; set; }
-
-        //  public int GetAge()
-        //  {
-        //      return DateOfBirth.CalculateAge();
-        //  }
-         
+        public ICollection<Character> Characters { get; set; }
     }
 }

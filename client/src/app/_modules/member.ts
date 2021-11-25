@@ -1,4 +1,4 @@
-import { Photo } from "./Photo";
+import { Character } from "./Character";
 
 export interface Member {
     id: number;
@@ -6,7 +6,7 @@ export interface Member {
     knownAs: string;
     created: Date;
     lastActive: Date;
-    gamemode: string;
-    photos: Photo[];
+    gameMode: string;
+    characters: Character[];
   }
   
