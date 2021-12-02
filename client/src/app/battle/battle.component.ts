@@ -4,6 +4,11 @@ import { Member } from '../_modules/member';
 import { MembersService } from '../_Services/members.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { Monster } from '../_modules/Monster';
+import { Observable } from 'rxjs';
+import { CharacterState } from '../state/character.state';
+import { Store } from '@ngxs/store';
+import { SetCharacter } from '../state/character.actions';
 
 @Component({
   selector: 'app-battle',
@@ -13,19 +18,45 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
 export class BattleComponent implements OnInit {
   customClass = 'customClass';
   member: Member;
-  hpCurrent: number;
-  constructor(private memberService: MembersService, private route: ActivatedRoute){}
+  monster: Monster;
+  monsterName: String;
+  playerHpCurrent: number;
+  monsterHpCurrent: number;
+
+  character$: Observable<any> = this.store.select(CharacterState);
+
+  constructor(private memberService: MembersService, private route: ActivatedRoute, private store: Store){}
 
   ngOnInit(): void {
     this.loadMember();
+    this.loadMonster();
     this.gameLoop(); 
   }
 
   loadMember() {
     this.memberService.getMember(this.route.snapshot.paramMap.get('username')).subscribe(member => {
       this.member = member;
-      this.hpCurrent = member.characters[0].hpCurrent
-      console.log(this.hpCurrent, 'test')
+      this.store.dispatch(new SetCharacter(
+        member.characters[0].hpCurrent,
+        member.characters[0].hpMax,
+        member.characters[0].xpCurrent,
+        member.characters[0].xpMax,
+        member.characters[0].damage,
+        member.characters[0].accuracy,
+        member.characters[0].armour,
+        member.characters[0].evasion,
+        member.characters[0].critChance));
+      this.playerHpCurrent = member.characters[0].hpCurrent
+      console.log(this.playerHpCurrent, 'test')
+    })
+  }
+
+  loadMonster() {
+    this.memberService.getMonster(this.route.snapshot.paramMap.get('monster')).subscribe(monster => {
+      this.monster = monster;
+      this.monsterName = monster.enemyName;
+      this.monsterHpCurrent = monster.hpCurrent
+      console.log(this.monsterHpCurrent, 'monster')
     })
   }
 

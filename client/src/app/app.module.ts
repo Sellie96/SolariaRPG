@@ -28,6 +28,10 @@ import { DateInputComponent } from './_forms/date-input/date-input.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BattleComponent } from './battle/battle.component';
 import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { NgxsModule } from '@ngxs/store';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { environment } from 'src/environments/environment';
+import { CharacterState } from './state/character.state';
 
 @NgModule({
   declarations: [
@@ -58,7 +62,13 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
     SharedModule,
     NgxSpinnerModule,
     ModalModule.forRoot(),
-    AccordionModule.forRoot()
+    AccordionModule.forRoot(),
+    NgxsReduxDevtoolsPluginModule.forRoot(),
+    NgxsModule.forRoot([
+      CharacterState
+    ], {
+      developmentMode: !environment.production
+    }),
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

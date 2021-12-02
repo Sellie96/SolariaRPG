@@ -4,6 +4,7 @@ import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Member } from '../_modules/member';
+import { Monster } from '../_modules/Monster';
 
 
 @Injectable({
@@ -12,6 +13,7 @@ import { Member } from '../_modules/member';
 export class MembersService {
   baseUrl = environment.apiUrl;
   members: Member[] = [];
+  monster: Monster[] = [];
 
   constructor(private http: HttpClient) { }
 
@@ -39,5 +41,12 @@ export class MembersService {
         this.members[index] = member;
       })
     );
+  }
+
+  getMonster(enemyName: string) {
+    const enemy = this.monster.find(x => x.enemyName === enemyName);
+    if(enemy !== undefined) return of(enemy);
+    return this.http.get<Monster>(this.baseUrl + 'Enemy/' + 'Goblin');
+
   }
 }

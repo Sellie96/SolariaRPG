@@ -1,48 +1,83 @@
 <div class="row" *ngIf="member">
-    <div class="col-4">
+    <div class="col-6" *ngIf="character$ | async; let character">
         <div class="card gameMode">
             <div class="gameMode">
                 <strong>{{member.knownAs}}</strong>
             </div>
-            <div class="gameMode">
-                <strong>{{member.gameMode}}</strong>
+            <div>
+                <strong>Level: {{member.characters[0].level}}</strong>
+            </div>
+            <div>
+                <strong>Health: {{character.hp}} / {{character.hpmax}}</strong>
             </div>
             <img src="{{'./assets/player_1.svg'}}" alt="{{member.knownAs}}" class="card-image-top img-thumbnail">
             <div class="card-body">
-                <div>
-                    <strong></strong>
-                </div>
-                <div>
-                    <strong>Level: {{member.characters[0].level}}</strong>
-                </div>
                 <accordion>
                     <accordion-group heading="Statistics" panelClass="customClass">
-                        <div>
-                            <strong>Health: {{member.characters[0].hpCurrent}} / {{member.characters[0].hpMax}}</strong>
+                        <div class="gameMode">
+                            <strong>{{member.gameMode}}</strong>
                         </div>
                         <div>
-                            <strong>Xp: {{member.characters[0].xpCurrent}}/{{member.characters[0].xpMax}}</strong>
+                            <strong>Xp: {{character.xp}}/{{character.xpmax}}</strong>
                         </div>
                         <div>
-                            <strong>Damage: {{member.characters[0].damage}}</strong>
+                            <strong>Damage: {{character.damage}}</strong>
                         </div>
                         <div>
-                            <strong>Accuracy: {{member.characters[0].accuracy}}</strong>
+                            <strong>Accuracy: {{character.damage}}</strong>
                         </div>
                         <div>
-                            <strong>Armour: {{member.characters[0].armour}}</strong>
+                            <strong>Armour: {{character.armour}}</strong>
                         </div>
                         <div>
-                            <strong>Evasion: {{member.characters[0].evasion}}</strong>
+                            <strong>Evasion: {{character.evasion}}</strong>
                         </div>
                         <div>
-                            <strong>Critical Chance: {{member.characters[0].critChance}}%</strong>
+                            <strong>Critical Chance: {{character.critchance}}%</strong>
                         </div>
                     </accordion-group>
                 </accordion>
             </div>
         </div>
     </div>
-    <div class="col-8">
-    </div>
+    <div class="col-6">
+        <div class="card gameMode">
+            <div class="gameMode">
+                <strong>{{monster.enemyName}}</strong>
+            </div>
+            <div class="gameMode">
+                <strong>Lvl: {{monster.level}}</strong>
+            </div>
+            <div>
+                <strong>Health: {{monster.hpCurrent}} / {{monster.hpMax}}</strong>
+            </div>
+            <img src="./assets/{{monsterName}}.svg" alt="{{monster.enemyName}}" class="card-image-top img-thumbnail"/>
+            <div class="card-body">
+                <accordion>
+                    <accordion-group heading="Statistics" panelClass="customClass">
+                        <div>
+                            <strong>Damage: {{monster.damage}}</strong>
+                        </div>
+                        <div>
+                            <strong>Accuracy: {{monster.accuracy}}</strong>
+                        </div>
+                        <div>
+                            <strong>Armour: {{monster.armour}}</strong>
+                        </div>
+                        <div>
+                            <strong>Evasion: {{monster.evasion}}</strong>
+                        </div>
+                        <div>
+                            <strong>Critical Chance: {{monster.critChance}}%</strong>
+                        </div>
+                        <div>
+                            <strong>Gold Reward: {{monster.gold}}</strong>
+                        </div>
+                        <div>
+                            <strong>Xp Reward: {{monster.xp}}</strong>
+                        </div>
+                    </accordion-group>
+                </accordion>
+            </div>
+        </div>
 </div>
