@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { CharacterState } from '../state/character.state';
 import { Store } from '@ngxs/store';
 import { SetCharacter } from '../state/character.actions';
+import { Character } from '../_modules/Character';
 
 @Component({
   selector: 'app-battle',
@@ -22,15 +23,29 @@ export class BattleComponent implements OnInit {
   monsterName: String;
   playerHpCurrent: number;
   monsterHpCurrent: number;
+  characters: any[];
+
 
   character$: Observable<any> = this.store.select(CharacterState);
 
   constructor(private memberService: MembersService, private route: ActivatedRoute, private store: Store){}
 
-  ngOnInit(): void {
-    this.loadMember();
-    this.loadMonster();
+  ngOnInit() {
+    this.loadCharacter();
+    // this.memberService.addCharacter();
+    this.onDelete('61b132cca99c514bffb8991e');
+    // this.loadMember();
+    // this.loadMonster();
     this.gameLoop(); 
+  }
+
+  onDelete(characterId: string) {
+    this.memberService.deleteCharacter(characterId);
+  }
+
+  loadCharacter() {
+    this.characters = this.memberService.getCharacter();
+    console.log(this.characters, 'test')
   }
 
   loadMember() {
@@ -61,8 +76,5 @@ export class BattleComponent implements OnInit {
   }
 
   gameLoop(){
-    setInterval(function(){
-      console.log(this.hpCurrent)
-    }, 3000);
   }
 }

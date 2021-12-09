@@ -130,3 +130,4 @@ C:\Users\farne\Documents\Programming\SolariaRPG\Backend\obj\Debug\net5.0\ref\Bac
 C:\Users\farne\Documents\Programming\SolariaRPG\Backend\obj\Debug\net5.0\Backend.pdb
 C:\Users\farne\Documents\Programming\SolariaRPG\Backend\obj\Debug\net5.0\Backend.genruntimeconfig.cache
 C:\Users\farne\Documents\Programming\SolariaRPG\Backend\bin\Debug\net5.0\Data\MonsterSeedData.json
+C:\Users\farne\IdeaProjects\SolariaRPG\Backend\bin\Debug\net5.0\Data\MonsterSeedData.json

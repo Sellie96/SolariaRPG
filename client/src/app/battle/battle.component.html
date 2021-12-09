@@ -1,3 +1,31 @@
+<div *ngFor="let character of characters[0]" class="card-body">
+    <accordion>
+        <accordion-group heading="Character" panelClass="customClass">
+            <div>
+                <strong>Xp: {{character.level}}/{{character.xpmax}}</strong>
+            </div>
+            <div>
+                <strong>Damage: {{character.damage}}</strong>
+            </div>
+            <div>
+                <strong>Accuracy: {{character.damage}}</strong>
+            </div>
+            <div>
+                <strong>Armour: {{character.armour}}</strong>
+            </div>
+            <div>
+                <strong>Evasion: {{character.evasion}}</strong>
+            </div>
+            <div>
+                <strong>Critical Chance: {{character.critchance}}%</strong>
+            </div>
+        </accordion-group>
+    </accordion>
+</div>
+
+
+
+
 <div class="row" *ngIf="member">
     <div class="col-6" *ngIf="character$ | async; let character">
         <div class="card gameMode">
