@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngxs/store';
 import { ReplaySubject, Subject } from 'rxjs';
 import {map} from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
+import { SetUser } from '../state/user.actions';
 import { User } from '../_models/user';
 
 @Injectable({
@@ -16,7 +18,7 @@ export class AccountService {
   private userId: string;
   private token: string;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private store: Store) {}
 
 
   getToken() {
@@ -30,7 +32,7 @@ export class AccountService {
   }
 
   getUserId(){
-    return this.userId;
+    return this.userId
   }
 
   login(model: any){
@@ -41,7 +43,9 @@ export class AccountService {
         this.isAuthenticated = true;
         this.authStatusListener.next(true);
         this.userId = response.userId;
-        this.router.navigate(['/town']);
+        this.store.dispatch(new SetUser(
+          response.userId));
+        this.router.navigate(['/character-select']);
         this.saveAuthData(token, this.userId);
       }
     })
@@ -54,6 +58,8 @@ export class AccountService {
       this.isAuthenticated = true;
       this.authStatusListener.next(true);
       this.userId = response.userId;
+      this.store.dispatch(new SetUser(
+        response.userId));
       this.router.navigate(['/players']);
       this.saveAuthData(token, this.userId);
     })
@@ -62,6 +68,8 @@ export class AccountService {
   autoAuthUser(){
     const authInformation = this.getAuthData();
     this.userId = authInformation.userId;
+    this.store.dispatch(new SetUser(
+      authInformation.userId));
     this.token = authInformation.token;
     this.isAuthenticated = true;
     this.authStatusListener.next(true);

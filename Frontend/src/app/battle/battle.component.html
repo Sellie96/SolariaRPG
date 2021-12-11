@@ -1,121 +1,36 @@
-<div *ngFor="let character of characters[0]" class="card-body">
-    <accordion *ngIf="userId === character.userId">
-        <accordion-group heading="Character" panelClass="customClass">
-            <div>
-                <strong>Hp: {{character.hpCurrent}}/{{character.hpMax}}</strong>
-            </div>
-            <div>
-                <strong>Xp: {{character.xpCurrent}}/{{character.xpMax}}</strong>
-            </div>
-            <div>
-                <strong>Damage: {{character.damage}}</strong>
-            </div>
-            <div>
-                <strong>Accuracy: {{character.damage}}</strong>
-            </div>
-            <div>
-                <strong>Armour: {{character.armour}}</strong>
-            </div>
-            <div>
-                <strong>Evasion: {{character.evasion}}</strong>
-            </div>
-            <div>
-                <strong>Critical Chance: {{character.critChance}}%</strong>
-            </div>
-            <div>
-                <button (click)="onDelete(character.id)">DELETE {{character._id}}</button>
-            </div>
-        </accordion-group>
-    </accordion>
-</div>
-
 <div>
-    <button (click)="createCharacter()">Create Character</button>
-</div>
-
-
-
-
-<div class="row" *ngIf="member">
-    <div class="col-6" *ngIf="character$ | async; let character">
-        <div class="card gameMode">
-            <div class="gameMode">
-                <strong>{{member.knownAs}}</strong>
-            </div>
-            <div>
-                <strong>Level: {{member.characters[0].level}}</strong>
-            </div>
-            <div>
-                <strong>Health: {{character.hp}} / {{character.hpmax}}</strong>
-            </div>
-            <img src="{{'./assets/player_1.svg'}}" alt="{{member.knownAs}}" class="card-image-top img-thumbnail">
-            <div class="card-body">
-                <accordion>
-                    <accordion-group heading="Statistics" panelClass="customClass">
-                        <div class="gameMode">
-                            <strong>{{member.gameMode}}</strong>
-                        </div>
-                        <div>
-                            <strong>Xp: {{character.xp}}/{{character.xpmax}}</strong>
-                        </div>
-                        <div>
-                            <strong>Damage: {{character.damage}}</strong>
-                        </div>
-                        <div>
-                            <strong>Accuracy: {{character.damage}}</strong>
-                        </div>
-                        <div>
-                            <strong>Armour: {{character.armour}}</strong>
-                        </div>
-                        <div>
-                            <strong>Evasion: {{character.evasion}}</strong>
-                        </div>
-                        <div>
-                            <strong>Critical Chance: {{character.critchance}}%</strong>
-                        </div>
-                    </accordion-group>
-                </accordion>
-            </div>
+  <div class="col-6">
+    <div class="card gameMode">
+      <div>
+        <strong>Level: {{ this.player.level }}</strong>
+      </div>
+      <div>
+        <strong>Health: {{ this.player.hp }} / {{ this.player.hpMax }}</strong>
+      </div>
+      <img
+        src="{{ './assets/player_1.svg' }}"
+        class="card-image-top img-thumbnail"
+      />
+      <div class="card-body">
+        <div>
+          <strong>Xp: {{ this.player.xp }}/{{ this.player.xpMax }}</strong>
         </div>
+        <div>
+          <strong>Damage: {{ this.player.damage }}</strong>
+        </div>
+        <div>
+          <strong>Accuracy: {{ this.player.damage }}</strong>
+        </div>
+        <div>
+          <strong>Armour: {{ this.player.armour }}</strong>
+        </div>
+        <div>
+          <strong>Evasion: {{ this.player.evasion }}</strong>
+        </div>
+        <div>
+          <strong>Critical Chance: {{ this.player.critChance }}%</strong>
+        </div>
+      </div>
     </div>
-    <div class="col-6">
-        <div class="card gameMode">
-            <div class="gameMode">
-                <strong>{{monster.enemyName}}</strong>
-            </div>
-            <div class="gameMode">
-                <strong>Lvl: {{monster.level}}</strong>
-            </div>
-            <div>
-                <strong>Health: {{monster.hpCurrent}} / {{monster.hpMax}}</strong>
-            </div>
-            <img src="./assets/{{monsterName}}.svg" alt="{{monster.enemyName}}" class="card-image-top img-thumbnail"/>
-            <div class="card-body">
-                <accordion>
-                    <accordion-group heading="Statistics" panelClass="customClass">
-                        <div>
-                            <strong>Damage: {{monster.damage}}</strong>
-                        </div>
-                        <div>
-                            <strong>Accuracy: {{monster.accuracy}}</strong>
-                        </div>
-                        <div>
-                            <strong>Armour: {{monster.armour}}</strong>
-                        </div>
-                        <div>
-                            <strong>Evasion: {{monster.evasion}}</strong>
-                        </div>
-                        <div>
-                            <strong>Critical Chance: {{monster.critChance}}%</strong>
-                        </div>
-                        <div>
-                            <strong>Gold Reward: {{monster.gold}}</strong>
-                        </div>
-                        <div>
-                            <strong>Xp Reward: {{monster.xp}}</strong>
-                        </div>
-                    </accordion-group>
-                </accordion>
-            </div>
-        </div>
+  </div>
 </div>

@@ -1,7 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngxs/store';
 import { ToastrService } from 'ngx-toastr';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
+import { CharacterState } from '../state/character.state';
+import { UserState } from '../state/user.state';
 import { AccountService } from '../_Services/account.service';
 
 @Component({
@@ -9,24 +12,23 @@ import { AccountService } from '../_Services/account.service';
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css']
 })
-export class NavComponent implements OnInit, OnDestroy {
+export class NavComponent implements OnInit {
   model: any = {}
   private authListenerSubs: Subscription;
   userIsAuthenticated = false;
   isCollapsed = true;
 
-  constructor(public accountService: AccountService, private router: Router, private toastr: ToastrService) { }
+  
+  user$: Observable<any> = this.store.select(UserState);
+  character$: Observable<any> = this.store.select(CharacterState);
+
+  constructor(public accountService: AccountService, private router: Router, private toastr: ToastrService, private store: Store) { }
 
   ngOnInit(): void {
-    this.userIsAuthenticated = this.accountService.getIsAuth();
+    this.userIsAuthenticated = this.accountService.getIsAuth(); 
     this.authListenerSubs = this.accountService.getAuthStatusListener().subscribe(isAuthenticated => {
       this.userIsAuthenticated = isAuthenticated;
     });
-
-  }
-
-  ngOnDestroy(): void {
-    throw new Error('Method not implemented.');
   }
 
   login() {
