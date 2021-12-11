@@ -12,44 +12,19 @@ import { Store } from '@ngxs/store';
 })
 export class MonsterService {
   baseUrl = environment.apiUrl;
-  members: Member[] = [];
-  monster: Monster[] = [];
-  character: Character[] = [];
 
-  constructor(private http: HttpClient, private store: Store) {}
-
-  getMonster() {
-    this.http
-      .get<{ message: string; character: any }>(
-        this.baseUrl + '/character'
-      )
-      .pipe(map((characterData) => {
-        return characterData.character.map(characters => {
-          return {
-            level: characters.level,
-            hpMax: characters.hpMax,
-            hpCurrent: characters.hpCurrent,
-            xpMax: characters.xpMax,
-            xpCurrent: characters.xpCurrent,
-            damage: characters.damage,
-            accuracy: characters.accuracy,
-            armour: characters.armour,
-            evasion: characters.evasion,
-            critChance: characters.critChance,
-            id: characters._id,
-            userId: characters.userId
-          }
-        })
-      }))
-      .subscribe((transformedCharacters) => {
-        this.character.push(transformedCharacters)
-      });
-      return this.character;
-  }
+  constructor(private http: HttpClient) {}
 
   createNewMonster(model:any){
-    return this.http.post<{token: string, userId: string}>(this.baseUrl + '/monster/create', model).subscribe(response => {
+    return this.http.post<{token: string}>(this.baseUrl + '/monster/create', model).subscribe(response => {
+      console.log(model)
       console.log(response)
+    })
+  }
+
+  getMonster(enemyName: string) {
+    this.http.get<{ message: string; monster: any }>(this.baseUrl + '/monster/' + enemyName).subscribe(CharacterData => {
+      console.log(CharacterData)
     })
   }
 }

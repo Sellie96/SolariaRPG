@@ -6,6 +6,7 @@ const app = express();
 
 const characterRoutes = require("./routes/character");
 const userRoutes = require("./routes/user");
+const monsterRoutes = require("./routes/monster");
 
 const mongoose = require("mongoose")
 
@@ -30,6 +31,8 @@ app.use((req,res,next) => {
 app.use("/character",characterRoutes)
 
 app.use("/user", userRoutes)
+
+app.use("/monster", monsterRoutes)
 
 app.use((req,res,next) => {
     res.sendFile(path.join(__dirname, "angular", "index.html"));

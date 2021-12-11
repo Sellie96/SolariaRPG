@@ -28,6 +28,7 @@ export class CharacterCreationComponent implements OnInit, OnDestroy {
 
   onDelete(characterId: string) {
     this.memberService.killCharacter(characterId);
+    location.reload();
   }
 
   createCharacter(){

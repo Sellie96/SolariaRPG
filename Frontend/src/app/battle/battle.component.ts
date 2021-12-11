@@ -7,6 +7,8 @@ import { Observable } from 'rxjs';
 import { CharacterState, CharacterStateModel } from '../state/character.state';
 import { Select, Store } from '@ngxs/store';
 import { Character } from '../_modules/Character';
+import { MonsterService } from '../_Services/monster.service';
+import { MonsterState, MonsterStateModel } from '../state/monster.state';
 
 @Component({
   selector: 'app-battle',
@@ -15,22 +17,22 @@ import { Character } from '../_modules/Character';
 })
 export class BattleComponent implements OnInit {
   member: Member;
-  monster: Monster;
-  monsterName: String;
   characters: any[];
   character: Character;
   userId: string;
   player: any;
   fighting: boolean = false;
+  monster: any;
 
 
   @Select(CharacterState)character$: Observable<CharacterStateModel>
+  @Select(MonsterState)monster$: Observable<MonsterStateModel>
 
-  constructor(private memberService: MembersService, private route: ActivatedRoute, private store: Store, private router: Router){}
+  constructor(private memberService: MembersService, private router: Router, private monsterService: MonsterService){}
 
   ngOnInit() {
     this.loadCharacter();
-    // this.loadMonster();
+    this.loadMonster();
     this.fighting = true;
     this.gameLoop(); 
   }
@@ -55,6 +57,8 @@ export class BattleComponent implements OnInit {
 
 
   loadMonster() {
+    this.monster = this.monsterService.getMonster('Goblin');
+    console.log(this.monster)
   }
 
  async playerDied(){
@@ -74,7 +78,6 @@ export class BattleComponent implements OnInit {
       if (this.player.hp <= 0) {
         this.playerDied();
       }
-
       }, 3000);   
   }
    delay(ms: number) {

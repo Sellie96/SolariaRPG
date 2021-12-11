@@ -36,8 +36,7 @@ export class CreateMonsterComponent implements OnInit {
     })
   }
 
-  register() {
-    this.cancelRegister.emit();
+  createMonster() {
     this.monsterService.createNewMonster(this.registerForm.value)
   }
 

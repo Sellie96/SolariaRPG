@@ -55,12 +55,6 @@ export class MembersService {
     })
   }
 
-  getMonster(enemyName: string) {
-    const enemy = this.monster.find((x) => x.enemyName === enemyName);
-    if (enemy !== undefined) return of(enemy);
-    return this.http.get<Monster>(this.baseUrl + 'Enemy/' + 'Goblin');
-  }
-
   killCharacter(characterId: string){
     this.http.delete(this.baseUrl + '/character/' + characterId)
     .subscribe(() => {

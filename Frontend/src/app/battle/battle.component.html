@@ -33,4 +33,39 @@
       </div>
     </div>
   </div>
+
+  <div class="col-6">
+    <div class="card gameMode">
+      <div>
+        <strong>Level: {{ this.monster.level }}</strong>
+      </div>
+      <div>
+        <strong>Health: {{ this.player.hp }} / {{ this.player.hpMax }}</strong>
+      </div>
+      <img
+        src="{{ './assets/player_1.svg' }}"
+        class="card-image-top img-thumbnail"
+      />
+      <div class="card-body">
+        <div>
+          <strong>Xp: {{ this.player.xp }}/{{ this.player.xpMax }}</strong>
+        </div>
+        <div>
+          <strong>Damage: {{ this.player.damage }}</strong>
+        </div>
+        <div>
+          <strong>Accuracy: {{ this.player.damage }}</strong>
+        </div>
+        <div>
+          <strong>Armour: {{ this.player.armour }}</strong>
+        </div>
+        <div>
+          <strong>Evasion: {{ this.player.evasion }}</strong>
+        </div>
+        <div>
+          <strong>Critical Chance: {{ this.player.critChance }}%</strong>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
