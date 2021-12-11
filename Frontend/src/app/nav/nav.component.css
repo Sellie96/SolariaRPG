@@ -1,0 +1,38 @@
+.dropdown-toggle, .dropdown-item {
+    cursor: pointer
+}
+
+.nav-link{
+    cursor:pointer;
+    justify-content: space-evenly;
+    color: white;
+}
+
+.logo {
+    width: 325px;
+    height: 100px;
+    object-fit: contain;
+    margin-right: 35px;
+}
+
+.linkMenu {
+    position: relative;
+}
+
+.linkMenu:after {
+    content: " ";
+    position: absolute;
+    border-left: 1px #6c757d solid;
+    height: 100%;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.navbarStuff {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.navbar-custom {
+    background-color: #010e29;
+}

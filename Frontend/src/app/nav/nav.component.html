@@ -1,0 +1,107 @@
+<nav
+  ngxNavbarDynamicExpand
+  style="border-bottom: 1px solid #edcd90"
+  class="navbar navbar-expand-md navbar-dark fixed-top navbar-custom"
+>
+  <div class="container-fluid">
+    <div class="linkMenu">
+      <a class="navbar-brand" href="/">Solaria</a>
+    </div>
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="collapse.toggle()"
+      aria-controls="main-nav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span
+        class="
+          navbar-toggler-icon
+          d-flex
+          align-items-center
+          justify-content-center
+        "
+      >
+      </span>
+    </button>
+    <ngx-navbar-collapse id="main-nav" #collapse="ngxNavbarCollapse">
+      <ul class="navbar-nav container">
+        <ng-container *ngIf="userIsAuthenticated">
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              aria-current="page"
+              routerLink="/town"
+              routerLinkActive="active"
+              >Town</a
+            >
+          </li>
+          <li class="nav-item">
+            <div *ngIf="userIsAuthenticated">
+              <a class="nav-link" routerLink="/battle/"> Battle</a>
+            </div>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/shop" routerLinkActive="active"
+              >Shop</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/dungeons" routerLinkActive="active"
+              >Dungeons</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/quests" routerLinkActive="active"
+              >Quests</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/messages" routerLinkActive="active"
+              >Messages</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/errors" routerLinkActive="active"
+              >Errors</a
+            >
+          </li>
+          <div class="dropdown nav-link" style="float: right" dropdown>
+            <div id="serverTime"></div>
+            <a class="dropdown-toggle text-light" dropdownToggle> </a>
+            <div *ngIf="userIsAuthenticated">
+              <div class="dropdown-menu" *dropdownMenu>
+                <a class="dropdown-item" routerLink="/options"> Options</a>
+                <a class="dropdown-item" (click)="logout()"> Logout</a>
+              </div>
+            </div>
+          </div>
+        </ng-container>
+      </ul>
+    </ngx-navbar-collapse>
+    <form
+      *ngIf="!userIsAuthenticated"
+      #loginForm="ngForm"
+      class="d-flex"
+      (ngSubmit)="login()"
+      autocomplete="off"
+    >
+      <input
+        name="username"
+        [(ngModel)]="model.username"
+        class="form-control me-2"
+        type="text"
+        placeholder="Username"
+      />
+      <input
+        name="password"
+        [(ngModel)]="model.password"
+        class="form-control me-2"
+        type="password"
+        placeholder="Password"
+      />
+      <button class="btn btn-outline-success" type="submit">Login</button>
+    </form>
+  </div>
+</nav>
