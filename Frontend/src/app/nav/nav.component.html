@@ -67,12 +67,13 @@
               >Errors</a
             >
           </li>
-          <div class="dropdown nav-link" style="float: right" dropdown>
-            <div id="serverTime"></div>
-            <a class="dropdown-toggle text-light" dropdownToggle> </a>
+          <div  class="dropdown nav-link" style="float: right" dropdown>
+            <a *ngIf="user$ | async; let user" class="dropdown-toggle text-light" dropdownToggle>{{user.userId}} </a>
             <div *ngIf="userIsAuthenticated">
               <div class="dropdown-menu" *dropdownMenu>
                 <a class="dropdown-item" routerLink="/options"> Options</a>
+                <a class="dropdown-item"  routerLink="/character-select" (click)="location.reload();"> Select Character</a>#
+                <a class="dropdown-item"  routerLink="/create-monster"> Create Monster</a>
                 <a class="dropdown-item" (click)="logout()"> Logout</a>
               </div>
             </div>

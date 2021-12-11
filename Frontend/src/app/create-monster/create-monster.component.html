@@ -1,0 +1,24 @@
+<form [formGroup]="$any(registerForm)" (ngSubmit)="registerForm.valid && register()" autocomplete="off">
+    <h2>Create new monster</h2>
+    <hr>
+    <app-text-input [formControl]='$any(registerForm.controls)["name"]' [label]='"name"'></app-text-input>
+    <app-text-input [formControl]='$any(registerForm.controls)["level"]' [label]='"level"'></app-text-input>
+    <app-text-input [formControl]='$any(registerForm.controls)["hp"]' [label]='"hp"'></app-text-input>
+    <app-text-input [formControl]='$any(registerForm.controls)["hpMax"]' [label]='"hpMax"'></app-text-input>
+    <app-text-input [formControl]='$any(registerForm.controls)["dmg"]' [label]='"dmg"'></app-text-input>
+    <app-text-input [formControl]='$any(registerForm.controls)["attack"]' [label]='"attack"'></app-text-input>
+    <app-text-input [formControl]='$any(registerForm.controls)["evasion"]' [label]='"evasion"'></app-text-input>
+    <app-text-input [formControl]='$any(registerForm.controls)["armour"]' [label]='"armour"'></app-text-input>
+    <app-text-input [formControl]='$any(registerForm.controls)["xp"]' [label]='"xp"'></app-text-input>
+    <app-text-input [formControl]='$any(registerForm.controls)["gold"]' [label]='"gold"'></app-text-input>
+
+
+    <div class="form-group text-center">
+        <button [disabled]="!registerForm.valid" class="btn btn-success mr-2" type="submit">Create Monster</button>
+        <button class="btn btn-default mr-2" (click)="cancel()" type="button">Cancel</button>
+    </div>
+</form>
+
+<p>Form value: {{registerForm.value | json}}</p>
+
+<p>Form value: {{registerForm.status | json}}</p>

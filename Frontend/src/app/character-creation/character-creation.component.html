@@ -1,0 +1,67 @@
+<div class="mb-3 text-center">
+    <h1 style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" class="font-w700 mb-1 text-warning">Select your Character</h1>
+  </div>
+
+<div *ngFor="let character of characters[0]" class="card-body">
+  <row>
+    <div class="col-12 col-md-12" id="character-selection-container">
+      <div
+        class="bg-black-75 btn-group mt-1 mb-1 w-100"
+        role="group"
+        aria-label="Horizontal Primary"
+      >
+        <button (click)="selectCharacter(
+           character.level, 
+           character.hpCurrent,
+           character.hpMax,
+           character.xpCurrent,
+           character.xpMax,
+           character.damage,
+           character.accuracy,
+           character.armour,
+           character.evasion,
+           character.critChance,
+           character.id
+            )" type="button" class="btn btn-lg btn-gamemode-standard">
+          <div class="col-12 pl-0">
+            <div class="media d-flex align-items-center push">
+              <div class="media-body text-center mr-2">
+                <h5 class="font-w600 mb-1 pt-2 font-size-sm text-warning">
+                  Cloud Character
+                </h5>
+                <h5 class="font-w600 mb-2 font-size-lg text-white">{{character.id}}</h5>
+                <div role="separator" class="dropdown-divider"></div>
+                <h5 class="font-w400 font-size-sm mb-0 text-white">
+                  <span>Total Level: {{character.level}}</span>
+                  <br />
+                  Gold: 0
+                </h5>
+              </div>
+            </div>
+            <div class="col-12 pl-0">
+              <h5 class="font-w400 font-size-sm mb-0 text-danger text-center">
+                Not currently fighting
+              </h5>
+            </div>
+            <button
+            (click)="onDelete(character.id)"
+            role="button"
+            class="btn-danger btn-lg m-1 btn-cloud-sign-in"> Delete Character
+          </button>
+          </div>
+        </button>
+      </div>
+    </div>
+  </row>
+</div>
+
+<div class="p-4 pt-1 pb-1 d-xl-flex font-size-sm text-center">
+  <div class="col-12 font-size-sm font-w400 text-white-75 mb-2">
+    <button
+      (click)="createCharacter()"
+      role="button"
+      class="btn-danger btn-lg btn-alt-success btn-cloud-sign-in"
+    >Create New Character
+    </button>
+  </div>
+</div>

@@ -33,6 +33,10 @@ import { DungeonsComponent } from './dungeons/dungeons.component';
 import { QuestsComponent } from './quests/quests.component';
 import { TownComponent } from './town/town.component';
 import { NgxNavbarModule } from 'ngx-bootstrap-navbar';
+import { CharacterCreationComponent } from './character-creation/character-creation.component';
+import { UserState } from './state/user.state';
+import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
+import { CreateMonsterComponent } from './create-monster/create-monster.component';
 
 @NgModule({
   declarations: [
@@ -47,11 +51,15 @@ import { NgxNavbarModule } from 'ngx-bootstrap-navbar';
     ServerErrorComponent,
     TextInputComponent,
     DateInputComponent,
+    CharacterCreationComponent,
     BattleComponent,
     ShopComponent,
     DungeonsComponent,
     QuestsComponent,
-    TownComponent
+    TownComponent,
+    CharacterCreationComponent,
+    CreateMonsterComponent,
+    CreateMonsterComponent
   ],
   imports: [
     BrowserModule,
@@ -67,10 +75,12 @@ import { NgxNavbarModule } from 'ngx-bootstrap-navbar';
     AccordionModule.forRoot(),
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsModule.forRoot([
-      CharacterState
+      CharacterState,
+      UserState
     ], {
       developmentMode: !environment.production
     }),
+    NgxsStoragePluginModule.forRoot()
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

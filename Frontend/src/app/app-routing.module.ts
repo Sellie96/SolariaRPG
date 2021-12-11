@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { NoPreloading, PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { BattleComponent } from './battle/battle.component';
+import { CharacterCreationComponent } from './character-creation/character-creation.component';
+import { CreateMonsterComponent } from './create-monster/create-monster.component';
 import { DungeonsComponent } from './dungeons/dungeons.component';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
@@ -26,16 +28,21 @@ const routes: Routes = [
     {path: 'shop', component: ShopComponent},
     {path: 'battle', component: BattleComponent},
     {path: 'messages', component: MessagesComponent},
+    {path: 'character-select', component: CharacterCreationComponent},
   ]
 },
   {path: 'errors', component: TestErrorsComponent},
   {path: 'not-found', component: NotFoundComponent},
   {path: 'server-error', component: ServerErrorComponent},
+  {path: 'create-monster', component: CreateMonsterComponent},
   {path: '**', component: HomeComponent, pathMatch: 'full'}
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    preloadingStrategy: NoPreloading,
+    relativeLinkResolution: 'legacy'
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
