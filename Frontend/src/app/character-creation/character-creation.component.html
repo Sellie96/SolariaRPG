@@ -1,10 +1,11 @@
-<div class="mb-3 text-center">
-    <h1 style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" class="font-w700 mb-1 text-warning">Select your Character</h1>
+<div class="text-center">
+    <h1 style="font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;" class="font-w700 text-warning">Select your Character</h1>
   </div>
 
+<div *ngIf="user$ | async; let user">
 <div *ngFor="let character of characters[0]" class="card-body">
   <row>
-    <div class="col-12 col-md-12" id="character-selection-container">
+    <div *ngIf="character.userId === user.userId" class="col-12 col-md-12" id="character-selection-container">
       <div
         class="bg-black-75 btn-group mt-1 mb-1 w-100"
         role="group"
@@ -53,6 +54,7 @@
       </div>
     </div>
   </row>
+</div>
 </div>
 
 <div class="p-4 pt-1 pb-1 d-xl-flex font-size-sm text-center">

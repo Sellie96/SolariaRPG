@@ -1,6 +1,5 @@
 export interface Monster {
-    id: number;
-    enemyName: string;
+    name: string;
     level: number;
     hpMax: number;
     hpCurrent: number;
@@ -8,7 +7,6 @@ export interface Monster {
     accuracy: number;
     armour: number;
     evasion: number;
-    critChance: number;
-    gold: number;
     xp: number;
+    gold: number;
 }
