@@ -12,7 +12,7 @@ import { Store } from '@ngxs/store';
 @Injectable({
   providedIn: 'root',
 })
-export class MembersService {
+export class CharacterService {
   baseUrl = environment.apiUrl;
   members: Member[] = [];
   monster: Monster[] = [];
@@ -61,5 +61,30 @@ export class MembersService {
       console.log("Deleted!")
     })
   }
+
+  updateCharacter(level, hp, hpMax, xp, xpMax, damage, accuracy, armour, evasion, critChance, id) {
+    const character: any = {level, hp, hpMax, xp, xpMax, damage, accuracy, armour, evasion, critChance, id}
+    this.http.put<{message:string, characterId: string}>(this.baseUrl + '/character/update/' + id, character )
+    .subscribe(responseData =>{
+      console.log(responseData);
+    })
+  }
+
+  saveCharacter(level, hp, hpMax, xp, xpMax, damage, accuracy, armour, evasion, critChance, id) {
+    this.store.dispatch(new SetCharacter(
+      level,
+      hp,
+      hpMax,
+      xp,
+      xpMax,
+      damage,
+      accuracy,
+      armour,
+      evasion,
+      critChance,
+      id
+    ));
+  }
+
 }
 

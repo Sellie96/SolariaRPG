@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MembersService } from '../_Services/character.service';
+import { CharacterService } from '../_Services/character.service';
 import { Observable, timer } from 'rxjs';
 import { CharacterState, CharacterStateModel } from '../state/character.state';
-import { Select } from '@ngxs/store';
+import { Select, Store } from '@ngxs/store';
 import { MonsterService } from '../_Services/monster.service';
 import { MonsterState, MonsterStateModel } from '../state/monster.state';
 import { ProgressbarConfig } from 'ngx-bootstrap/progressbar';
 import { map, takeWhile } from 'rxjs/operators';
+import { SetCharacter } from '../state/character.actions';
 
 export function getProgressbarConfig(): ProgressbarConfig {
   return Object.assign(new ProgressbarConfig(), {
@@ -28,7 +29,6 @@ export class BattleComponent implements OnInit {
 
   value: number = 0;
   sub;
-  
 
   fighting: boolean = false;
 
@@ -36,9 +36,11 @@ export class BattleComponent implements OnInit {
   @Select(MonsterState) monster$: Observable<MonsterStateModel>;
 
   constructor(
-    private memberService: MembersService,
+    private memberService: CharacterService,
+    private characterService: CharacterService,
     private router: Router,
-    private monsterService: MonsterService
+    private monsterService: MonsterService,
+    private store: Store
   ) {}
 
   ngOnInit() {
@@ -94,7 +96,7 @@ export class BattleComponent implements OnInit {
 
   async monsterDied() {
     this.player.xp += this.monster.xp + 50;
-    if(this.player.xp >= this.player.xpMax) {
+    if (this.player.xp >= this.player.xpMax) {
       this.levelUp();
     }
     this.loadMonster();
@@ -103,7 +105,7 @@ export class BattleComponent implements OnInit {
 
   gameLoop() {
     setInterval(async () => {
-      this.progressLoop()
+      this.progressLoop();
       this.playerAttack();
       if (this.monster.hp <= 0) {
         this.monster.hp = 0;
@@ -118,16 +120,49 @@ export class BattleComponent implements OnInit {
         await this.delay(1000);
         this.playerDied();
       }
+
+      this.saveAll();
+      this.loadCharacter();
     }, 5000);
   }
 
-  progressLoop(){
+  saveAll() {
+    this.characterService.saveCharacter(
+      this.player.level,
+      this.player.hp,
+      this.player.hpMax,
+      this.player.xp,
+      this.player.xpMax,
+      this.player.damage,
+      this.player.accuracy,
+      this.player.armour,
+      this.player.evasion,
+      this.player.critChance,
+      this.player.id
+    );
+    this.characterService.updateCharacter(
+      this.player.level,
+      this.player.hp,
+      this.player.hpMax,
+      this.player.xp,
+      this.player.xpMax,
+      this.player.damage,
+      this.player.accuracy,
+      this.player.armour,
+      this.player.evasion,
+      this.player.critChance,
+      this.player.id
+    )
+    this.loadCharacter();
+  }
+
+  progressLoop() {
     setInterval(async () => {
-    this.sub && this.sub.unsubscribe();
-    this.sub = this.interval(5000).subscribe(res => {
-      this.value = res;
-    });  
-  }, 5000);
+      this.sub && this.sub.unsubscribe();
+      this.sub = this.interval(5000).subscribe((res) => {
+        this.value = res;
+      });
+    }, 5000);
   }
 
   playerAttack() {
@@ -138,40 +173,22 @@ export class BattleComponent implements OnInit {
     this.player.hp -= this.monster.damage;
   }
 
-  levelUp(){
-    this.player.level ++;
+  levelUp() {
+    this.player.level++;
     this.player.xpMax += 25 * this.player.level;
     this.player.hpMax += 10;
     this.player.hp = this.player.hpMax;
     this.player.xp = 0;
   }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   interval(timeToWait) {
     const initial = new Date().getTime();
     return timer(0, 200).pipe(
-      map(()=> new Date().getTime()),
-      takeWhile((res) => res<=initial+timeToWait,true),
-      map(now=>{
+      map(() => new Date().getTime()),
+      takeWhile((res) => res <= initial + timeToWait, true),
+      map((now) => {
         const porc = (100 * (now - initial)) / timeToWait;
-        return porc<100?Math.round(porc):100
+        return porc < 100 ? Math.round(porc) : 100;
       })
     );
   }
