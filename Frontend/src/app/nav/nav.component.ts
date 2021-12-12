@@ -4,6 +4,7 @@ import { Store } from '@ngxs/store';
 import { ToastrService } from 'ngx-toastr';
 import { Observable, Subscription } from 'rxjs';
 import { CharacterState } from '../state/character.state';
+import { MonsterState } from '../state/monster.state';
 import { UserState } from '../state/user.state';
 import { AccountService } from '../_Services/account.service';
 
@@ -21,6 +22,8 @@ export class NavComponent implements OnInit {
   
   user$: Observable<any> = this.store.select(UserState);
   character$: Observable<any> = this.store.select(CharacterState);
+  monster$: Observable<any> = this.store.select(MonsterState);
+
 
   constructor(public accountService: AccountService, private router: Router, private toastr: ToastrService, private store: Store) { }
 
