@@ -1,17 +1,23 @@
 <div>
+  <div class="row">
   <div class="col-6">
-    <div class="card gameMode">
+    <div class="card gameMode text-center">
       <div>
         <strong>Level: {{ this.player.level }}</strong>
       </div>
-      <div>
-        <strong>Health: {{ this.player.hp }} / {{ this.player.hpMax }}</strong>
+      <div class="mb-2">
+        <progressbar class="progress-striped active" [max]="this.player.hpMax"  [value]="this.player.hp" type="danger"><i>{{this.player.hp}} / {{this.player.hpMax}}</i></progressbar>
       </div>
       <img
         src="{{ './assets/player_1.svg' }}"
         class="card-image-top img-thumbnail"
       />
       <div class="card-body">
+      <div>
+        <strong>Attack speed: 4 seconds</strong>
+        <progressbar class="progress-striped active"  [value]="value" type="warning"></progressbar>
+      </div>
+      
         <div>
           <strong>Xp: {{ this.player.xp }}/{{ this.player.xpMax }}</strong>
         </div>
@@ -19,7 +25,7 @@
           <strong>Damage: {{ this.player.damage }}</strong>
         </div>
         <div>
-          <strong>Accuracy: {{ this.player.damage }}</strong>
+          <strong>Accuracy: {{ this.player.accuracy }}</strong>
         </div>
         <div>
           <strong>Armour: {{ this.player.armour }}</strong>
@@ -35,37 +41,42 @@
   </div>
 
   <div class="col-6">
-    <div class="card gameMode">
+    <div class="card gameMode text-center">
+      <div>
+        <strong>Level: {{ this.monster.name }}</strong>
+      </div>
       <div>
         <strong>Level: {{ this.monster.level }}</strong>
       </div>
-      <div>
-        <strong>Health: {{ this.player.hp }} / {{ this.player.hpMax }}</strong>
+      <div class="mb-2">
+        <progressbar class="progress-striped active" [max]="this.monster.hpMax"  [value]="this.monster.hp" type="danger"><i>{{this.monster.hp}} / {{this.monster.hpMax}}</i></progressbar>
       </div>
       <img
-        src="{{ './assets/player_1.svg' }}"
+        src="./assets/monsters/{{this.monster.name}}.svg"
+        alt="{{this.monster.name}}"
         class="card-image-top img-thumbnail"
       />
       <div class="card-body">
         <div>
-          <strong>Xp: {{ this.player.xp }}/{{ this.player.xpMax }}</strong>
+          <strong>Damage: {{ this.monster.damage }}</strong>
         </div>
         <div>
-          <strong>Damage: {{ this.player.damage }}</strong>
+          <strong>Armour: {{ this.monster.armour }}</strong>
         </div>
         <div>
-          <strong>Accuracy: {{ this.player.damage }}</strong>
+          <strong>Accuracy: {{ this.monster.accuracy }}</strong>
         </div>
         <div>
-          <strong>Armour: {{ this.player.armour }}</strong>
+          <strong>Evasion: {{ this.monster.evasion }}</strong>
         </div>
         <div>
-          <strong>Evasion: {{ this.player.evasion }}</strong>
+          <strong>Gold reward: {{ this.monster.gold }}</strong>
         </div>
         <div>
-          <strong>Critical Chance: {{ this.player.critChance }}%</strong>
+          <strong>Xp reward: {{ this.monster.xp }}</strong>
         </div>
       </div>
     </div>
   </div>
+</div>
 </div>

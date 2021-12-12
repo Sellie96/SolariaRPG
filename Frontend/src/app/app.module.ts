@@ -37,6 +37,9 @@ import { CharacterCreationComponent } from './character-creation/character-creat
 import { UserState } from './state/user.state';
 import { NgxsStoragePluginModule } from '@ngxs/storage-plugin';
 import { CreateMonsterComponent } from './create-monster/create-monster.component';
+import { MonsterState } from './state/monster.state';
+import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
+import { LoadingBarModule, LOADING_BAR_CONFIG } from '@ngx-loading-bar/core';
 
 @NgModule({
   declarations: [
@@ -71,21 +74,27 @@ import { CreateMonsterComponent } from './create-monster/create-monster.componen
     ReactiveFormsModule,
     SharedModule,
     NgxSpinnerModule,
+    LoadingBarModule,
     ModalModule.forRoot(),
     AccordionModule.forRoot(),
     NgxsReduxDevtoolsPluginModule.forRoot(),
+    ProgressbarModule.forRoot(),
     NgxsModule.forRoot([
       CharacterState,
-      UserState
+      UserState,
+      MonsterState
     ], {
       developmentMode: !environment.production
     }),
-    NgxsStoragePluginModule.forRoot()
+    NgxsStoragePluginModule.forRoot(),
+    ProgressbarModule.forRoot()
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true},
+    {provide: LOADING_BAR_CONFIG, useValue: { latencyThreshold: 0 } },
+    
   ],
   bootstrap: [AppComponent]
 })

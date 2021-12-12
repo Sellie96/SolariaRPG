@@ -1,86 +1,182 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Member } from '../_modules/member';
+import { Router } from '@angular/router';
 import { MembersService } from '../_Services/character.service';
-import { Monster } from '../_modules/Monster';
-import { Observable } from 'rxjs';
+import { Observable, timer } from 'rxjs';
 import { CharacterState, CharacterStateModel } from '../state/character.state';
-import { Select, Store } from '@ngxs/store';
-import { Character } from '../_modules/Character';
+import { Select } from '@ngxs/store';
 import { MonsterService } from '../_Services/monster.service';
 import { MonsterState, MonsterStateModel } from '../state/monster.state';
+import { ProgressbarConfig } from 'ngx-bootstrap/progressbar';
+import { map, takeWhile } from 'rxjs/operators';
+
+export function getProgressbarConfig(): ProgressbarConfig {
+  return Object.assign(new ProgressbarConfig(), {
+    animate: true,
+    value: 'dynamic',
+  });
+}
 
 @Component({
   selector: 'app-battle',
   templateUrl: './battle.component.html',
   styleUrls: ['./battle.component.css'],
+  providers: [{ provide: ProgressbarConfig, useFactory: getProgressbarConfig }],
 })
 export class BattleComponent implements OnInit {
-  member: Member;
-  characters: any[];
-  character: Character;
-  userId: string;
   player: any;
-  fighting: boolean = false;
   monster: any;
 
+  value: number = 0;
+  sub;
+  
 
-  @Select(CharacterState)character$: Observable<CharacterStateModel>
-  @Select(MonsterState)monster$: Observable<MonsterStateModel>
+  fighting: boolean = false;
 
-  constructor(private memberService: MembersService, private router: Router, private monsterService: MonsterService){}
+  @Select(CharacterState) character$: Observable<CharacterStateModel>;
+  @Select(MonsterState) monster$: Observable<MonsterStateModel>;
+
+  constructor(
+    private memberService: MembersService,
+    private router: Router,
+    private monsterService: MonsterService
+  ) {}
 
   ngOnInit() {
     this.loadCharacter();
     this.loadMonster();
     this.fighting = true;
-    this.gameLoop(); 
+    this.progressLoop();
+    this.gameLoop();
   }
 
   loadCharacter() {
-    this.character$.subscribe(character => {
-     this.player = {
-       hp: character.hp,
-       hpMax: character.hpmax,
-       level: character.level, 
-       xp: character.xp,
-       xpMax: character.xpmax,
-       damage: character.damage,
-       accuracy: character.accuracy,
-       armour: character.armour,
-       evasion: character.evasion,
-       critChance: character.critchance,
-       id : character.characterId
-      }
-  });
+    this.character$.subscribe((character) => {
+      this.player = {
+        hp: character.hp,
+        hpMax: character.hpmax,
+        level: character.level,
+        xp: character.xp,
+        xpMax: character.xpmax,
+        damage: character.damage,
+        accuracy: character.accuracy,
+        armour: character.armour,
+        evasion: character.evasion,
+        critChance: character.critchance,
+        id: character.characterId,
+      };
+    });
   }
-
 
   loadMonster() {
-    this.monster = this.monsterService.getMonster('Goblin');
-    console.log(this.monster)
+    this.monsterService.getMonster('Goblin');
+    this.monster$.subscribe((monster) => {
+      this.monster = {
+        name: monster.name,
+        level: monster.level,
+        hp: monster.hpCurrent,
+        hpMax: monster.hpMax,
+        damage: monster.damage,
+        accuracy: monster.accuracy,
+        armour: monster.armour,
+        evasion: monster.evasion,
+        xp: monster.xp,
+        gold: monster.gold,
+      };
+    });
   }
 
- async playerDied(){
+  async playerDied() {
     this.memberService.killCharacter(this.player.id);
     this.router.navigate(['/character-select']);
     await this.delay(1000);
     location.reload();
-
   }
 
-  gameLoop(){
-    setInterval(() => {
-      this.player.hp -= 25
+  async monsterDied() {
+    this.player.xp += this.monster.xp + 50;
+    if(this.player.xp >= this.player.xpMax) {
+      this.levelUp();
+    }
+    this.loadMonster();
+    await this.delay(1000);
+  }
 
-      console.log(this.player.hp)
+  gameLoop() {
+    setInterval(async () => {
+      this.progressLoop()
+      this.playerAttack();
+      if (this.monster.hp <= 0) {
+        this.monster.hp = 0;
+        await this.delay(1000);
+        this.monsterDied();
+      } else {
+        this.monsterAttack();
+      }
 
       if (this.player.hp <= 0) {
+        this.player.hp = 0;
+        await this.delay(1000);
         this.playerDied();
       }
-      }, 3000);   
+    }, 5000);
   }
-   delay(ms: number) {
-    return new Promise( resolve => setTimeout(resolve, ms) );
-}
+
+  progressLoop(){
+    setInterval(async () => {
+    this.sub && this.sub.unsubscribe();
+    this.sub = this.interval(5000).subscribe(res => {
+      this.value = res;
+    });  
+  }, 5000);
+  }
+
+  playerAttack() {
+    this.monster.hp -= this.player.damage + 30;
+  }
+
+  monsterAttack() {
+    this.player.hp -= this.monster.damage;
+  }
+
+  levelUp(){
+    this.player.level ++;
+    this.player.xpMax += 25 * this.player.level;
+    this.player.hpMax += 10;
+    this.player.hp = this.player.hpMax;
+    this.player.xp = 0;
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  interval(timeToWait) {
+    const initial = new Date().getTime();
+    return timer(0, 200).pipe(
+      map(()=> new Date().getTime()),
+      takeWhile((res) => res<=initial+timeToWait,true),
+      map(now=>{
+        const porc = (100 * (now - initial)) / timeToWait;
+        return porc<100?Math.round(porc):100
+      })
+    );
+  }
+
+  delay(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
 }

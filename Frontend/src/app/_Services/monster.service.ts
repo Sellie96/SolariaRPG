@@ -1,11 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { Character } from '../_modules/Character';
-import { Member } from '../_modules/member';
-import { Monster } from '../_modules/Monster';
 import { Store } from '@ngxs/store';
+import { SetMonster } from '../state/monster.actions';
 
 @Injectable({
   providedIn: 'root',
@@ -13,7 +10,7 @@ import { Store } from '@ngxs/store';
 export class MonsterService {
   baseUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private store: Store) {}
 
   createNewMonster(model:any){
     return this.http.post<{token: string}>(this.baseUrl + '/monster/create', model).subscribe(response => {
@@ -23,8 +20,20 @@ export class MonsterService {
   }
 
   getMonster(enemyName: string) {
-    this.http.get<{ message: string; monster: any }>(this.baseUrl + '/monster/' + enemyName).subscribe(CharacterData => {
-      console.log(CharacterData)
+    this.http.post<{ message: string; monster: any }>(this.baseUrl + '/monster/' + enemyName, enemyName).subscribe(MonsterData => {
+      console.log(MonsterData.monster)
+      this.store.dispatch(new SetMonster(
+        MonsterData.monster.name,
+        MonsterData.monster.level,
+        MonsterData.monster.hpCurrent,
+        MonsterData.monster.hpMax,
+        MonsterData.monster.damage,
+        MonsterData.monster.accuracy,
+        MonsterData.monster.armour,
+        MonsterData.monster.evasion,
+        MonsterData.monster.critChance,
+        MonsterData.monster.xp,
+        MonsterData.monster.gold));
     })
   }
 }
