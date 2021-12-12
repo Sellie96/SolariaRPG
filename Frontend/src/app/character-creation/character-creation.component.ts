@@ -5,19 +5,23 @@ import { Observable } from 'rxjs';
 import { SetCharacter } from '../state/character.actions';
 import { UserState } from '../state/user.state';
 import { Character } from '../_modules/Character';
-import { MembersService } from '../_Services/character.service';
+import { CharacterService } from '../_Services/character.service';
 
 @Component({
   selector: 'app-character-creation',
   templateUrl: './character-creation.component.html',
-  styleUrls: ['./character-creation.component.css']
+  styleUrls: ['./character-creation.component.css'],
 })
 export class CharacterCreationComponent implements OnInit, OnDestroy {
   characters: any[];
   character: Character;
   user$: Observable<any> = this.store.select(UserState);
 
-  constructor(private memberService: MembersService, private store: Store, private router: Router) { }
+  constructor(
+    private characterService: CharacterService,
+    private store: Store,
+    private router: Router
+  ) {}
   ngOnDestroy(): void {
     this.characters = [];
   }
@@ -27,17 +31,17 @@ export class CharacterCreationComponent implements OnInit, OnDestroy {
   }
 
   onDelete(characterId: string) {
-    this.memberService.killCharacter(characterId);
+    this.characterService.killCharacter(characterId);
     location.reload();
   }
 
-  createCharacter(){
-    this.memberService.createNewCharacter();
+  createCharacter() {
+    this.characterService.createNewCharacter();
     location.reload();
   }
 
   async loadCharacter() {
-    this.characters = this.memberService.getCharacters();
+    this.characters = this.characterService.getCharacters();
   }
 
   selectCharacter(
@@ -51,20 +55,21 @@ export class CharacterCreationComponent implements OnInit, OnDestroy {
     armour: number,
     evasion: number,
     critChance: number,
-    characterId: string){
-      this.store.dispatch(new SetCharacter(
-        level,
-        hpCurrent,
-        hpMax,
-        xpCurrent,
-        xpMax,
-        damage,
-        accuracy,
-        armour,
-        evasion,
-        critChance,
-        characterId));
-        this.router.navigate(['/town']);
+    characterId: string
+  ) {
+    this.characterService.saveCharacter(
+      level,
+      hpCurrent,
+      hpMax,
+      xpCurrent,
+      xpMax,
+      damage,
+      accuracy,
+      armour,
+      evasion,
+      critChance,
+      characterId
+    );
+    this.router.navigate(['/town']);
   }
-
 }

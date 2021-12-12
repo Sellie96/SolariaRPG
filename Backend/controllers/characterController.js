@@ -23,12 +23,12 @@ exports.createCharacter = (req, res, next) => {
 }
 
 exports.getCharacters =  (req, res, next) => {
-    Character.find()
+    Character.find({userId: req.userData.userId})
     .then(documents => {
-        res.status(200).json({
-            message: "Character fetched succesfully",
-            character: documents,
-          });
+            res.status(200).json({
+                message: "Character fetched succesfully",
+                character: documents,
+              });
     });
 }
 
@@ -40,5 +40,25 @@ exports.killCharacter = (req, res, next) => {
         } else {
             res.status(401).json({message: "Not authorised"})
         }
+    })
+}
+
+exports.updateCharacter = (req, res, next) => {
+    const character = new Character({
+      _id: req.body.id,
+      level: req.body.level,
+      hpMax: req.body.hpMax,
+      hpCurrent: req.body.hpCurrent,
+      xpMax: req.body.xpMax,
+      xpCurrent: req.body.xpCurrent,
+      damage: req.body.damage,
+      accuracy: req.body.accuracy,
+      armour: req.body.armour,
+      evasion: req.body.evasion,
+      critChance: req.body.critChance
+    })
+    Character.updateOne({_id: req.params.id, userId: req.userData.userId}, character ).then(result => {
+        console.log(result)
+        res.status(200).json({message: "Update succesful"})
     })
 }

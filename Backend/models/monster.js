@@ -3,10 +3,8 @@ const mongoose = require('mongoose');
 const monsterScheme = mongoose.Schema({
     name: {type: String, require: true},
     level: {type: Number, require: true},
-    hpMax: {type: Number, require: true},
     hpCurrent: {type: Number, require: true},
-    xpMax: {type: Number, require: true},
-    xpCurrent: {type: Number, require: true},
+    hpMax: {type: Number, require: true},
     damage: {type: Number, require: true},
     accuracy: {type: Number, require: true},
     armour: {type: Number, require: true},

@@ -30,11 +30,11 @@ exports.createMonster = (req, res, next) => {
 }
 
 exports.getMonsters = (req, res, next) => {
-    Monster.find()
-    .then(documents => {
+    Monster.findOne({name: req.params.enemyName})
+    .then(monster => {
         res.status(200).json({
-            message: "Character fetched succesfully",
-            monster: documents,
+            message:  req.params.enemyName + " fetched succesfully",
+            monster: monster,
           });
     });
 }

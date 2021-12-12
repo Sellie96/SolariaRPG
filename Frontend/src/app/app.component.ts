@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { AccountService } from './_Services/account.service';
 
 @Component({
@@ -11,18 +12,10 @@ export class AppComponent implements OnInit {
   users: any;
   count: number;
 
-  constructor(private accountService: AccountService) {}
+  constructor(private accountService: AccountService, private titleService: Title) {}
 
   ngOnInit() {
+    this.titleService.setTitle("Solaria Idle");
     this.accountService.autoAuthUser();
-    this.mainGame();
-  }
-
-  gameLoop(){
-    this.count = 10;
-  }
-
-  mainGame() {
-    setInterval(this.gameLoop, 1000);
   }
 }
