@@ -55,13 +55,15 @@ export class AccountService {
     return this.http.post<{token: string, userId: string}>(this.baseUrl + '/user/signup', model).subscribe(response => {
       const token = response.token;
       this.token = token;
-      this.isAuthenticated = true;
-      this.authStatusListener.next(true);
-      this.userId = response.userId;
-      this.store.dispatch(new SetUser(
-        response.userId));
-      this.router.navigate(['/players']);
-      this.saveAuthData(token, this.userId);
+      if(token){
+        this.isAuthenticated = true;
+        this.authStatusListener.next(true);
+        this.userId = response.userId;
+        this.store.dispatch(new SetUser(
+          response.userId));
+        this.router.navigate(['/character-select']);
+        this.saveAuthData(token, this.userId);
+      }
     })
   }
 

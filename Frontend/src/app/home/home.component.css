@@ -1,0 +1,11 @@
+.home {
+    padding-top: 300px;
+    color: black;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif, Helvetica, sans-serif;
+    font-size: xx-large;
+}
+
+.button {
+    width: 200px;
+    border-radius: 10px;
+}

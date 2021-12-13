@@ -1,10 +1,9 @@
-<div class="container mt-5">
+<div class="container home">
     <div *ngIf="!registerMode" style="text-align: center;">
-        <h1>Welcome to Solaria</h1>
-        <p class="lead">Fight monsters, collect loot and become the strongest adventurer in the land... all you need to do is sign up!</p>
+        <h1 style="color: #111; font-family: 'Helvetica Neue', sans-serif; font-size: 80px; font-weight: bold; letter-spacing: -1px; line-height: 1; text-align: center;">Solaria Idle</h1>
+        <h2 class="color: #111; font-family: 'Helvetica Neue', sans-serif; font-size: 50px; font-weight: bold; letter-spacing: -1px; line-height: 1; text-align: center;">Fight monsters, collect loot and become the strongest adventurer in the land</h2>
         <div class="text center">
-            <button type="button" class="btn btn-primary btn-lrg mr-2" (click)="openModal(template)">Register</button>
-            <button class="btn btn-secondary btn-lrg mr-2">Learn more</button>
+            <button type="button" class="btn btn-danger btn-lrg mr-2 button" (click)="openModal(template)">Login</button>
         </div>
     </div>
 
@@ -12,7 +11,7 @@
         <div class="modal-body">
           <app-register (cancelRegister)="cancelRegisteredMode($event)"></app-register>
         </div>
-      </ng-template>
+    </ng-template>
 
     <div *ngIf="registerMode" class="container">
     </div>

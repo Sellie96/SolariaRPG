@@ -18,11 +18,9 @@ export class HomeComponent implements OnInit {
 
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
-    this.registerMode = !this.registerMode;
   }
 
   registerToggle() {
-    this.registerMode = !this.registerMode;
   }
 
   cancelRegisteredMode(event: boolean) {

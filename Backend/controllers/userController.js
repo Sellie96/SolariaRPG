@@ -12,11 +12,10 @@ exports.createUser = (req,res,next)=> {
             password: hash
         })
         user.save()
-        .then(result => {
-            res.status(201).json({
-                message: 'User created!',
-                result: result
-            });
+        const token = jwt.sign({username: fetchedUser.username, userId: fetchedUser._id}, process.env.JWT_KEY);
+        res.status(200).json({
+            token: token,
+            userId: fetchedUser._id
         })
         .catch(err => {
             res.status(500).json({
