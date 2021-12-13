@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
+import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { UserState } from './state/user.state';
@@ -19,12 +20,18 @@ export class AppComponent implements OnInit {
 
   user$: Observable<any> = this.store.select(UserState);
 
-  constructor(private accountService: AccountService, private titleService: Title, private store: Store) {}
+  constructor(private accountService: AccountService, private titleService: Title, private store: Store, private router: Router) {}
 
   ngOnInit() {
     this.titleService.setTitle("Solaria Idle");
     let test = this.accountService.autoAuthUser();
     this.auth = localStorage.getItem("userId");
-    
+  }
+
+  getShowNav() {
+    if (window.location.pathname === ('/') || window.location.pathname === ('/character-select')) {
+      return false
+    }
+    else return true
   }
 }

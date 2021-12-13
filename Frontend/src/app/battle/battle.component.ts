@@ -9,6 +9,7 @@ import { MonsterState, MonsterStateModel } from '../state/monster.state';
 import { ProgressbarConfig } from 'ngx-bootstrap/progressbar';
 import { map, takeWhile } from 'rxjs/operators';
 import { SetCharacter } from '../state/character.actions';
+import { AccountService } from '../_Services/account.service';
 
 export function getProgressbarConfig(): ProgressbarConfig {
   return Object.assign(new ProgressbarConfig(), {
@@ -40,10 +41,11 @@ export class BattleComponent implements OnInit {
     private characterService: CharacterService,
     private router: Router,
     private monsterService: MonsterService,
-    private store: Store
+    private accountService: AccountService
   ) {}
 
   ngOnInit() {
+    this.fighting = this.accountService.isBattling()
     this.loadCharacter();
     this.loadMonster();
     this.fighting = true;
@@ -104,6 +106,7 @@ export class BattleComponent implements OnInit {
   }
 
   gameLoop() {
+    if(this.fighting) {
     setInterval(async () => {
       this.progressLoop();
       this.playerAttack();
@@ -111,6 +114,8 @@ export class BattleComponent implements OnInit {
         this.monster.hp = 0;
         await this.delay(1000);
         this.monsterDied();
+        this.saveAll();
+        this.loadCharacter();
       } else {
         this.monsterAttack();
       }
@@ -120,10 +125,8 @@ export class BattleComponent implements OnInit {
         await this.delay(1000);
         this.playerDied();
       }
-
-      this.saveAll();
-      this.loadCharacter();
     }, 5000);
+  }
   }
 
   saveAll() {
