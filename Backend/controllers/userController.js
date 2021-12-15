@@ -12,17 +12,17 @@ exports.createUser = (req,res,next)=> {
             password: hash
         })
         user.save()
-        const token = jwt.sign({username: fetchedUser.username, userId: fetchedUser._id}, process.env.JWT_KEY);
-        res.status(200).json({
-            token: token,
-            userId: fetchedUser._id
+        .then(result => {
+            res.status(201).json({
+                message: 'User registered, please login!',
+                result: result
+            });
         })
         .catch(err => {
             res.status(500).json({
                 error:err
             })
         })
-    
     })
 }
 
@@ -47,7 +47,8 @@ exports.loginUser = (req,res,next) => {
         const token = jwt.sign({username: fetchedUser.username, userId: fetchedUser._id}, process.env.JWT_KEY);
         res.status(200).json({
             token: token,
-            userId: fetchedUser._id
+            userId: fetchedUser._id,
+            message: "Logged in succesfully, please choose a character"
         })
     })
     .catch(err => {

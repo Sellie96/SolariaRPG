@@ -22,7 +22,7 @@ const routes: Routes = [
   runGuardsAndResolvers: 'always',
   canActivate: [AuthGuard],
   children: [
-    {path: 'town', component: TownComponent},
+    {path: 'town', component: TownComponent, },
     {path: 'quests', component: QuestsComponent},
     {path: 'dungeons', component: DungeonsComponent},
     {path: 'shop', component: ShopComponent},

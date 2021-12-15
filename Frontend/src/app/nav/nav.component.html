@@ -1,9 +1,9 @@
-<nav
+<nav *ngIf="user$ | async; let user"
   ngxNavbarDynamicExpand
   style="border-bottom: 1px solid #edcd90"
   class="navbar navbar-expand-md navbar-dark fixed-top navbar-custom"
 >
-  <div class="container-fluid">
+  <div class="container-fluid" *ngIf="userIsAuthenticated">
     <div class="linkMenu">
       <a class="navbar-brand" href="/">Solaria Idle</a>
     </div>
@@ -68,7 +68,7 @@
             >
           </li>
           <div  class="dropdown nav-link" style="float: right" dropdown>
-            <a *ngIf="user$ | async; let user" class="dropdown-toggle text-light" dropdownToggle>{{user.userId}} </a>
+            <a class="dropdown-toggle text-light" dropdownToggle>{{user.userId}} </a>
             <div *ngIf="userIsAuthenticated">
               <div class="dropdown-menu" *dropdownMenu>
                 <a class="dropdown-item" routerLink="/options"> Options</a>
@@ -81,28 +81,5 @@
         </ng-container>
       </ul>
     </ngx-navbar-collapse>
-    <form
-      *ngIf="!userIsAuthenticated"
-      #loginForm="ngForm"
-      class="d-flex"
-      (ngSubmit)="login()"
-      autocomplete="off"
-    >
-      <input
-        name="username"
-        [(ngModel)]="model.username"
-        class="form-control me-2"
-        type="text"
-        placeholder="Username"
-      />
-      <input
-        name="password"
-        [(ngModel)]="model.password"
-        class="form-control me-2"
-        type="password"
-        placeholder="Password"
-      />
-      <button class="btn btn-outline-success" type="submit">Login</button>
-    </form>
   </div>
 </nav>

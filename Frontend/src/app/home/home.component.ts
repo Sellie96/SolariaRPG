@@ -1,5 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { AccountService } from '../_Services/account.service';
 
 @Component({
   selector: 'app-home',
@@ -9,8 +10,9 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 export class HomeComponent implements OnInit {
   registerMode = false;
   modalRef?: BsModalRef;
+  model: any = {}
 
-  constructor(private modalService: BsModalService) {
+  constructor(private modalService: BsModalService, private accountService: AccountService) {
   }
 
   ngOnInit(): void {
@@ -20,7 +22,8 @@ export class HomeComponent implements OnInit {
     this.modalRef = this.modalService.show(template);
   }
 
-  registerToggle() {
+  login() {
+    this.accountService.login(this.model)
   }
 
   cancelRegisteredMode(event: boolean) {

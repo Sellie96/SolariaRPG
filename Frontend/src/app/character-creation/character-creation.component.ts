@@ -2,10 +2,12 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
+import { NavComponent } from '../nav/nav.component';
 import { SetCharacter } from '../state/character.actions';
 import { UserState } from '../state/user.state';
 import { Character } from '../_modules/Character';
 import { CharacterService } from '../_Services/character.service';
+import { SharedService } from '../_Services/shared.service';
 
 @Component({
   selector: 'app-character-creation',
@@ -20,7 +22,8 @@ export class CharacterCreationComponent implements OnInit, OnDestroy {
   constructor(
     private characterService: CharacterService,
     private store: Store,
-    private router: Router
+    private router: Router,
+    private sharedService: SharedService
   ) {}
   ngOnDestroy(): void {
     this.characters = [];
@@ -44,7 +47,7 @@ export class CharacterCreationComponent implements OnInit, OnDestroy {
     this.characters = this.characterService.getCharacters();
   }
 
-  selectCharacter(
+  async selectCharacter(
     level: number,
     hpCurrent: number,
     hpMax: number,
@@ -70,6 +73,10 @@ export class CharacterCreationComponent implements OnInit, OnDestroy {
       critChance,
       characterId
     );
-    this.router.navigate(['/town']);
+    window.location.href = "/town"
+  }
+
+  delay(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 }
