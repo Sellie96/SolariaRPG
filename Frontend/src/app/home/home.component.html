@@ -5,24 +5,30 @@
             Solaria Idle</h1>
         <h2
             class="color: #111; font-family: 'Helvetica Neue', sans-serif; font-size: 50px; font-weight: bold; letter-spacing: -1px; line-height: 1; text-align: center;">
-            Fight monsters, collect loot and become the strongest adventurer in the land</h2>
+            Fight monsters, collect loot and become the strongest adventurer in the land</h2>  
+
         <div class="text center">
             <button type="button" class="btn btn-danger btn-lrg mr-2 button"
-                (click)="openModal(template)">Register</button>
+                (click)="openModal(login)">Login</button>
+        </div>    
+        <div class="text center">
+            <button type="button" class="btn btn-danger btn-lrg mr-2 button"
+                (click)="openModal(register)">Register</button>
         </div>
+
+
     </div>
 
-    <ng-template #template>
+    <ng-template #login>
+        <div class="modal-body">
+            <app-login (cancelLogin)="cancelLoginMode($event)"></app-login>
+        </div>
+    </ng-template>
+
+    <ng-template #register>
         <div class="modal-body">
             <app-register (cancelRegister)="cancelRegisteredMode($event)"></app-register>
         </div>
     </ng-template>
 
-    <form #loginForm="ngForm" class="d-flex" (ngSubmit)="login()" autocomplete="off">
-        <input name="username" [(ngModel)]="model.username" class="form-control me-2" type="text"
-            placeholder="Username" />
-        <input name="password" [(ngModel)]="model.password" class="form-control me-2" type="password"
-            placeholder="Password" />
-        <button class="btn btn-outline-success" type="submit">Login</button>
-    </form>
 </div>

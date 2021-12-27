@@ -22,11 +22,12 @@ export class HomeComponent implements OnInit {
     this.modalRef = this.modalService.show(template);
   }
 
-  login() {
-    this.accountService.login(this.model)
+  cancelRegisteredMode(event: boolean) {
+    this.registerMode = event;
+    this.modalRef?.hide()
   }
 
-  cancelRegisteredMode(event: boolean) {
+  cancelLoginMode(event: boolean) {
     this.registerMode = event;
     this.modalRef?.hide()
   }
