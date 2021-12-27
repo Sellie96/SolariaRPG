@@ -40,6 +40,7 @@ import { CreateMonsterComponent } from './create-monster/create-monster.componen
 import { MonsterState } from './state/monster.state';
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 import { LoadingBarModule, LOADING_BAR_CONFIG } from '@ngx-loading-bar/core';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { LoadingBarModule, LOADING_BAR_CONFIG } from '@ngx-loading-bar/core';
     TownComponent,
     CharacterCreationComponent,
     CreateMonsterComponent,
-    CreateMonsterComponent
+    CreateMonsterComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
