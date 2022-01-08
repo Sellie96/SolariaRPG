@@ -1,13 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { NavComponent } from '../nav/nav.component';
-import { SetCharacter } from '../state/character.actions';
 import { UserState } from '../state/user.state';
 import { Character } from '../_modules/Character';
 import { CharacterService } from '../_Services/character.service';
-import { SharedService } from '../_Services/shared.service';
 
 @Component({
   selector: 'app-character-creation',
@@ -21,9 +17,7 @@ export class CharacterCreationComponent implements OnInit, OnDestroy {
 
   constructor(
     private characterService: CharacterService,
-    private store: Store,
-    private router: Router,
-    private sharedService: SharedService
+    private store: Store
   ) {}
   ngOnDestroy(): void {
     this.characters = [];
@@ -58,6 +52,10 @@ export class CharacterCreationComponent implements OnInit, OnDestroy {
     armour: number,
     evasion: number,
     critChance: number,
+    gold: number,
+    potions: any,
+    equipment: any,
+    backpack: any,
     characterId: string
   ) {
     this.characterService.saveCharacter(
@@ -71,9 +69,13 @@ export class CharacterCreationComponent implements OnInit, OnDestroy {
       armour,
       evasion,
       critChance,
+      gold,
+      potions,
+      equipment,
+      backpack,
       characterId
     );
-    window.location.href = "/town"
+    window.location.href = "/battle"
   }
 
   delay(ms: number) {

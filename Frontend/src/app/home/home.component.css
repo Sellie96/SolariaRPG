@@ -1,8 +1,11 @@
 .home {
-    padding-top: 300px;
-    color: black;
+    padding-top: 200px;
+    color: whitesmoke;
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif, Helvetica, sans-serif;
     font-size: xx-large;
+    background-color: rgba(0, 0, 0, 0.8) !important;
+    border-radius: 10px;
+    min-height: 800px;
 }
 
 .button {

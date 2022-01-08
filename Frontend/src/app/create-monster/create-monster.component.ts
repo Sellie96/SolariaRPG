@@ -1,8 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, ValidatorFn, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
-import { AccountService } from '../_Services/account.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MonsterService } from '../_Services/monster.service';
 
 @Component({

@@ -1,0 +1,14 @@
+.lootContainer {
+    height: 365px;
+    display: flex;
+    flex-wrap: wrap;
+}
+.equipment {
+    width: 100px;
+    border: 1px solid gold;
+    margin-right: 2em;
+}
+
+.itemButton {
+    display: inline;
+}

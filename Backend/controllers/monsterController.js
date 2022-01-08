@@ -1,5 +1,3 @@
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
 const Monster = require('../models/monster');
 
 exports.createMonster = (req, res, next) => {

@@ -3,6 +3,7 @@ import { NoPreloading, PreloadAllModules, RouterModule, Routes } from '@angular/
 import { BattleComponent } from './battle/battle.component';
 import { CharacterCreationComponent } from './character-creation/character-creation.component';
 import { CreateMonsterComponent } from './create-monster/create-monster.component';
+import { CreateItemComponent } from './create-item/create-item.component';
 import { DungeonsComponent } from './dungeons/dungeons.component';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
@@ -35,6 +36,7 @@ const routes: Routes = [
   {path: 'not-found', component: NotFoundComponent},
   {path: 'server-error', component: ServerErrorComponent},
   {path: 'create-monster', component: CreateMonsterComponent},
+  {path: 'create-item', component: CreateItemComponent},
   {path: '**', component: HomeComponent, pathMatch: 'full'}
 ];
 

@@ -21,7 +21,6 @@ export class MonsterService {
 
   getMonster(enemyName: string) {
     this.http.post<{ message: string; monster: any }>(this.baseUrl + '/monster/' + enemyName, enemyName).subscribe(MonsterData => {
-      console.log(MonsterData.monster)
       this.store.dispatch(new SetMonster(
         MonsterData.monster.name,
         MonsterData.monster.level,
