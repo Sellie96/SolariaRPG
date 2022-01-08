@@ -1,85 +1,56 @@
-<nav *ngIf="user$ | async; let user"
-  ngxNavbarDynamicExpand
-  style="border-bottom: 1px solid #edcd90"
-  class="navbar navbar-expand-md navbar-dark fixed-top navbar-custom"
->
-  <div class="container-fluid" *ngIf="userIsAuthenticated">
-    <div class="linkMenu">
-      <a class="navbar-brand" href="/">Solaria Idle</a>
-    </div>
-    <button
-      class="navbar-toggler"
-      type="button"
-      (click)="collapse.toggle()"
-      aria-controls="main-nav"
-      aria-expanded="false"
-      aria-label="Toggle navigation"
-    >
-      <span
-        class="
-          navbar-toggler-icon
-          d-flex
-          align-items-center
-          justify-content-center
-        "
-      >
-      </span>
-    </button>
-    <ngx-navbar-collapse id="main-nav" #collapse="ngxNavbarCollapse">
-      <ul class="navbar-nav container">
-        <ng-container *ngIf="userIsAuthenticated">
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              aria-current="page"
-              routerLink="/town"
-              routerLinkActive="active"
-              >Town</a
-            >
-          </li>
-          <li class="nav-item">
-            <div *ngIf="userIsAuthenticated">
-              <a class="nav-link" routerLink="/battle/"> Battle</a>
-            </div>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/shop" routerLinkActive="active"
-              >Shop</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/dungeons" routerLinkActive="active"
-              >Dungeons</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/quests" routerLinkActive="active"
-              >Quests</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/messages" routerLinkActive="active"
-              >Messages</a
-            >
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" routerLink="/errors" routerLinkActive="active"
-              >Errors</a
-            >
-          </li>
-          <div  class="dropdown nav-link" style="float: right" dropdown>
-            <a class="dropdown-toggle text-light" dropdownToggle>{{user.userId}} </a>
-            <div *ngIf="userIsAuthenticated">
-              <div class="dropdown-menu" *dropdownMenu>
-                <a class="dropdown-item" routerLink="/options"> Options</a>
-                <a class="dropdown-item"  routerLink="/character-select" (click)="location.reload();"> Select Character</a>
-                <a class="dropdown-item"  routerLink="/create-monster"> Create Monster</a>
-                <a class="dropdown-item" (click)="logout()"> Logout</a>
-              </div>
+<nav  *ngIf="user$ | async; let user" ngxNavbarDynamicExpand style="border: 1px solid #424a59" class="navbar fixed-top navbar-dark navbar-custom">
+
+  <div class="linkMenu">
+    <a class="navbar-brand" href="/">Solaria Idle</a>
+  </div>
+
+  <button class="navbar-toggler" type="button" (click)="collapse.toggle()" aria-controls="main-nav" aria-expanded="true"
+    aria-label="Toggle navigation">
+    <span style="min-width: 32px;" class="navbar-toggler-icon"></span>
+  </button>
+  <ngx-navbar-collapse id="main-nav" #collapse="ngxNavbarCollapse">
+    <ul class="navbar-nav container">
+      <ng-container>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            aria-current="page"
+            routerLink="/town"
+            routerLinkActive="active"
+            >Town</a
+          >
+        </li>
+        <li class="nav-item">
+          <div *ngIf="userIsAuthenticated">
+            <a class="nav-link" routerLink="/battle/"> Battle</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/shop" routerLinkActive="active"
+            >Shop</a
+          >
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" routerLink="/quests" routerLinkActive="active"
+            >Quests</a
+          >
+        </li>
+
+        <div  class="dropdown nav-link" style="float: right" dropdown>
+          <a class="dropdown-toggle text-light" dropdownToggle>{{user.userId}} </a>
+          <div *ngIf="userIsAuthenticated">
+            <div class="dropdown-menu" *dropdownMenu>
+              <a class="dropdown-item" routerLink="/options"> Options</a>
+              <a class="dropdown-item"  routerLink="/character-select" (click)="location.reload();"> Select Character</a>
+              <a class="dropdown-item"  routerLink="/create-monster"> Create Monster</a>
+              <a class="dropdown-item"  routerLink="/create-item"> Create Item</a>
+              <a class="dropdown-item" (click)="logout()"> Logout</a>
             </div>
           </div>
-        </ng-container>
-      </ul>
-    </ngx-navbar-collapse>
-  </div>
+        </div>
+
+      </ng-container>
+    </ul>
+  </ngx-navbar-collapse>
 </nav>

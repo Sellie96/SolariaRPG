@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { SetCharacter } from '../state/character.actions';
@@ -38,6 +37,10 @@ export class CharacterService {
             armour: characters.armour,
             evasion: characters.evasion,
             critChance: characters.critChance,
+            gold: characters.gold,
+            potions: characters.potions,
+            equipment: characters.equipment,
+            backpack: characters.backpack,
             id: characters._id,
             userId: characters.userId
           }
@@ -62,15 +65,15 @@ export class CharacterService {
     })
   }
 
-  updateCharacter(level, hp, hpMax, xp, xpMax, damage, accuracy, armour, evasion, critChance, id) {
-    const character: any = {level, hp, hpMax, xp, xpMax, damage, accuracy, armour, evasion, critChance, id}
+  updateCharacter(level, hpCurrent, hpMax, xpCurrent, xpMax, damage, accuracy, armour, evasion, critChance, gold, potions, equipment, backpack, id) {
+    const character: any = {level, hpCurrent, hpMax, xpCurrent, xpMax, damage, accuracy, armour, evasion, critChance, gold, potions, equipment, backpack, id}
     this.http.put<{message:string, characterId: string}>(this.baseUrl + '/character/update/' + id, character )
     .subscribe(responseData =>{
       console.log(responseData);
     })
   }
 
-  saveCharacter(level, hp, hpMax, xp, xpMax, damage, accuracy, armour, evasion, critChance, id) {
+  saveCharacter(level, hp, hpMax, xp, xpMax, damage, accuracy, armour, evasion, critChance, gold, potions, equipment, backpack, id) {
     this.store.dispatch(new SetCharacter(
       level,
       hp,
@@ -82,6 +85,10 @@ export class CharacterService {
       armour,
       evasion,
       critChance,
+      gold,
+      potions,
+      equipment,
+      backpack,
       id
     ));
   }

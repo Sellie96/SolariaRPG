@@ -1,82 +1,254 @@
-<div style="padding-top: 100px;">
+<div style="">
   <div class="row">
-  <div class="col-6">
-    <div class="card gameMode text-center">
-      <div>
-        <strong>Level: {{ this.player.level }}</strong>
-      </div>
-      <div class="mb-2">
-        <progressbar class="progress-striped active" [max]="this.player.hpMax"  [value]="this.player.hp" type="danger"><i>{{this.player.hp}} / {{this.player.hpMax}}</i></progressbar>
-      </div>
-      <img
-        src="{{ './assets/player_1.svg' }}"
-        class="card-image-top img-thumbnail"
-      />
-      <div class="card-body">
-      <div>
-        <strong>Attack speed: 4 seconds</strong>
-        <progressbar class="progress-striped active"  [value]="value" type="warning"></progressbar>
-      </div>
-      
-        <div>
-          <strong>Xp: {{ this.player.xp }}/{{ this.player.xpMax }}</strong>
+    <app-monster-select
+      (monsterSelected)="changeMonster($event)"
+    ></app-monster-select>
+    <div class="col-6">
+      <div class="monsterStats text-center">
+        <div class="mb-3">
+          <strong>Player (Lvl: {{ this.player.level }})</strong>
         </div>
-        <div>
-          <strong>Damage: {{ this.player.damage }}</strong>
-        </div>
-        <div>
-          <strong>Accuracy: {{ this.player.accuracy }}</strong>
-        </div>
-        <div>
-          <strong>Armour: {{ this.player.armour }}</strong>
-        </div>
-        <div>
-          <strong>Evasion: {{ this.player.evasion }}</strong>
-        </div>
-        <div>
-          <strong>Critical Chance: {{ this.player.critChance }}%</strong>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <div class="col-6">
-    <div class="card gameMode text-center">
-      <div>
-        <strong>Level: {{ this.monster.name }}</strong>
-      </div>
-      <div>
-        <strong>Level: {{ this.monster.level }}</strong>
-      </div>
-      <div class="mb-2">
-        <progressbar class="progress-striped active" [max]="this.monster.hpMax"  [value]="this.monster.hp" type="danger"><i>{{this.monster.hp}} / {{this.monster.hpMax}}</i></progressbar>
-      </div>
-      <img
-        src="./assets/monsters/{{this.monster.name}}.svg"
-        alt="{{this.monster.name}}"
-        class="card-image-top img-thumbnail"
-      />
-      <div class="card-body">
-        <div>
-          <strong>Damage: {{ this.monster.damage }}</strong>
-        </div>
-        <div>
-          <strong>Armour: {{ this.monster.armour }}</strong>
-        </div>
-        <div>
-          <strong>Accuracy: {{ this.monster.accuracy }}</strong>
-        </div>
-        <div>
-          <strong>Evasion: {{ this.monster.evasion }}</strong>
-        </div>
-        <div>
-          <strong>Gold reward: {{ this.monster.gold }}</strong>
-        </div>
-        <div>
-          <strong>Xp reward: {{ this.monster.xp }}</strong>
+        <div class="row">
+          <div class="col-3">
+            <div class="mt-3">
+              <img
+                src="./assets/icons/dmg.png"
+                alt="{{ this.player.damage }}"
+                class="icons"
+                tooltip="Maximum possible hit you could deal"
+              />
+              <strong>
+                {{ this.player.damage + this.playerBonus.damage }}</strong
+              >
+            </div>
+            <div class="mt-3">
+              <img
+                src="./assets/icons/armour.png"
+                alt="{{ this.player.armour }}"
+                class="icons"
+                tooltip="Reduces the amount of damage taken"
+              />
+              <strong>
+                {{ this.player.armour + this.playerBonus.armour }}</strong
+              >
+            </div>
+            <div class="mt-3">
+              <img
+                src="./assets/icons/accuracy.png"
+                alt="{{ this.player.accuracy }}"
+                class="icons"
+                tooltip="Attack changes your chance to hit"
+              />
+              <strong>
+                {{ this.player.accuracy + this.playerBonus.accuracy }}</strong
+              >
+            </div>
+            <div class="mt-3">
+              <img
+                src="./assets/icons/evasion.png"
+                alt="{{ this.player.evasion }}"
+                class="icons"
+                tooltip="Evasion allows you to dodge attacks completely"
+              />
+              <strong>
+                {{ this.player.evasion + this.playerBonus.evasion }}</strong
+              >
+            </div>
+            <div class="mt-3">
+              <img
+                src="./assets/icons/gold.png"
+                alt="{{ this.player.gold }}"
+                class="icons"
+                tooltip="Your total amount of gold"
+              />
+              <strong> {{ this.player.gold }}</strong>
+            </div>
+            <div class="mt-3">
+              <img
+                src="./assets/icons/xp.png"
+                alt="{{ this.player.xp }}"
+                class="icons"
+                tooltip="XP is required to level up and grow stronger"
+              />
+              <strong> {{ this.player.xp }}/{{ this.player.xpMax }}</strong>
+            </div>
+            <div class="mt-3">
+              <img
+                src="./assets/icons/chance.png"
+                alt="ChanceToHit"
+                class="icons"
+                tooltip="Your chance to hit the enemy"
+              />
+              <strong> {{ this.calculatePlayerChanceToHit() }}%</strong>
+            </div>
+          </div>
+          <div class="col-6">
+            <p class="text-danger mb-1 floating-text">
+              {{ this.monsterDamage }}
+            </p>
+            <div class="mb-2">
+              {{ this.player.hp }} /
+              {{ this.player.hpMax + this.playerBonus.hpMax }}
+              <progressbar
+                style="border-radius: 20px"
+                class="progress-striped"
+                [max]="this.player.hpMax + this.playerBonus.hpMax"
+                [value]="this.player.hp"
+                type="success"
+              ></progressbar>
+            </div>
+            <img src="{{ './assets/player_1.svg' }}" class="monsterImage" />
+            <div>
+              <strong>Attack speed: 4 seconds</strong>
+              <progressbar
+                style="border-radius: 20px"
+                class="progress-striped active"
+                [value]="value"
+                [max]="750"
+                type="warning"
+                animate="true"
+              ></progressbar>
+            </div>
+          </div>
+          <div class="col-3">
+            <div class="mt-3">
+              <img
+                src="./assets/icons/potion.png"
+                alt="{{ this.player.potions.tinyPotion }}"
+                class="icons"
+                tooltip="Tiny hp potions heal 10 hp"
+              />
+              <strong> {{ this.player.potions.tinyPotion }}</strong>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+
+    <div class="col-6">
+      <div class="monsterStats text-center">
+        <div class="mb-3">
+          <strong
+            >{{ this.monster.name }} (Lvl: {{ this.monster.level }})</strong
+          >
+        </div>
+        <div class="row">
+          <div class="col-3">
+            <div class="mt-2">
+              <img
+                src="./assets/icons/dmg.png"
+                alt="{{ this.monster.name }}"
+                class="icons"
+                tooltip="Monsters maximum hit"
+              />
+              <strong> {{ this.monster.damage }}</strong>
+            </div>
+            <div class="mt-3">
+              <img
+                src="./assets/icons/chance.png"
+                alt="ChanceToHit"
+                class="icons"
+                tooltip="Enemies Chance to land a hit"
+              />
+              <strong> {{ this.calculateMonsterChancetoHit() }}%</strong>
+            </div>
+            <div class="mt-3">
+              <img
+                src="./assets/icons/armour.png"
+                alt="{{ this.monster.armour }}"
+                class="icons"
+                tooltip="Monsters defence reduces damage"
+              />
+              <strong> {{ this.monster.armour }}</strong>
+            </div>
+            <div class="mt-3">
+              <img
+                src="./assets/icons/accuracy.png"
+                alt="{{ this.monster.accuracy }}"
+                class="icons"
+                tooltip="Monsters chance to hit"
+              />
+              <strong> {{ this.monster.accuracy }}</strong>
+            </div>
+            <div class="mt-3">
+              <img
+                src="./assets/icons/evasion.png"
+                alt="{{ this.monster.evasion }}"
+                class="icons"
+                tooltip="Monsters chance to dodge an attack"
+              />
+              <strong> {{ this.monster.evasion }}</strong>
+            </div>
+            <div class="mt-3">
+              <img
+                src="./assets/icons/gold.png"
+                alt="{{ this.monster.gold }}"
+                class="icons"
+                tooltip="Gold reward from defeating this monster"
+              />
+              <strong> {{ this.monster.gold }}</strong>
+            </div>
+            <div class="mt-3">
+              <img
+                src="./assets/icons/xp.png"
+                alt="{{ this.monster.xp }}"
+                class="icons"
+                tooltip="XP reward from defeating this monster"
+              />
+              <strong> {{ this.monster.xp }}</strong>
+            </div>
+          </div>
+          <div class="col-6">
+            <p class="text-success floating-text">{{ this.playerDamage }}</p>
+            <div class="mb-1">
+              {{ this.monster.hp }} / {{ this.monster.hpMax }}
+              <progressbar
+                style="border-radius: 20px"
+                class="progress-striped active"
+                [max]="this.monster.hpMax"
+                [value]="this.monster.hp"
+                type="danger"
+              ></progressbar>
+            </div>
+            <img
+              src="./assets/monsters/{{ this.monster.name }}.svg"
+              alt="{{ this.monster.name }}"
+              class="monsterImage"
+            />
+            <div>
+              <strong>Attack speed: 4 seconds</strong>
+              <progressbar
+                style="border-radius: 20px"
+                class="progress-striped active"
+                [value]="value"
+                [max]="750"
+                type="warning"
+                animate="true"
+              ></progressbar>
+            </div>
+          </div>
+          <div class="col-3"></div>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 mt-2">
+      <tabset class="text-warning">
+        <tab heading="Equipment" id="tab1">
+          <div class="monsterStats text-center">
+            <div>
+              <app-equipment-slot [player]="player"></app-equipment-slot>
+            </div>
+          </div>
+        </tab>
+        <tab heading="Backpack">
+          <div class="monsterStats">
+            <div>
+              <app-loot [player]="player"></app-loot>
+            </div>
+          </div>
+        </tab>
+      </tabset>
+    </div>
   </div>
-</div>
 </div>

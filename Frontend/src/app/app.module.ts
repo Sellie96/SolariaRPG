@@ -41,6 +41,11 @@ import { MonsterState } from './state/monster.state';
 import { ProgressbarModule } from 'ngx-bootstrap/progressbar';
 import { LoadingBarModule, LOADING_BAR_CONFIG } from '@ngx-loading-bar/core';
 import { LoginComponent } from './login/login.component';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { CreateItemComponent } from './create-item/create-item.component';
+import { MonsterSelectComponent } from './battle/monster-select/monster-select.component';
+import { EquipmentSlotComponent } from './battle/equipment-slot/equipment-slot.component';
+import { LootComponent } from './battle/loot/loot.component';
 
 @NgModule({
   declarations: [
@@ -63,8 +68,11 @@ import { LoginComponent } from './login/login.component';
     TownComponent,
     CharacterCreationComponent,
     CreateMonsterComponent,
-    CreateMonsterComponent,
-    LoginComponent
+    CreateItemComponent,
+    LoginComponent,
+    MonsterSelectComponent,
+    EquipmentSlotComponent,
+    LootComponent
   ],
   imports: [
     BrowserModule,
@@ -89,7 +97,8 @@ import { LoginComponent } from './login/login.component';
       developmentMode: !environment.production
     }),
     NgxsStoragePluginModule.forRoot(),
-    ProgressbarModule.forRoot()
+    ProgressbarModule.forRoot(),
+    TooltipModule.forRoot()
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},

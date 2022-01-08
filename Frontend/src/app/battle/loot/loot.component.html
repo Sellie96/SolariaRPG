@@ -1,0 +1,52 @@
+<h4 class="ml-3">Backpack ({{ this.backpackLimit.length }}/30)</h4>
+<div class="lootContainer">
+  <div *ngFor="let number of numbers">
+    <div *ngIf="player.backpack[number].name">
+      <ng-template #weaponTemplate>
+        <span>{{ player.backpack[number].name }}</span>
+        <div *ngIf="player.backpack[number].damage">
+          Damage Bonus: {{ player.backpack[number].damage }}
+        </div>
+        <div *ngIf="player.backpack[number].armour">
+          Armour Bonus: {{ player.backpack[number].armour }}
+        </div>
+        <div *ngIf="player.backpack[number].evasion">
+          Evasion Bonus: {{ player.backpack[number].evasion }}
+        </div>
+        <div *ngIf="player.backpack[number].accuracy">
+          Accuracy Bonus: {{ player.backpack[number].accuracy }}
+        </div>
+        <div *ngIf="player.backpack[number].hpMax">
+          Hp Bonus: {{ player.backpack[number].hpMax }}
+        </div>
+        <div class="text-warning" *ngIf="player.backpack[number].value">
+          Value: {{ player.backpack[number].value }}
+        </div>
+      </ng-template>
+      <img
+        *ngIf="player.backpack[number].name"
+        src="../../../assets/items/{{ player.backpack[number].name }}.png"
+        class="equipment"
+        alt="?"
+        [tooltip]="weaponTemplate"
+      />
+      <div class="itemButtons">
+        <button
+          (click)="equipItem(player.backpack[number], number)"
+          role="button"
+          class="btn-success btndelete btn-cloud-sign-in"
+        >
+          Equip
+        </button>
+
+        <button
+          (click)="sellItem(player.backpack[number], number)"
+          role="button"
+          class="btn-primary btndelete btn-cloud-sign-in"
+        >
+          Sell
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

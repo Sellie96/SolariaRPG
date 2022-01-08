@@ -1,0 +1,47 @@
+.monsterStats {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+    box-shadow: inset 0 3px 6px rgba(0,0,0,0.16), 0 4px 6px rgba(0,0,0,0.45);
+    border-radius: 10px;
+    color: white;
+}
+
+.monsterImage {
+    width: 18rem;
+}
+
+@media only screen and (max-width: 600px) {
+    .monsterImage {
+      width: 100%;
+    }
+}
+
+.icons {
+    width: 2em;
+    float: left;
+}
+
+.floating-text {
+    position: absolute;
+    z-index: 10000;
+    margin-bottom: 20px;
+    -webkit-animation: floatBubble 5s infinite  normal ease-out;
+    animation: floatBubble 5s infinite  normal ease-out;
+}
+
+
+@-webkit-keyframes floatBubble {
+    0% {
+        top:60px;
+    }
+    100% {
+        top: 60px;
+    }
+}
+@keyframes floatBubble {
+    0% {
+        top:60px;
+    }
+    100% {
+        top: 0px;
+    }
+}

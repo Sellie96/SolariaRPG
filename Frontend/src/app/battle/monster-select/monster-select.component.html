@@ -1,0 +1,208 @@
+<div class="row">
+  <div *ngIf="!showCombatAreas" class="col-4 chooseMonster">
+    <a>
+      <div class="media d-flex align-items-center push">
+        <div class="media-body text-center mr-2">
+          <h3 class="mb-1 pt-2 text-white">Dungeons</h3>
+        </div>
+        <div role="separator" class="dropdown-divider"></div>
+      </div>
+    </a>
+  </div>
+<div class="col-4 chooseMonster">
+  <a (click)="toggleCombatAreas()">
+    <div class="media d-flex align-items-center push">
+      <div class="media-body text-center mr-2">
+        <h3 class="mb-1 pt-2 text-white">Fight Monsters</h3>
+      </div>
+      <div role="separator" class="dropdown-divider"></div>
+    </div>
+  </a>
+</div>
+<div *ngIf="!showCombatAreas" class="col-4 chooseMonster">
+  <a>
+    <div class="media d-flex align-items-center push">
+      <div class="media-body text-center mr-2">
+        <h3 class="mb-1 pt-2 text-white">Special Areas</h3>
+      </div>
+      <div role="separator" class="dropdown-divider"></div>
+    </div>
+  </a>
+</div>
+</div>
+<div class="col-12">
+  <div class="row" *ngIf="showCombatAreas">
+    <div class="col-4 chooseMonster">
+      <a (click)="toggleTopRow()">
+        <div class="media d-flex align-items-center push">
+          <div class="media-body text-center mr-2">
+            <h3 class="mb-1 pt-2 text-white">Goblin Village</h3>
+          </div>
+          <div role="separator" class="dropdown-divider"></div>
+        </div>
+        <div class="text-white" *ngIf="showTopRow">
+            <div class="mt-3">
+                <span>Goblin (lvl 1)</span> <span class="float-right ml-2"><button class="btn btn-primary">Drops</button></span> <span class="float-right"><button (click)="fightMonster('Goblin')" class="btn btn-danger">Fight</button> </span>
+            </div>
+            <div role="separator" class="dropdown-divider"></div>
+            <div class="mt-3">
+                Goblin Archer (lvl 3) <span class="float-right ml-2"><button class="btn btn-primary">Drops</button></span> <span class="float-right"><button (click)="fightMonster('Goblin Archer')" class="btn btn-danger">Fight</button> </span>
+            </div>
+            <div role="separator" class="dropdown-divider"></div>
+            <div class="mt-3">
+                Goblin Berserker (lvl 5) <span class="float-right ml-2"><button class="btn btn-primary">Drops</button></span> <span class="float-right"><button (click)="fightMonster('Goblin Berserker')" class="btn btn-danger">Fight</button> </span>
+            </div>
+            <div role="separator" class="dropdown-divider"></div>
+            <div class="mt-3">
+                Hobgoblin (lvl 7) <span class="float-right ml-2"><button class="btn btn-primary">Drops</button></span> <span class="float-right"><button (click)="fightMonster('Hobgoblin')" class="btn btn-danger">Fight</button> </span>
+            </div>
+            <div role="separator" class="dropdown-divider"></div>
+            <div class="mt-3">
+                Goblin Chief (lvl 9) <span class="float-right ml-2"><button class="btn btn-primary">Drops</button></span> <span class="float-right"><button (click)="fightMonster('Goblin Chief')" class="btn btn-danger">Fight</button> </span>
+            </div>
+            <div role="separator" class="dropdown-divider"></div>
+        </div>
+      </a>
+    </div>
+    <div class="col-4 chooseMonster">
+      <a (click)="toggleTopRow()">
+        <div class="media d-flex align-items-center push">
+          <div class="media-body text-center mr-2">
+            <h3 class="mb-1 pt-2 text-white">Desolate Plains</h3>
+          </div>
+          <div role="separator" class="dropdown-divider"></div>
+        </div>
+        <div class="text-white" *ngIf="showTopRow">
+          <div class="mt-3">
+              <span>Sand Crab (lvl 11)</span> <span class="float-right ml-2"><button class="btn btn-primary">Drops</button></span> <span class="float-right"><button (click)="fightMonster('Sand Crab')" class="btn btn-danger">Fight</button> </span>
+          </div>
+          <div role="separator" class="dropdown-divider"></div>
+          <div class="mt-3">
+              Sand Beast (lvl 13) <span class="float-right ml-2"><button class="btn btn-primary">Drops</button></span> <span class="float-right"><button (click)="fightMonster('Sand Beast')" class="btn btn-danger">Fight</button> </span>
+          </div>
+          <div role="separator" class="dropdown-divider"></div>
+          <div class="mt-3">
+              Sand Golem (lvl 15) <span class="float-right ml-2"><button class="btn btn-primary">Drops</button></span> <span class="float-right"><button (click)="fightMonster('Sand Golem')" class="btn btn-danger">Fight</button> </span>
+          </div>
+          <div role="separator" class="dropdown-divider"></div>
+          <div class="mt-3">
+              Dust Devil (lvl 17) <span class="float-right ml-2"><button class="btn btn-primary">Drops</button></span> <span class="float-right"><button (click)="fightMonster('Dust Devil')" class="btn btn-danger">Fight</button> </span>
+          </div>
+          <div role="separator" class="dropdown-divider"></div>
+          <div class="mt-3">
+              Manticore (lvl 20) <span class="float-right ml-2"><button class="btn btn-primary">Drops</button></span> <span class="float-right"><button (click)="fightMonster('Manticore')" class="btn btn-danger">Fight</button> </span>
+          </div>
+          <div role="separator" class="dropdown-divider"></div>
+      </div>
+      </a>
+    </div>
+    <div class="col-4 chooseMonster">
+      <a (click)="toggleTopRow()">
+        <div class="media d-flex align-items-center push">
+          <div class="media-body text-center mr-2">
+            <h3 class="mb-1 pt-2 text-white">Frozen Wastes</h3>
+          </div>
+        </div>
+        <div class="text-white" *ngIf="showTopRow">
+          <div class="mt-3">
+              <span>Frost Troll (lvl 22)</span> <span class="float-right ml-2"><button class="btn btn-primary">Drops</button></span> <span class="float-right"><button (click)="fightMonster('Frost Troll')" class="btn btn-danger">Fight</button> </span>
+          </div>
+          <div role="separator" class="dropdown-divider"></div>
+          <div class="mt-3">
+              Ice Giant (lvl 25) <span class="float-right ml-2"><button class="btn btn-primary">Drops</button></span> <span class="float-right"><button (click)="fightMonster('Ice Giant')" class="btn btn-danger">Fight</button> </span>
+          </div>
+          <div role="separator" class="dropdown-divider"></div>
+          <div class="mt-3">
+              Mammoth (lvl 28) <span class="float-right ml-2"><button class="btn btn-primary">Drops</button></span> <span class="float-right"><button (click)="fightMonster('Mammoth')" class="btn btn-danger">Fight</button> </span>
+          </div>
+          <div role="separator" class="dropdown-divider"></div>
+          <div class="mt-3">
+              Frozen Terror (lvl 30) <span class="float-right ml-2"><button class="btn btn-primary">Drops</button></span> <span class="float-right"><button (click)="fightMonster('Frozen Terror')" class="btn btn-danger">Fight</button> </span>
+          </div>
+          <div role="separator" class="dropdown-divider"></div>
+          <div class="mt-3">
+              Ice Wyvern (lvl 32) <span class="float-right ml-2"><button class="btn btn-primary">Drops</button></span> <span class="float-right"><button (click)="fightMonster('Ice Wyvern')" class="btn btn-danger">Fight</button> </span>
+          </div>
+          <div role="separator" class="dropdown-divider"></div>
+      </div>
+      </a>
+    </div>
+  </div>
+</div>
+<div class="col-12">
+  <div class="row" *ngIf="showCombatAreas">
+    <div class="col-4 chooseMonster">
+      <a (click)="toggleBottomRow()">
+        <div class="media d-flex align-items-center push">
+          <div class="media-body text-center mr-2">
+            <h3 class="mb-1 pt-2 text-white">Thorny Forest</h3>
+          </div>
+        </div>
+        <div class="text-white" *ngIf="showBottomRow">
+          <div class="mt-3">
+              <span>Chaotic Dragon (lvl 35)</span> <span class="float-right ml-2"><button class="btn btn-primary">Drops</button></span> <span class="float-right"><button (click)="fightMonster('Chaotic Dragon')" class="btn btn-danger">Fight</button> </span>
+          </div>
+          <div role="separator" class="dropdown-divider"></div>
+          <div class="mt-3">
+              Tangleroot (lvl 37) <span class="float-right ml-2"><button class="btn btn-primary">Drops</button></span> <span class="float-right"><button (click)="fightMonster('Tangleroot')" class="btn btn-danger">Fight</button> </span>
+          </div>
+          <div role="separator" class="dropdown-divider"></div>
+          <div class="mt-3">
+              Vampire Lord (lvl 39) <span class="float-right ml-2"><button class="btn btn-primary">Drops</button></span> <span class="float-right"><button (click)="fightMonster('Vampire Lord')" class="btn btn-danger">Fight</button> </span>
+          </div>
+          <div role="separator" class="dropdown-divider"></div>
+          <div class="mt-3">
+              Spider Queen (lvl 41) <span class="float-right ml-2"><button class="btn btn-primary">Drops</button></span> <span class="float-right"><button (click)="fightMonster('Spider Queen')" class="btn btn-danger">Fight</button> </span>
+          </div>
+          <div role="separator" class="dropdown-divider"></div>
+          <div class="mt-3">
+              Carnivorous Plant (lvl 43) <span class="float-right ml-2"><button class="btn btn-primary">Drops</button></span> <span class="float-right"><button (click)="fightMonster('Carnivorous Plant')" class="btn btn-danger">Fight</button> </span>
+          </div>
+          <div role="separator" class="dropdown-divider"></div>
+      </div>
+      </a>
+    </div>
+    <div class="col-4 chooseMonster">
+      <a (click)="toggleBottomRow()">
+        <div class="media d-flex align-items-center push">
+          <div class="media-body text-center mr-2">
+            <h3 class="mb-1 pt-2 text-white">Fiery Depths</h3>
+          </div>
+        </div>
+        <div class="text-white" *ngIf="showBottomRow">
+          <div class="mt-3">
+              <span>Fire Serpent (lvl 45)</span> <span class="float-right ml-2"><button class="btn btn-primary">Drops</button></span> <span class="float-right"><button (click)="fightMonster('Fire Serpent')" class="btn btn-danger">Fight</button> </span>
+          </div>
+          <div role="separator" class="dropdown-divider"></div>
+          <div class="mt-3">
+              Fire Spirit (lvl 48) <span class="float-right ml-2"><button class="btn btn-primary">Drops</button></span> <span class="float-right"><button (click)="fightMonster('Fire Spirit')" class="btn btn-danger">Fight</button> </span>
+          </div>
+          <div role="separator" class="dropdown-divider"></div>
+          <div class="mt-3">
+              The Eye (lvl 52) <span class="float-right ml-2"><button class="btn btn-primary">Drops</button></span> <span class="float-right"><button (click)="fightMonster('The Eye')" class="btn btn-danger">Fight</button> </span>
+          </div>
+          <div role="separator" class="dropdown-divider"></div>
+          <div class="mt-3">
+              Lava Golem (lvl 54) <span class="float-right ml-2"><button class="btn btn-primary">Drops</button></span> <span class="float-right"><button (click)="fightMonster('Lava Golem')" class="btn btn-danger">Fight</button> </span>
+          </div>
+          <div role="separator" class="dropdown-divider"></div>
+          <div class="mt-3">
+              Sol, the Protector (lvl 60) <span class="float-right ml-2"><button class="btn btn-primary">Drops</button></span> <span class="float-right"><button (click)="fightMonster('Sol, the Protector')" class="btn btn-danger">Fight</button> </span>
+          </div>
+          <div role="separator" class="dropdown-divider"></div>
+      </div>
+      </a>
+    </div>
+    <div class="col-4 chooseMonster">
+      <a (click)="toggleBottomRow()">
+        <div class="media d-flex align-items-center push">
+          <div class="media-body text-center mr-2">
+            <h3 class="mb-1 pt-2 text-white">Tower of Kings</h3>
+          </div>
+        </div>
+        <div class="text-white" *ngIf="showBottomRow">
+      </div>
+      </a>
+    </div>
+  </div>
+</div>

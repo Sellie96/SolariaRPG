@@ -13,6 +13,10 @@ export interface CharacterStateModel {
     armour: number,
     evasion: number,
     critchance: number,
+    gold: number,
+    potions: any,
+    equipment: any,
+    backpack: any,
     characterId: string
 }
 
@@ -24,7 +28,7 @@ export interface CharacterStateModel {
 export class CharacterState {
     @Action(SetCharacter)
     setCharacter({patchState}: StateContext<CharacterStateModel>,
-         {payload, payload2, payload3, payload4, payload5, payload6, payload7, payload8, payload9, payload10, payload11}: SetCharacter) {
+         {payload, payload2, payload3, payload4, payload5, payload6, payload7, payload8, payload9, payload10, payload11, payload12, payload13, payload14, payload15}: SetCharacter) {
         patchState({
             level:payload,
             hp: payload2,
@@ -36,7 +40,11 @@ export class CharacterState {
             armour: payload8,
             evasion: payload9,
             critchance: payload10,
-            characterId: payload11
+            gold: payload11,
+            potions: payload12,
+            equipment: payload13,
+            backpack: payload14,
+            characterId: payload15
         })
     }
 }
