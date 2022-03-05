@@ -27,7 +27,6 @@ export class CreateItemComponent implements OnInit {
   }
 
   createItem() {
-    this.itemService.createNewItem();
   }
 
   cancel() {

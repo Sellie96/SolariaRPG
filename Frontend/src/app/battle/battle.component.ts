@@ -115,10 +115,10 @@ export class BattleComponent implements OnInit {
   };
 
   async monsterDied() {
-    this.player.xp += this.monster.xp;
+    this.player.xp += this.monster.xp + 50;
     this.player.gold += this.monster.gold;
 
-    let dropItem = this.calculateRandomDropChances(10);
+    let dropItem = this.calculateRandomDropChances(100);
 
     if(dropItem) {
       this.dropItem();
@@ -230,7 +230,8 @@ export class BattleComponent implements OnInit {
     this.player.xpMax += 25 * this.player.level;
     this.player.hpMax += 10;
     this.player.hp = this.player.hpMax + this.playerBonus.hpMax;
-    this.player.damage += 2;
+    this.player.damage += 1;
+    this.player.accuracy += 5;
     this.player.xp = 0;
     this.toastr.success('You have reached level ' + this.player.level);
   }

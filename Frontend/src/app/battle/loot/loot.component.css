@@ -1,5 +1,5 @@
 .lootContainer {
-    height: 365px;
+    min-height: 365px;
     display: flex;
     flex-wrap: wrap;
 }
