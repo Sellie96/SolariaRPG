@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.titleService.setTitle("Solaria Idle");
-    let test = this.accountService.autoAuthUser();
+    this.accountService.autoAuthUser();
     this.auth = localStorage.getItem("userId");
   }
 

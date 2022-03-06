@@ -5,8 +5,22 @@
     color: white;
 }
 
+.playerCard {
+    border: solid gold 1px;
+    border-radius: 5px;
+}
+
+.monsterCard {
+    border: solid red 1px;
+    border-radius: 5px;
+}
+
 .monsterImage {
-    width: 18rem;
+    width: 10rem;
+}
+
+.playerImage {
+    width: 10rem;
 }
 
 @media only screen and (max-width: 600px) {

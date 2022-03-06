@@ -1,6 +1,6 @@
 .home {
-    /* The image used */
-    background-image:url('../assets/background_1.jpg');
+/* The image used */
+background-image:url('../assets/background_1.jpg');
 /* Full height */
 height: 100%;
 min-height: 1000px;
@@ -8,5 +8,5 @@ min-height: 1000px;
 background-position: center;
 background-repeat: repeat;
 background-size: cover;
-color: black;
+
 }

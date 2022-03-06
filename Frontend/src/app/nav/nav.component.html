@@ -1,4 +1,4 @@
-<nav  *ngIf="user$ | async; let user" ngxNavbarDynamicExpand style="border: 1px solid #424a59" class="navbar fixed-top navbar-dark navbar-custom">
+<nav *ngIf="user$ | async; let user" ngxNavbarDynamicExpand class="navbar fixed-top navbar-dark navbar-custom">
 
   <div class="linkMenu">
     <a class="navbar-brand" href="/">Solaria Idle</a>
@@ -12,13 +12,7 @@
     <ul class="navbar-nav container">
       <ng-container>
         <li class="nav-item">
-          <a
-            class="nav-link"
-            aria-current="page"
-            routerLink="/town"
-            routerLinkActive="active"
-            >Town</a
-          >
+          <a class="nav-link" aria-current="page" routerLink="/town" routerLinkActive="active">Town</a>
         </li>
         <li class="nav-item">
           <div *ngIf="userIsAuthenticated">
@@ -26,25 +20,21 @@
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" routerLink="/shop" routerLinkActive="active"
-            >Shop</a
-          >
+          <a class="nav-link" routerLink="/shop" routerLinkActive="active">Shop</a>
         </li>
 
         <li class="nav-item">
-          <a class="nav-link" routerLink="/quests" routerLinkActive="active"
-            >Quests</a
-          >
+          <a class="nav-link" routerLink="/quests" routerLinkActive="active">Quests</a>
         </li>
 
-        <div  class="dropdown nav-link" style="float: right" dropdown>
+        <div class="dropdown nav-link" style="float: right" dropdown>
           <a class="dropdown-toggle text-light" dropdownToggle>{{user.userId}} </a>
           <div *ngIf="userIsAuthenticated">
             <div class="dropdown-menu" *dropdownMenu>
               <a class="dropdown-item" routerLink="/options"> Options</a>
-              <a class="dropdown-item"  routerLink="/character-select" (click)="location.reload();"> Select Character</a>
-              <a class="dropdown-item"  routerLink="/create-monster"> Create Monster</a>
-              <a class="dropdown-item"  routerLink="/create-item"> Create Item</a>
+              <a class="dropdown-item" routerLink="/character-select" (click)="location.reload();"> Select Character</a>
+              <a class="dropdown-item" routerLink="/create-monster"> Create Monster</a>
+              <a class="dropdown-item" routerLink="/create-item"> Create Item</a>
               <a class="dropdown-item" (click)="logout()"> Logout</a>
             </div>
           </div>
