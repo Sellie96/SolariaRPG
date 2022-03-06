@@ -1,4 +1,4 @@
-<div style="">
+<!-- <div>
   <div class="row">
     <app-monster-select (monsterSelected)="changeMonster($event)"></app-monster-select>
     <div class="col-6">
@@ -45,26 +45,7 @@
               <strong> {{ this.calculatePlayerChanceToHit() }}%</strong>
             </div>
           </div>
-          <div class="col-6 playerCard">
-            <div class="mb-3">
-              <strong>Level {{ this.player.level }}</strong>
-            </div>
-            <p class="text-danger mb-1 floating-text">
-              {{ this.monsterDamage }}
-            </p>
-            <img src="{{ './assets/player_1.svg' }}" class="playerImage" />
-            <div>
-              <div class="mb-2">
-                {{ this.player.hp }} /
-                {{ this.player.hpMax + this.playerBonus.hpMax }}
-                <progressbar style="border-radius: 20px" class="progress-striped"
-                  [max]="this.player.hpMax + this.playerBonus.hpMax" [value]="this.player.hp" type="success">
-                </progressbar>
-              </div>
-              <strong>Attack speed: 4 seconds</strong>
-              <progressbar style="border-radius: 20px" class="progress-striped active" [value]="value" [max]="750"
-                type="warning" animate="true"></progressbar>
-            </div>
+          <div class="col-6">
           </div>
           <div class="col-3">
             <div class="mt-3">
@@ -117,45 +98,97 @@
               <strong> {{ this.monster.xp }}</strong>
             </div>
           </div>
-          <div class="col-6 monsterCard">
-            <div class="mb-3">
-              <strong>{{ this.monster.name }} (Lvl: {{ this.monster.level }})</strong>
-            </div>
-            <p class="text-success floating-text">{{ this.playerDamage }}</p>
-            <div class="mb-1">
-              {{ this.monster.hp }} / {{ this.monster.hpMax }}
-              <progressbar style="border-radius: 20px" class="progress-striped active" [max]="this.monster.hpMax"
-                [value]="this.monster.hp" type="danger"></progressbar>
-            </div>
-            <img src="./assets/monsters/{{ this.monster.name }}.svg" alt="{{ this.monster.name }}"
-              class="monsterImage" />
-            <div>
-              <strong>Attack speed: 4 seconds</strong>
-              <progressbar style="border-radius: 20px" class="progress-striped active" [value]="value" [max]="750"
-                type="warning" animate="true"></progressbar>
-            </div>
+          <div class="col-6">
           </div>
           <div class="col-3"></div>
         </div>
       </div>
     </div>
     <div class="col-6 mt-2">
-      <tabset class="text-warning">
-        <tab heading="Equipment" id="tab1">
-          <div class="monsterStats text-center">
-            <div>
-              <app-equipment-slot [player]="player"></app-equipment-slot>
-            </div>
-          </div>
-        </tab>
-        <tab heading="Backpack">
-          <div class="monsterStats">
-            <div>
-              <app-loot [player]="player"></app-loot>
-            </div>
-          </div>
-        </tab>
-      </tabset>
     </div>
   </div>
-</div>
+</div> -->
+
+<section class="animated-grid">
+  <div class="card">
+    <div class="mb-1">
+      <strong>Player (Lvl: {{ this.player.level }})</strong>
+    </div>
+    <p class="text-danger mb-1 floating-text">
+      {{ this.monsterDamage }}
+    </p>
+    <div class="mb-1">
+      {{ this.player.hp }} /
+      {{ this.player.hpMax + this.playerBonus.hpMax }}
+      <progressbar
+        style="border-radius: 20px"
+        class="progress-striped"
+        [max]="this.player.hpMax + this.playerBonus.hpMax"
+        [value]="this.player.hp"
+        type="success"
+      ></progressbar>
+    </div>
+    <img src="{{ './assets/player_1.svg' }}" class="monsterImage" />
+    <div>
+      <strong>Attack speed: 4 seconds</strong>
+      <progressbar
+        style="border-radius: 20px"
+        class="progress-striped active"
+        [value]="value"
+        [max]="750"
+        type="warning"
+        animate="true"
+      ></progressbar>
+    </div>
+  </div>
+  <div class="card">
+    <div class="mb-1">
+      <strong>{{ this.monster.name }} (Lvl: {{ this.monster.level }})</strong>
+    </div>
+    <p class="text-success floating-text">{{ this.playerDamage }}</p>
+    <div class="mb-1">
+      {{ this.monster.hp }} / {{ this.monster.hpMax }}
+      <progressbar
+        style="border-radius: 20px"
+        class="progress-striped active"
+        [max]="this.monster.hpMax"
+        [value]="this.monster.hp"
+        type="danger"
+      ></progressbar>
+    </div>
+    <img
+      src="./assets/monsters/{{ this.monster.name }}.svg"
+      alt="{{ this.monster.name }}"
+      class="monsterImage"
+    />
+    <div>
+      <strong>Attack speed: 4 seconds</strong>
+      <progressbar
+        style="border-radius: 20px"
+        class="progress-striped active"
+        [value]="value"
+        [max]="750"
+        type="warning"
+        animate="true"
+      ></progressbar>
+    </div>
+  </div>
+  <div class="card">
+    <tabset class="text-warning">
+      <tab heading="Equipment" id="tab1">
+        <div class="text-center">
+          <div>
+            <app-equipment-slot [player]="player"></app-equipment-slot>
+          </div>
+        </div>
+      </tab>
+    </tabset>
+  </div>
+  <div class="card">
+    <div>
+      <app-loot [player]="player"></app-loot>
+    </div>
+  </div>
+  <div class="card">e</div>
+  <div class="card">f</div>
+</section>

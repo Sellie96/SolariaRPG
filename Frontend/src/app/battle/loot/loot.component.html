@@ -1,6 +1,6 @@
 <h4 class="ml-3">Backpack ({{ this.backpackLimit.length }}/30)</h4>
-<div class="lootContainer">
-  <div *ngFor="let number of numbers">
+<section class="basic-grid">
+  <div *ngFor="let number of numbers" class="card">
     <div *ngIf="player.backpack[number].name">
       <ng-template #weaponTemplate>
         <span>{{ player.backpack[number].name }}</span>
@@ -34,7 +34,7 @@
         <button
           (click)="equipItem(player.backpack[number], number)"
           role="button"
-          class="btn-success btndelete btn-cloud-sign-in"
+          class="btn-success equipmentButton"
         >
           Equip
         </button>
@@ -42,11 +42,12 @@
         <button
           (click)="sellItem(player.backpack[number], number)"
           role="button"
-          class="btn-primary btndelete btn-cloud-sign-in"
+          class="btn-primary equipmentButton"
         >
           Sell
         </button>
       </div>
     </div>
   </div>
-</div>
+
+</section>

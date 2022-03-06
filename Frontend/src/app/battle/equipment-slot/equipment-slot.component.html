@@ -1,25 +1,24 @@
 <div className="inventorySlot row">
   <div class="col-12 row">
-      <div class="col-3"></div>
-    <div class="col-2">
-        <ng-template #capeTemplate>
-            <span>{{player.equipment[9].name}}</span>
-            <div *ngIf="player.equipment[9].damage">
-                Damage: {{player.equipment[9].damage}} 
-            </div> 
-            <div *ngIf="player.equipment[9].armour">
-                Armour: {{player.equipment[9].armour}} 
-            </div> 
-            <div *ngIf="player.equipment[9].evasion">
-                Evasion: {{player.equipment[9].evasion}} 
-            </div> 
-            <div *ngIf="player.equipment[9].accuracy">
-                Accuracy: {{player.equipment[9].accuracy}} 
-            </div>
-            <div *ngIf="player.equipment[9].hpMax">
-                Hp: {{player.equipment[9].hpMax}} 
-            </div>  
-        </ng-template>
+    <div class="col-3">
+      <ng-template #capeTemplate>
+        <span>{{ player.equipment[9].name }}</span>
+        <div *ngIf="player.equipment[9].damage">
+          Damage Bonus: {{ player.equipment[9].damage }}
+        </div>
+        <div *ngIf="player.equipment[9].armour">
+          Armour Bonus: {{ player.equipment[9].armour }}
+        </div>
+        <div *ngIf="player.equipment[9].evasion">
+          Evasion Bonus: {{ player.equipment[9].evasion }}
+        </div>
+        <div *ngIf="player.equipment[9].accuracy">
+          Accuracy Bonus: {{ player.equipment[9].accuracy }}
+        </div>
+        <div *ngIf="player.equipment[9].hpMax">
+          Hp Bonus: {{ player.equipment[9].hpMax }}
+        </div>
+      </ng-template>
       <img
         src="../../../assets/items/{{ player.equipment[9].name }}.png"
         alt="?"
@@ -28,24 +27,24 @@
       />
     </div>
     <div class="col-2">
-        <ng-template #helmTemplate>
-            <span>{{player.equipment[2].name}}</span>
-            <div *ngIf="player.equipment[2].damage">
-                Damage: {{player.equipment[2].damage}} 
-            </div> 
-            <div *ngIf="player.equipment[2].armour">
-                Armour: {{player.equipment[2].armour}} 
-            </div> 
-            <div *ngIf="player.equipment[2].evasion">
-                Evasion: {{player.equipment[2].evasion}} 
-            </div> 
-            <div *ngIf="player.equipment[2].accuracy">
-                Accuracy: {{player.equipment[2].accuracy}} 
-            </div>
-            <div *ngIf="player.equipment[2].hpMax">
-                Hp: {{player.equipment[2].hpMax}} 
-            </div>  
-        </ng-template>
+      <ng-template #helmTemplate>
+        <span>{{ player.equipment[2].name }}</span>
+        <div *ngIf="player.equipment[2].damage">
+          Damage Bonus: {{ player.equipment[2].damage }}
+        </div>
+        <div *ngIf="player.equipment[2].armour">
+          Armour Bonus: {{ player.equipment[2].armour }}
+        </div>
+        <div *ngIf="player.equipment[2].evasion">
+          Evasion Bonus: {{ player.equipment[2].evasion }}
+        </div>
+        <div *ngIf="player.equipment[2].accuracy">
+          Accuracy Bonus: {{ player.equipment[2].accuracy }}
+        </div>
+        <div *ngIf="player.equipment[2].hpMax">
+          Hp Bonus: {{ player.equipment[2].hpMax }}
+        </div>
+      </ng-template>
       <img
         src="../../../assets/items/{{ player.equipment[2].name }}.png"
         alt="?"
@@ -54,24 +53,24 @@
       />
     </div>
     <div class="col-2">
-        <ng-template #necklaceTemplate>
-            <span>{{player.equipment[7].name}}</span>
-            <div *ngIf="player.equipment[7].damage">
-                Damage: {{player.equipment[7].damage}} 
-            </div> 
-            <div *ngIf="player.equipment[7].armour">
-                Armour: {{player.equipment[7].armour}} 
-            </div> 
-            <div *ngIf="player.equipment[7].evasion">
-                Evasion: {{player.equipment[7].evasion}} 
-            </div> 
-            <div *ngIf="player.equipment[7].accuracy">
-                Accuracy: {{player.equipment[7].accuracy}} 
-            </div>
-            <div *ngIf="player.equipment[7].hpMax">
-                Hp: {{player.equipment[7].hpMax}} 
-            </div>  
-        </ng-template>
+      <ng-template #necklaceTemplate>
+        <span>{{ player.equipment[7].name }}</span>
+        <div *ngIf="player.equipment[7].damage">
+          Damage Bonus: {{ player.equipment[7].damage }}
+        </div>
+        <div *ngIf="player.equipment[7].armour">
+          Armour Bonus: {{ player.equipment[7].armour }}
+        </div>
+        <div *ngIf="player.equipment[7].evasion">
+          Evasion Bonus: {{ player.equipment[7].evasion }}
+        </div>
+        <div *ngIf="player.equipment[7].accuracy">
+          Accuracy Bonus: {{ player.equipment[7].accuracy }}
+        </div>
+        <div *ngIf="player.equipment[7].hpMax">
+          Hp Bonus: {{ player.equipment[7].hpMax }}
+        </div>
+      </ng-template>
       <img
         src="../../../assets/items/{{ player.equipment[7].name }}.png"
         alt="?"
@@ -79,183 +78,179 @@
         [tooltip]="necklaceTemplate"
       />
     </div>
+    <div class="col-2"></div>
     <div class="col-3"></div>
 
-
-<div class="col-3"></div>
-    <div class="col-2">
-        <ng-template #weaponTemplate>
+    <div class="col-3">
+      <ng-template #weaponTemplate>
         <div *ngIf="player.equipment[0].name">
-            <span>{{player.equipment[0].name}}</span>
-            <div *ngIf="player.equipment[0].damage">
-                Damage: {{player.equipment[0].damage}} 
-            </div> 
-            <div *ngIf="player.equipment[0].armour">
-                Armour: {{player.equipment[0].armour}} 
-            </div> 
-            <div *ngIf="player.equipment[0].evasion">
-                Evasion: {{player.equipment[0].evasion}} 
-            </div> 
-            <div *ngIf="player.equipment[0].accuracy">
-                Accuracy: {{player.equipment[0].accuracy}} 
-            </div>
-            <div *ngIf="player.equipment[0].hpMax">
-                Hp: {{player.equipment[0].hpMax}} 
-            </div>
+          <span>{{ player.equipment[0].name }}</span>
+          <div *ngIf="player.equipment[0].damage">
+            Damage Bonus: {{ player.equipment[0].damage }}
+          </div>
+          <div *ngIf="player.equipment[0].armour">
+            Armour Bonus: {{ player.equipment[0].armour }}
+          </div>
+          <div *ngIf="player.equipment[0].evasion">
+            Evasion Bonus: {{ player.equipment[0].evasion }}
+          </div>
+          <div *ngIf="player.equipment[0].accuracy">
+            Accuracy Bonus: {{ player.equipment[0].accuracy }}
+          </div>
+          <div *ngIf="player.equipment[0].hpMax">
+            Hp Bonus: {{ player.equipment[0].hpMax }}
+          </div>
         </div>
         <div *ngIf="!player.equipment[0].name">
-            <div>
-                Empty
-            </div>
-        </div>  
-        </ng-template>
-        <div *ngIf="player.equipment[0].name">
+          <div>Empty</div>
+        </div>
+      </ng-template>
+      <div *ngIf="player.equipment[0].name">
         <img
           src="../../../assets/items/{{ player.equipment[0].name }}.png"
           class="equipment"
           alt="?"
           [tooltip]="weaponTemplate"
         />
+      </div>
+    </div>
+    <div class="col-2">
+      <ng-template #bodyTemplate>
+        <span>{{ player.equipment[3].name }}</span>
+        <div *ngIf="player.equipment[3].damage">
+          Damage Bonus: {{ player.equipment[3].damage }}
         </div>
-      </div>
-      <div class="col-2">
-        <ng-template #bodyTemplate>
-            <span>{{player.equipment[3].name}}</span>
-            <div *ngIf="player.equipment[3].damage">
-                Damage: {{player.equipment[3].damage}} 
-            </div> 
-            <div *ngIf="player.equipment[3].armour">
-                Armour: {{player.equipment[3].armour}} 
-            </div> 
-            <div *ngIf="player.equipment[3].evasion">
-                Evasion: {{player.equipment[3].evasion}} 
-            </div> 
-            <div *ngIf="player.equipment[3].accuracy">
-                Accuracy: {{player.equipment[3].accuracy}} 
-            </div>
-            <div *ngIf="player.equipment[3].hpMax">
-                Hp: {{player.equipment[3].hpMax}} 
-            </div>  
-        </ng-template>
-        <img
-          src="../../../assets/items/{{ player.equipment[3].name }}.png"
-          class="equipment"
-          alt="?"
-          [tooltip]="bodyTemplate"
-        />
-      </div>
-      <div class="col-2"></div>
-      <div class="col-3"></div>
-      <div class="col-3"></div>
-      <div class="col-2">
-        <ng-template #glovesTemplate>
-            <span>{{player.equipment[6].name}}</span>
-            <div *ngIf="player.equipment[6].damage">
-                Damage: {{player.equipment[6].damage}} 
-            </div> 
-            <div *ngIf="player.equipment[6].armour">
-                Armour: {{player.equipment[6].armour}} 
-            </div> 
-            <div *ngIf="player.equipment[6].evasion">
-                Evasion: {{player.equipment[6].evasion}} 
-            </div> 
-            <div *ngIf="player.equipment[6].accuracy">
-                Accuracy: {{player.equipment[6].accuracy}} 
-            </div>
-            <div *ngIf="player.equipment[6].hpMax">
-                Hp: {{player.equipment[6].hpMax}} 
-            </div>  
-        </ng-template>
-        <img
-          src="../../../assets/items/{{ player.equipment[6].name }}.png"
-          class="equipment"
-          alt="?"
-          [tooltip]="glovesTemplate"
-        />
-      </div>
-      <div class="col-2">
-        <ng-template #legsTemplate>
-            <span>{{player.equipment[4].name}}</span>
-            <div *ngIf="player.equipment[4].damage">
-                Damage: {{player.equipment[4].damage}} 
-            </div> 
-            <div *ngIf="player.equipment[4].armour">
-                Armour: {{player.equipment[4].armour}} 
-            </div> 
-            <div *ngIf="player.equipment[4].evasion">
-                Evasion: {{player.equipment[4].evasion}} 
-            </div> 
-            <div *ngIf="player.equipment[4].accuracy">
-                Accuracy: {{player.equipment[4].accuracy}} 
-            </div>
-            <div *ngIf="player.equipment[4].hpMax">
-                Hp: {{player.equipment[4].hpMax}} 
-            </div>  
-        </ng-template>
-        <img
-          src="../../../assets/items/{{ player.equipment[4].name }}.png"
-          class="equipment"
-          alt="?"
-          [tooltip]="legsTemplate"
-        />
-      </div>
-      <div class="col-2">
-        <ng-template #ringTemplate>
-            <span>{{player.equipment[8].name}}</span>
-            <div *ngIf="player.equipment[8].damage">
-                Damage: {{player.equipment[8].damage}} 
-            </div> 
-            <div *ngIf="player.equipment[8].armour">
-                Armour: {{player.equipment[8].armour}} 
-            </div> 
-            <div *ngIf="player.equipment[8].evasion">
-                Evasion: {{player.equipment[8].evasion}} 
-            </div> 
-            <div *ngIf="player.equipment[8].accuracy">
-                Accuracy: {{player.equipment[8].accuracy}} 
-            </div>
-            <div *ngIf="player.equipment[8].hpMax">
-                Hp: {{player.equipment[8].hpMax}} 
-            </div>  
-        </ng-template>
-        <img
-          src="../../../assets/items/{{ player.equipment[8].name }}.png"
-          class="equipment"
-          alt="?"
-          [tooltip]="ringTemplate"
-        />
-      </div>
-      <div>
-        <ng-template #bootsTemplate>
-            <span>{{player.equipment[5].name}}</span>
-            <div *ngIf="player.equipment[5].damage">
-                Damage: {{player.equipment[5].damage}} 
-            </div> 
-            <div *ngIf="player.equipment[5].armour">
-                Armour: {{player.equipment[5].armour}} 
-            </div> 
-            <div *ngIf="player.equipment[5].evasion">
-                Evasion: {{player.equipment[5].evasion}} 
-            </div> 
-            <div *ngIf="player.equipment[5].accuracy">
-                Accuracy: {{player.equipment[5].accuracy}} 
-            </div>
-            <div *ngIf="player.equipment[5].hpMax">
-                Hp: {{player.equipment[5].hpMax}} 
-            </div>  
-        </ng-template>
-        <img
-          src="../../../assets/items/{{ player.equipment[5].name }}.png"
-          class="equipment"
-          alt="?"
-          [tooltip]="bootsTemplate"
-        />
-      </div>
+        <div *ngIf="player.equipment[3].armour">
+          Armour Bonus: {{ player.equipment[3].armour }}
+        </div>
+        <div *ngIf="player.equipment[3].evasion">
+          Evasion Bonus: {{ player.equipment[3].evasion }}
+        </div>
+        <div *ngIf="player.equipment[3].accuracy">
+          Accuracy Bonus: {{ player.equipment[3].accuracy }}
+        </div>
+        <div *ngIf="player.equipment[3].hpMax">
+          Hp Bonus: {{ player.equipment[3].hpMax }}
+        </div>
+      </ng-template>
+      <img
+        src="../../../assets/items/{{ player.equipment[3].name }}.png"
+        class="equipment"
+        alt="?"
+        [tooltip]="bodyTemplate"
+      />
+    </div>
+    <div class="col-2"></div>
+    <div class="col-2"></div>
+    <div class="col-3"></div>
+    <div class="col-3">
+      <ng-template #glovesTemplate>
+        <span>{{ player.equipment[6].name }}</span>
+        <div *ngIf="player.equipment[6].damage">
+          Damage Bonus: {{ player.equipment[6].damage }}
+        </div>
+        <div *ngIf="player.equipment[6].armour">
+          Armour Bonus: {{ player.equipment[6].armour }}
+        </div>
+        <div *ngIf="player.equipment[6].evasion">
+          Evasion Bonus: {{ player.equipment[6].evasion }}
+        </div>
+        <div *ngIf="player.equipment[6].accuracy">
+          Accuracy Bonus: {{ player.equipment[6].accuracy }}
+        </div>
+        <div *ngIf="player.equipment[6].hpMax">
+          Hp Bonus: {{ player.equipment[6].hpMax }}
+        </div>
+      </ng-template>
+      <img
+        src="../../../assets/items/{{ player.equipment[6].name }}.png"
+        class="equipment"
+        alt="?"
+        [tooltip]="glovesTemplate"
+      />
+    </div>
+    <div class="col-2">
+      <ng-template #legsTemplate>
+        <span>{{ player.equipment[4].name }}</span>
+        <div *ngIf="player.equipment[4].damage">
+          Damage Bonus: {{ player.equipment[4].damage }}
+        </div>
+        <div *ngIf="player.equipment[4].armour">
+          Armour Bonus: {{ player.equipment[4].armour }}
+        </div>
+        <div *ngIf="player.equipment[4].evasion">
+          Evasion Bonus: {{ player.equipment[4].evasion }}
+        </div>
+        <div *ngIf="player.equipment[4].accuracy">
+          Accuracy Bonus: {{ player.equipment[4].accuracy }}
+        </div>
+        <div *ngIf="player.equipment[4].hpMax">
+          Hp Bonus: {{ player.equipment[4].hpMax }}
+        </div>
+      </ng-template>
+      <img
+        src="../../../assets/items/{{ player.equipment[4].name }}.png"
+        class="equipment"
+        alt="?"
+        [tooltip]="legsTemplate"
+      />
+    </div>
+    <div class="col-2">
+      <ng-template #ringTemplate>
+        <span>{{ player.equipment[8].name }}</span>
+        <div *ngIf="player.equipment[8].damage">
+          Damage Bonus: {{ player.equipment[8].damage }}
+        </div>
+        <div *ngIf="player.equipment[8].armour">
+          Armour Bonus: {{ player.equipment[8].armour }}
+        </div>
+        <div *ngIf="player.equipment[8].evasion">
+          Evasion Bonus: {{ player.equipment[8].evasion }}
+        </div>
+        <div *ngIf="player.equipment[8].accuracy">
+          Accuracy Bonus: {{ player.equipment[8].accuracy }}
+        </div>
+        <div *ngIf="player.equipment[8].hpMax">
+          Hp Bonus: {{ player.equipment[8].hpMax }}
+        </div>
+      </ng-template>
+      <img
+        src="../../../assets/items/{{ player.equipment[8].name }}.png"
+        class="equipment"
+        alt="?"
+        [tooltip]="ringTemplate"
+      />
+    </div>
+    <div class="col-4"></div>
+    <div class="col-3">
+    </div>
+    <div class="col-2">
+      <ng-template #bootsTemplate>
+        <span>{{ player.equipment[5].name }}</span>
+        <div *ngIf="player.equipment[5].damage">
+          Damage Bonus: {{ player.equipment[5].damage }}
+        </div>
+        <div *ngIf="player.equipment[5].armour">
+          Armour Bonus: {{ player.equipment[5].armour }}
+        </div>
+        <div *ngIf="player.equipment[5].evasion">
+          Evasion Bonus: {{ player.equipment[5].evasion }}
+        </div>
+        <div *ngIf="player.equipment[5].accuracy">
+          Accuracy Bonus: {{ player.equipment[5].accuracy }}
+        </div>
+        <div *ngIf="player.equipment[5].hpMax">
+          Hp Bonus: {{ player.equipment[5].hpMax }}
+        </div>
+      </ng-template>
+      <img
+        src="../../../assets/items/{{ player.equipment[5].name }}.png"
+        class="equipment"
+        alt="?"
+        [tooltip]="bootsTemplate"
+      />
+    </div>
   </div>
 
-  <div class="wrapper">
-
-    
-    
-  </div>
+  <div class="wrapper"></div>
 </div>
