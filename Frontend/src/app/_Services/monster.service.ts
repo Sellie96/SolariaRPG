@@ -3,6 +3,9 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Store } from '@ngxs/store';
 import { SetMonster } from '../state/monster.actions';
+import { catchError, take } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+import { ToastrService } from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +13,7 @@ import { SetMonster } from '../state/monster.actions';
 export class MonsterService {
   baseUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient, private store: Store) {}
+  constructor(private http: HttpClient, private store: Store, private toastrService: ToastrService) {}
 
   createNewMonster(model:any){
     return this.http.post<{token: string}>(this.baseUrl + '/monster/create', model).subscribe(response => {
@@ -20,7 +23,18 @@ export class MonsterService {
   }
 
   getMonster(enemyName: string) {
-    this.http.post<{ message: string; monster: any }>(this.baseUrl + '/monster/' + enemyName, enemyName).subscribe(MonsterData => {
+    this.http.post<{ message: string; monster: any }>(this.baseUrl + '/monster/' + enemyName, enemyName)
+    .pipe(
+      catchError((err) => {
+
+        this.toastrService.error(
+          'Oops! Something went wrong. Please try to refresh and let us know if the problem persists.',
+          'Error'
+        );
+        return throwError(() => err);
+      }),
+      take(1)
+      ).subscribe(MonsterData => {
       this.store.dispatch(new SetMonster(
         MonsterData.monster.name,
         MonsterData.monster.level,

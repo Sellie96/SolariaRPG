@@ -1,0 +1,24 @@
+<ng-template #itemTemplate>
+  <span>{{ player.equipment[item].name }}</span>
+  <div *ngIf="player.equipment[item].damage">
+    Damage: {{ player.equipment[item].damage }}
+  </div>
+  <div *ngIf="player.equipment[item].armour">
+    Armour: {{ player.equipment[item].armour }}
+  </div>
+  <div *ngIf="player.equipment[item].evasion">
+    Evasion: {{ player.equipment[item].evasion }}
+  </div>
+  <div *ngIf="player.equipment[item].accuracy">
+    Accuracy: {{ player.equipment[item].accuracy }}
+  </div>
+  <div *ngIf="player.equipment[item].hpMax">
+    Hp: {{ player.equipment[item].hpMax }}
+  </div>
+</ng-template>
+<img
+  src="../../../assets/items/{{ player.equipment[item].name }}.png"
+  alt="?"
+  class="equipment"
+  [tooltip]="itemTemplate"
+/>

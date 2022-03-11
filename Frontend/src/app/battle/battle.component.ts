@@ -133,7 +133,7 @@ export class BattleComponent implements OnInit {
       'You gained: ' + this.monster.xp + ' XP, ' + this.monster.gold + ' Gold!',
       this.monster.name + ' was killed!'
     );
-    this.loadMonster(this.currentMonster);
+    this.loadMonster(this.currentMonster || "Goblin");
     await this.delay(1000);
   }
 
@@ -142,7 +142,7 @@ export class BattleComponent implements OnInit {
 
     let holder = this.itemService.getDrop(this.monster.name);
 
-    if (test.length < 30) {
+    if (test.length < 27) {
     test.push(holder);
     this.toastr.info("You gained 1x " + holder.name)
     this.player.backpack = test;
@@ -481,7 +481,7 @@ export class BattleComponent implements OnInit {
     return accuracy;
   }
 
-  async loadMonster(monsterName) {
+  loadMonster(monsterName: string) {
     this.monsterService.getMonster(monsterName);
     this.monster$.subscribe((monster) => {
       this.monster = {

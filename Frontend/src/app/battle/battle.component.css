@@ -1,7 +1,4 @@
 .monsterStats {
-  background-color: rgba(0, 0, 0, 0.8) !important;
-  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.16), 0 4px 6px rgba(0, 0, 0, 0.45);
-  border-radius: 10px;
   color: white;
 }
 
@@ -57,11 +54,10 @@
 }
 
 .animated-grid {
-  height: 85vh;
+  height: 100vh;
   margin-bottom: 200px;
 
   display: grid;
-  gap: 1rem;
 
   /* Explicit grid */
   grid-template-areas:
@@ -90,8 +86,7 @@
 .card {
   text-align: center;
   color: white;
-  background-color: rgb(56, 56, 56, 0.9);
-  border-radius: 10px;
+  background-color: rgba(55, 44, 49, 0.6);
   animation: cardEntrance 700ms ease-out;
   animation-fill-mode: backwards;
 }
@@ -120,35 +115,11 @@
   grid-area: f;
   animation-delay: calc(6 * var(--stagger-delay));
 }
-.card:nth-child(7) {
-  grid-area: g;
-  animation-delay: calc(7 * var(--stagger-delay));
-}
-.card:nth-child(8) {
-  grid-area: h;
-  animation-delay: calc(8 * var(--stagger-delay));
-}
-.card:nth-child(9) {
-  grid-area: i;
-  animation-delay: calc(9 * var(--stagger-delay));
-}
-.card:nth-child(10) {
-  grid-area: j;
-  animation-delay: calc(10 * var(--stagger-delay));
-}
-.card:nth-child(11) {
-  grid-area: k;
-  animation-delay: calc(11 * var(--stagger-delay));
-}
-.card:nth-child(12) {
-  grid-area: l;
-  animation-delay: calc(12 * var(--stagger-delay));
-}
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 900px) {
   .animated-grid {
     grid-template-columns: auto;
-    grid-template-rows: repeat(1, 100%);
+    grid-template-rows: repeat(1, 50%);
     grid-template-areas:
       "a"
       "b"

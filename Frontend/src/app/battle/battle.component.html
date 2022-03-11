@@ -1,113 +1,6 @@
-<!-- <div>
-  <div class="row">
-    <app-monster-select (monsterSelected)="changeMonster($event)"></app-monster-select>
-    <div class="col-6">
-      <div class="monsterStats text-center">
-        <div class="row">
-          <div class="col-3">
-            <div class="mt-3">
-              <img src="./assets/icons/dmg.png" alt="{{ this.player.damage }}" class="icons"
-                tooltip="Maximum possible hit you could deal" />
-              <strong>
-                {{ this.player.damage + this.playerBonus.damage }}</strong>
-            </div>
-            <div class="mt-3">
-              <img src="./assets/icons/armour.png" alt="{{ this.player.armour }}" class="icons"
-                tooltip="Reduces the amount of damage taken" />
-              <strong>
-                {{ this.player.armour + this.playerBonus.armour }}</strong>
-            </div>
-            <div class="mt-3">
-              <img src="./assets/icons/accuracy.png" alt="{{ this.player.accuracy }}" class="icons"
-                tooltip="Attack changes your chance to hit" />
-              <strong>
-                {{ this.player.accuracy + this.playerBonus.accuracy }}</strong>
-            </div>
-            <div class="mt-3">
-              <img src="./assets/icons/evasion.png" alt="{{ this.player.evasion }}" class="icons"
-                tooltip="Evasion allows you to dodge attacks completely" />
-              <strong>
-                {{ this.player.evasion + this.playerBonus.evasion }}</strong>
-            </div>
-            <div class="mt-3">
-              <img src="./assets/icons/gold.png" alt="{{ this.player.gold }}" class="icons"
-                tooltip="Your total amount of gold" />
-              <strong> {{ this.player.gold }}</strong>
-            </div>
-            <div class="mt-3">
-              <img src="./assets/icons/xp.png" alt="{{ this.player.xp }}" class="icons"
-                tooltip="XP is required to level up and grow stronger" />
-              <strong> {{ this.player.xp }}/{{ this.player.xpMax }}</strong>
-            </div>
-            <div class="mt-3">
-              <img src="./assets/icons/chance.png" alt="ChanceToHit" class="icons"
-                tooltip="Your chance to hit the enemy" />
-              <strong> {{ this.calculatePlayerChanceToHit() }}%</strong>
-            </div>
-          </div>
-          <div class="col-6">
-          </div>
-          <div class="col-3">
-            <div class="mt-3">
-              <img src="./assets/icons/potion.png" alt="{{ this.player.potions.tinyPotion }}" class="icons"
-                tooltip="Tiny hp potions heal 10 hp" />
-              <strong> {{ this.player.potions.tinyPotion }}</strong>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-6">
-      <div class="monsterStats text-center">
-        <div class="row">
-          <div class="col-3">
-            <div class="mt-2">
-              <img src="./assets/icons/dmg.png" alt="{{ this.monster.name }}" class="icons"
-                tooltip="Monsters maximum hit" />
-              <strong> {{ this.monster.damage }}</strong>
-            </div>
-            <div class="mt-3">
-              <img src="./assets/icons/chance.png" alt="ChanceToHit" class="icons"
-                tooltip="Enemies Chance to land a hit" />
-              <strong> {{ this.calculateMonsterChancetoHit() }}%</strong>
-            </div>
-            <div class="mt-3">
-              <img src="./assets/icons/armour.png" alt="{{ this.monster.armour }}" class="icons"
-                tooltip="Monsters defence reduces damage" />
-              <strong> {{ this.monster.armour }}</strong>
-            </div>
-            <div class="mt-3">
-              <img src="./assets/icons/accuracy.png" alt="{{ this.monster.accuracy }}" class="icons"
-                tooltip="Monsters chance to hit" />
-              <strong> {{ this.monster.accuracy }}</strong>
-            </div>
-            <div class="mt-3">
-              <img src="./assets/icons/evasion.png" alt="{{ this.monster.evasion }}" class="icons"
-                tooltip="Monsters chance to dodge an attack" />
-              <strong> {{ this.monster.evasion }}</strong>
-            </div>
-            <div class="mt-3">
-              <img src="./assets/icons/gold.png" alt="{{ this.monster.gold }}" class="icons"
-                tooltip="Gold reward from defeating this monster" />
-              <strong> {{ this.monster.gold }}</strong>
-            </div>
-            <div class="mt-3">
-              <img src="./assets/icons/xp.png" alt="{{ this.monster.xp }}" class="icons"
-                tooltip="XP reward from defeating this monster" />
-              <strong> {{ this.monster.xp }}</strong>
-            </div>
-          </div>
-          <div class="col-6">
-          </div>
-          <div class="col-3"></div>
-        </div>
-      </div>
-    </div>
-    <div class="col-6 mt-2">
-    </div>
-  </div>
-</div> -->
+<app-monster-select
+  (monsterSelected)="changeMonster($event)"
+></app-monster-select>
 
 <section class="animated-grid">
   <div class="card">
@@ -128,7 +21,52 @@
         type="success"
       ></progressbar>
     </div>
-    <img src="{{ './assets/player_1.svg' }}" class="monsterImage" />
+    <div class="col-12 row">
+      <div class="col-6">
+        <div class="mt-3">
+          <img src="./assets/icons/dmg.png" alt="{{ this.player.damage }}" class="icons"
+            tooltip="Maximum possible hit you could deal" />
+          <strong>
+            {{ this.player.damage + this.playerBonus.damage }}</strong>
+        </div>
+        <div class="mt-3">
+          <img src="./assets/icons/armour.png" alt="{{ this.player.armour }}" class="icons"
+            tooltip="Reduces the amount of damage taken" />
+          <strong>
+            {{ this.player.armour + this.playerBonus.armour }}</strong>
+        </div>
+        <div class="mt-3">
+          <img src="./assets/icons/accuracy.png" alt="{{ this.player.accuracy }}" class="icons"
+            tooltip="Attack changes your chance to hit" />
+          <strong>
+            {{ this.player.accuracy + this.playerBonus.accuracy }}</strong>
+        </div>
+        <div class="mt-3">
+          <img src="./assets/icons/evasion.png" alt="{{ this.player.evasion }}" class="icons"
+            tooltip="Evasion allows you to dodge attacks completely" />
+          <strong>
+            {{ this.player.evasion + this.playerBonus.evasion }}</strong>
+        </div>
+        <div class="mt-3">
+          <img src="./assets/icons/gold.png" alt="{{ this.player.gold }}" class="icons"
+            tooltip="Your total amount of gold" />
+          <strong> {{ this.player.gold }}</strong>
+        </div>
+        <div class="mt-3">
+          <img src="./assets/icons/xp.png" alt="{{ this.player.xp }}" class="icons"
+            tooltip="XP is required to level up and grow stronger" />
+          <strong> {{ this.player.xp }}/{{ this.player.xpMax }}</strong>
+        </div>
+        <div class="mt-3">
+          <img src="./assets/icons/chance.png" alt="ChanceToHit" class="icons"
+            tooltip="Your chance to hit the enemy" />
+          <strong> {{ this.calculatePlayerChanceToHit() }}%</strong>
+        </div>
+      </div>
+      <div class="col-6">
+        <img src="{{ './assets/player_1.svg' }}" class="monsterImage" />
+      </div>
+    </div>  
     <div>
       <strong>Attack speed: 4 seconds</strong>
       <progressbar
@@ -156,11 +94,56 @@
         type="danger"
       ></progressbar>
     </div>
-    <img
-      src="./assets/monsters/{{ this.monster.name }}.svg"
-      alt="{{ this.monster.name }}"
-      class="monsterImage"
-    />
+    <div class="col-12 row">
+      <div class="col-6">
+        <app-monster-stats
+          [monster]="this.monster.damage"
+          stat="dmg"
+          description="Maximum hit"
+        ></app-monster-stats>
+        <div class="mt-3">
+          <img
+            src="./assets/icons/chance.png"
+            alt="ChanceToHit"
+            class="icons"
+            tooltip="Enemies Chance to land a hit"
+          />
+          <strong> {{ this.calculateMonsterChancetoHit() }}%</strong>
+        </div>
+        <app-monster-stats
+          [monster]="this.monster.armour"
+          stat="armour"
+          description="Damage reduction"
+        ></app-monster-stats>
+        <app-monster-stats
+          [monster]="this.monster.accuracy"
+          stat="accuracy"
+          description="Chance to hit"
+        ></app-monster-stats>
+        <app-monster-stats
+          [monster]="this.monster.evasion"
+          stat="evasion"
+          description="Chance to avoid an attack"
+        ></app-monster-stats>
+        <app-monster-stats
+          [monster]="this.monster.gold"
+          stat="gold"
+          description="Gold reward"
+        ></app-monster-stats>
+        <app-monster-stats
+          [monster]="this.monster.xp"
+          stat="xp"
+          description="XP reward"
+        ></app-monster-stats>
+      </div>
+      <div class="col-6">
+        <img
+          src="./assets/monsters/{{ this.monster.name }}.svg"
+          alt="{{ this.monster.name }}"
+          class="monsterImage"
+        />
+      </div>
+    </div>
     <div>
       <strong>Attack speed: 4 seconds</strong>
       <progressbar
@@ -189,6 +172,6 @@
       <app-loot [player]="player"></app-loot>
     </div>
   </div>
-  <div class="card">e</div>
-  <div class="card">f</div>
+  <div class="card"></div>
+  <div class="card"></div>
 </section>

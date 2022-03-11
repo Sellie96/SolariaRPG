@@ -156,7 +156,7 @@ main {
   }
 
   .navbar:hover {
-    width: 16rem;
+    width: 14rem;
   }
 
   .navbar:hover .link-text {
