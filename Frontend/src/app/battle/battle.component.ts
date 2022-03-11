@@ -115,10 +115,10 @@ export class BattleComponent implements OnInit {
   };
 
   async monsterDied() {
-    this.player.xp += this.monster.xp;
+    this.player.xp += this.monster.xp + 50;
     this.player.gold += this.monster.gold;
 
-    let dropItem = this.calculateRandomDropChances(10);
+    let dropItem = this.calculateRandomDropChances(100);
 
     if(dropItem) {
       this.dropItem();
@@ -133,7 +133,7 @@ export class BattleComponent implements OnInit {
       'You gained: ' + this.monster.xp + ' XP, ' + this.monster.gold + ' Gold!',
       this.monster.name + ' was killed!'
     );
-    this.loadMonster(this.currentMonster);
+    this.loadMonster(this.currentMonster || "Goblin");
     await this.delay(1000);
   }
 
@@ -142,7 +142,7 @@ export class BattleComponent implements OnInit {
 
     let holder = this.itemService.getDrop(this.monster.name);
 
-    if (test.length < 30) {
+    if (test.length < 27) {
     test.push(holder);
     this.toastr.info("You gained 1x " + holder.name)
     this.player.backpack = test;
@@ -230,7 +230,8 @@ export class BattleComponent implements OnInit {
     this.player.xpMax += 25 * this.player.level;
     this.player.hpMax += 10;
     this.player.hp = this.player.hpMax + this.playerBonus.hpMax;
-    this.player.damage += 2;
+    this.player.damage += 1;
+    this.player.accuracy += 5;
     this.player.xp = 0;
     this.toastr.success('You have reached level ' + this.player.level);
   }
@@ -480,7 +481,7 @@ export class BattleComponent implements OnInit {
     return accuracy;
   }
 
-  async loadMonster(monsterName) {
+  loadMonster(monsterName: string) {
     this.monsterService.getMonster(monsterName);
     this.monster$.subscribe((monster) => {
       this.monster = {

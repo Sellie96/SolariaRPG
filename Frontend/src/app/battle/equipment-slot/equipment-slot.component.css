@@ -1,5 +1,9 @@
-.equipment {
-    width: 70px;
-    border: 1px solid gold;
-    margin: 1em;
-}
+.basic-grid {
+    display: grid;
+    gap: 0.5rem;
+    grid-template-columns: repeat(auto-fill, minmax(25%, 1fr));
+ }
+
+ .icons {
+    width: 2em;
+  }

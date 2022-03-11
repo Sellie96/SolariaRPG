@@ -1,9 +1,11 @@
 <div class="row">
-  <div *ngIf="!showCombatAreas" class="col-4 chooseMonster">
+  <div class="col-4 chooseMonster">
     <a>
       <div class="media d-flex align-items-center push">
+        <img class="mt-1" style="width: 40px;" src="../../../assets/icons/dungeon.png">
         <div class="media-body text-center mr-2">
           <h3 class="mb-1 pt-2 text-white">Dungeons</h3>
+          <p class="text-white"> (Coming Soon) </p>
         </div>
         <div role="separator" class="dropdown-divider"></div>
       </div>
@@ -12,18 +14,22 @@
 <div class="col-4 chooseMonster">
   <a (click)="toggleCombatAreas()">
     <div class="media d-flex align-items-center push">
+      <img style="width: 40px;" src="../../../assets/icons/battle.png">
       <div class="media-body text-center mr-2">
         <h3 class="mb-1 pt-2 text-white">Fight Monsters</h3>
+        <p class="text-white"> (Now here) </p>
       </div>
       <div role="separator" class="dropdown-divider"></div>
     </div>
   </a>
 </div>
-<div *ngIf="!showCombatAreas" class="col-4 chooseMonster">
+<div class="col-4 chooseMonster">
   <a>
     <div class="media d-flex align-items-center push">
+      <img style="width: 40px;" src="../../../assets/icons/question-mark.png">
       <div class="media-body text-center mr-2">
         <h3 class="mb-1 pt-2 text-white">Special Areas</h3>
+        <p class="text-white"> (Coming Soon) </p>
       </div>
       <div role="separator" class="dropdown-divider"></div>
     </div>
@@ -32,7 +38,8 @@
 </div>
 <div class="col-12">
   <div class="row" *ngIf="showCombatAreas">
-    <div class="col-4 chooseMonster">
+    <div class="col-1"></div>
+    <div class="col-3 chooseMonster">
       <a (click)="toggleTopRow()">
         <div class="media d-flex align-items-center push">
           <div class="media-body text-center mr-2">
@@ -50,7 +57,7 @@
             </div>
             <div role="separator" class="dropdown-divider"></div>
             <div class="mt-3">
-                Goblin Berserker (lvl 5) <span class="float-right ml-2"><button class="btn btn-primary">Drops</button></span> <span class="float-right"><button (click)="fightMonster('Goblin Berserker')" class="btn btn-danger">Fight</button> </span>
+                Berserker (lvl 5) <span class="float-right ml-2"><button class="btn btn-primary">Drops</button></span> <span class="float-right"><button (click)="fightMonster('Goblin Berserker')" class="btn btn-danger">Fight</button> </span>
             </div>
             <div role="separator" class="dropdown-divider"></div>
             <div class="mt-3">
@@ -64,7 +71,7 @@
         </div>
       </a>
     </div>
-    <div class="col-4 chooseMonster">
+    <div class="col-3 chooseMonster">
       <a (click)="toggleTopRow()">
         <div class="media d-flex align-items-center push">
           <div class="media-body text-center mr-2">
@@ -96,7 +103,7 @@
       </div>
       </a>
     </div>
-    <div class="col-4 chooseMonster">
+    <div class="col-3 chooseMonster">
       <a (click)="toggleTopRow()">
         <div class="media d-flex align-items-center push">
           <div class="media-body text-center mr-2">
@@ -131,7 +138,8 @@
 </div>
 <div class="col-12">
   <div class="row" *ngIf="showCombatAreas">
-    <div class="col-4 chooseMonster">
+    <div class="col-1"></div>
+    <div class="col-3 chooseMonster">
       <a (click)="toggleBottomRow()">
         <div class="media d-flex align-items-center push">
           <div class="media-body text-center mr-2">
@@ -162,7 +170,7 @@
       </div>
       </a>
     </div>
-    <div class="col-4 chooseMonster">
+    <div class="col-3 chooseMonster">
       <a (click)="toggleBottomRow()">
         <div class="media d-flex align-items-center push">
           <div class="media-body text-center mr-2">
@@ -193,7 +201,7 @@
       </div>
       </a>
     </div>
-    <div class="col-4 chooseMonster">
+    <div class="col-3 chooseMonster">
       <a (click)="toggleBottomRow()">
         <div class="media d-flex align-items-center push">
           <div class="media-body text-center mr-2">

@@ -46,6 +46,8 @@ import { CreateItemComponent } from './create-item/create-item.component';
 import { MonsterSelectComponent } from './battle/monster-select/monster-select.component';
 import { EquipmentSlotComponent } from './battle/equipment-slot/equipment-slot.component';
 import { LootComponent } from './battle/loot/loot.component';
+import { EquipmentitemComponent } from './battle/equipment-slot/equipmentitem/equipmentitem.component';
+import { MonsterStatsComponent } from './battle/monster-stats/monster-stats.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +74,9 @@ import { LootComponent } from './battle/loot/loot.component';
     LoginComponent,
     MonsterSelectComponent,
     EquipmentSlotComponent,
-    LootComponent
+    LootComponent,
+    EquipmentitemComponent,
+    MonsterStatsComponent
   ],
   imports: [
     BrowserModule,
