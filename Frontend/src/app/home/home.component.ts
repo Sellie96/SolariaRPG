@@ -12,14 +12,10 @@ export class HomeComponent implements OnInit {
   modalRef?: BsModalRef;
   model: any = {}
 
-  constructor(private modalService: BsModalService, private accountService: AccountService) {
+  constructor() {
   }
 
   ngOnInit(): void {
-  }
-
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template);
   }
 
   cancelRegisteredMode(event: boolean) {

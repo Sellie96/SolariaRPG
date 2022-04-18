@@ -12,8 +12,12 @@ import { MonsterService } from 'src/app/_Services/monster.service';
 export class MonsterSelectComponent implements OnInit {
 
   showCombatAreas: boolean;
-  showTopRow: boolean;
-  showBottomRow: boolean;
+  showGoblin: boolean;
+  showDesolate: boolean;
+  showFrozen: boolean;
+  showThorny: boolean;
+  showFiery: boolean;
+  showTower: boolean;
 
   @Output() monsterSelected = new EventEmitter<any>();
 
@@ -34,19 +38,52 @@ export class MonsterSelectComponent implements OnInit {
     }
   }
 
-  toggleTopRow() {
-    if(this.showTopRow) {
-      this.showTopRow = false;
+  toggleGoblin() {
+    if(this.showGoblin) {
+      this.showGoblin = false;
     } else {
-      this.showTopRow = true;
+      this.showGoblin = true;
     }
   }
 
-  toggleBottomRow() {
-    if(this.showBottomRow) {
-      this.showBottomRow = false;
+  toggleDesolate() {
+    if(this.showDesolate) {
+      this.showDesolate = false;
     } else {
-      this.showBottomRow = true;
+      this.showDesolate = true;
+    }
+  }
+
+  toggleFrozen() {
+    if(this.showFrozen) {
+      this.showFrozen = false;
+    } else {
+      this.showFrozen = true;
+    }
+  }
+
+
+  toggleThorny() {
+    if(this.showThorny) {
+      this.showThorny = false;
+    } else {
+      this.showThorny = true;
+    }
+  }
+
+  toggleFiery() {
+    if(this.showFiery) {
+      this.showFiery = false;
+    } else {
+      this.showFiery = true;
+    }
+  }
+
+  toggleTower() {
+    if(this.showTower) {
+      this.showTower = false;
+    } else {
+      this.showTower = true;
     }
   }
 

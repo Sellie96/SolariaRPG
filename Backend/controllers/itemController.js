@@ -9,7 +9,7 @@ exports.createItem = (req, res, next) => {
         accuracy: req.body.accuracy,
         maxHp: req.body.maxHp,
         armour: req.body.armour,
-        description: req.body.description
+        value: req.body.value
     })
     item.save()
         .then(result => {

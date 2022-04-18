@@ -1,5 +1,5 @@
 .equipment {
-    width: 3.5rem;
+    width: 4rem;
     border: 1px solid gold;
 }
 
@@ -8,12 +8,25 @@
     flex-direction: column;
 }
 
-.basic-grid {
-    display: grid;
-    gap: 0.5rem;
-    grid-template-columns: repeat(auto-fill, minmax(3.5rem, 1fr));
+ .equipmentButton {
+    width: 4rem;
  }
 
- .equipmentButton {
-     width: 100%;
+ .backpack-slot {
+     width: 6rem;
+     margin: 0.5rem;
+     display: inline-block;
+     flex-direction: row;
+ }
+
+ .backpack-area {
+    background-color: rgba(23, 23, 46, 0.8);
+     min-height: 80vh;
+ }
+
+ .backpack-headings {
+    background-color: rgba(23, 23, 46, 1);
+    font-weight: 700;
+    margin-left: 1rem;
+    height: 2rem;
  }

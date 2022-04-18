@@ -1,14 +1,19 @@
 export interface Character {
-    id: number;
+    _id: string;
+    userId: string;
+    characterName: string;
+    accuracy: number;
+    armour: number;
+    backpack: any;
+    equipment: any[];
+    potions: any;
     level: number;
     hpMax: number;
     hpCurrent: number;
     xpMax: number;
     xpCurrent: number;
     damage: number;
-    accuracy: number;
-    armour: number;
     evasion: number;
     critChance: number;
-    userId: string;
+    gold: number;
 }

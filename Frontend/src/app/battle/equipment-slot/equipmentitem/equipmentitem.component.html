@@ -1,24 +1,38 @@
 <ng-template #itemTemplate>
-  <span>{{ player.equipment[item].name }}</span>
-  <div *ngIf="player.equipment[item].damage">
-    Damage: {{ player.equipment[item].damage }}
+  <div *ngIf="player.equipment[item]">
+    <span>{{ player.equipment[item]?.name }}</span>
+    <div *ngIf="player.equipment[item]?.damage">
+      Damage: {{ player.equipment[item]?.damage }}
+    </div>
+    <div *ngIf="player.equipment[item]?.armour">
+      Armour: {{ player.equipment[item]?.armour }}
+    </div>
+    <div *ngIf="player.equipment[item]?.evasion">
+      Evasion: {{ player.equipment[item]?.evasion }}
+    </div>
+    <div *ngIf="player.equipment[item]?.accuracy">
+      Accuracy: {{ player.equipment[item]?.accuracy }}
+    </div>
+    <div *ngIf="player.equipment[item]?.hpMax">
+      Hp: {{ player.equipment[item]?.hpMax }}
+    </div>
   </div>
-  <div *ngIf="player.equipment[item].armour">
-    Armour: {{ player.equipment[item].armour }}
-  </div>
-  <div *ngIf="player.equipment[item].evasion">
-    Evasion: {{ player.equipment[item].evasion }}
-  </div>
-  <div *ngIf="player.equipment[item].accuracy">
-    Accuracy: {{ player.equipment[item].accuracy }}
-  </div>
-  <div *ngIf="player.equipment[item].hpMax">
-    Hp: {{ player.equipment[item].hpMax }}
-  </div>
+  <span *ngIf="!player.equipment[item].name">Empty</span>
 </ng-template>
-<img
+<div *ngIf="player.equipment[item].name">
+  <img
   src="../../../assets/items/{{ player.equipment[item].name }}.png"
   alt="?"
   class="equipment"
   [tooltip]="itemTemplate"
 />
+</div>
+
+<div *ngIf="!player.equipment[item].name">
+  <img
+  src="../../../assets/items/empty.png"
+  alt="?"
+  class="equipment"
+  [tooltip]="itemTemplate"
+/>
+</div>

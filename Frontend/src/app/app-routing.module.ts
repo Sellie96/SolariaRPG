@@ -14,6 +14,7 @@ import { QuestsComponent } from './quests/quests.component';
 import { ShopComponent } from './shop/shop.component';
 import { TownComponent } from './town/town.component';
 import { AuthGuard } from './_Guards/auth.guard';
+import { BackpackComponent } from './backpack/backpack.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -24,6 +25,7 @@ const routes: Routes = [
   canActivate: [AuthGuard],
   children: [
     {path: 'town', component: TownComponent, },
+    {path: 'backpack', component: BackpackComponent, },
     {path: 'quests', component: QuestsComponent},
     {path: 'dungeons', component: DungeonsComponent},
     {path: 'shop', component: ShopComponent},

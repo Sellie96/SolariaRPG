@@ -1,15 +1,46 @@
-<form #loginForm="ngForm" class="center" (ngSubmit)="login()" autocomplete="off">
-    <h2 class="text-center">Login</h2>
-    <hr>
-    <div>
-        <input name="username" [(ngModel)]="model.username" class="form-control mb-2" type="text"
-           placeholder="Username" />
-        <input name="password" [(ngModel)]="model.password" class="form-control mb-2" type="password"
-            placeholder="Password" />
-    </div>
+<form
+  [formGroup]="$any(loginForm)"
+  (ngSubmit)="loginForm.valid && login()"
+  autocomplete="off"
+>
+  <span style="font-size: 15px;" class="text-center">
+    Welcome, please login or sign up for a new account
+  </span>
+  <hr />
+  <div>
+    <app-text-input
+      [formControl]="$any(loginForm.controls)['username']"
+      [label]="'Username'"
+    ></app-text-input>
+    <app-text-input
+      [formControl]="$any(loginForm.controls)['password']"
+      [label]="'Password'"
+      [type]="'password'"
+    ></app-text-input>
+  </div>
 
-    <div class="form-group mt-3 text-center">
-        <button class="btn btn-success center" type="submit">Login</button>
-        <button class="btn btn-default mr-2" (click)="cancel()" type="button">Cancel</button>
-    </div>
-</form>  
+  <div class="form-group mt-3 text-center">
+    <span
+      (click)="openModal(register)"
+      class="float-left register-button"
+      style="font-size: 15px; cursor: pointer;"
+    >
+      Register
+    </span>
+    <button
+      [disabled]="!loginForm.valid"
+      class="btn btn-primary px-5 float-right"
+      type="submit"
+    >
+      Sign In
+    </button>
+  </div>
+</form>
+
+<ng-template #register>
+  <div class="modal-body">
+    <app-register
+      (cancelRegister)="cancelRegisteredMode($event)"
+    ></app-register>
+  </div>
+</ng-template>

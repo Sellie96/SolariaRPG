@@ -13,8 +13,8 @@
 }
 
 .monsterImage {
-  width: 15rem;
-  margin: auto;
+  width: 17rem;
+  margin-left: 5rem;
 }
 
 @media only screen and (max-width: 600px) {
@@ -24,16 +24,16 @@
 }
 
 .icons {
-  width: 2em;
-  float: left;
+  width: 1.5rem;
+  margin-right: 1rem;
 }
 
 .floating-text {
   position: absolute;
+  margin-top: 5rem;
   z-index: 10000;
-  margin-bottom: 20px;
-  -webkit-animation: floatBubble 5s infinite normal ease-out;
-  animation: floatBubble 5s infinite normal ease-out;
+  -webkit-animation: floatBubble 4s infinite normal ease-out;
+  animation: floatBubble 4s infinite normal ease-out;
 }
 
 @-webkit-keyframes floatBubble {
@@ -54,18 +54,17 @@
 }
 
 .animated-grid {
-  height: 100vh;
-  margin-bottom: 200px;
-
+  height: 100%;
+  margin-left: 13rem;
   display: grid;
 
   /* Explicit grid */
   grid-template-areas:
-    "c a b"
-    "d e f";
+    "b a"
+    "d c";
 
-  grid-template-rows: repeat(4, 50%);
-  grid-template-columns: repeat(3, 33%);
+  grid-template-rows: repeat(1, 45%);
+  grid-template-columns: repeat(1, 50%);
 
   --stagger-delay: 100ms;
 }
@@ -83,49 +82,90 @@
   }
 }
 
-.card {
-  text-align: center;
+.gridSpot {
   color: white;
-  background-color: rgba(55, 44, 49, 0.6);
+  border-radius: 5px;
   animation: cardEntrance 700ms ease-out;
   animation-fill-mode: backwards;
+  margin-left: 1rem;
+  margin-bottom: 1rem;
 }
 
-.card:nth-child(1) {
+.gridSpot:nth-child(1) {
   grid-area: a;
   animation-delay: calc(1 * var(--stagger-delay));
 }
-.card:nth-child(2) {
+.gridSpot:nth-child(2) {
   grid-area: b;
   animation-delay: calc(2 * var(--stagger-delay));
 }
-.card:nth-child(3) {
+.gridSpot:nth-child(3) {
   grid-area: c;
   animation-delay: calc(3 * var(--stagger-delay));
 }
-.card:nth-child(4) {
+.gridSpot:nth-child(4) {
   grid-area: d;
   animation-delay: calc(4 * var(--stagger-delay));
 }
-.card:nth-child(5) {
-  grid-area: e;
-  animation-delay: calc(5 * var(--stagger-delay));
-}
-.card:nth-child(6) {
-  grid-area: f;
-  animation-delay: calc(6 * var(--stagger-delay));
-}
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 1200px) {
   .animated-grid {
     grid-template-columns: auto;
-    grid-template-rows: repeat(1, 50%);
+    grid-template-rows: repeat(1, 45%);
     grid-template-areas:
-      "a"
       "b"
+      "a"
       "c"
-      "d"
-      "e"
-      "f";
+      "d";
   }
 }
+
+.bar {
+  border: 1px solid #666;
+  border-radius: 15px;
+  height: 17px;
+  width: 100%;
+}
+
+.in {
+  animation: fill 4s linear 1;
+  animation-iteration-count: infinite;
+  height: 100%;
+  background-color: gold;
+}
+
+@keyframes fill {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 100%;
+  }
+}
+
+.monster-area {
+  background-color: rgba(23, 23, 46, 0.8);
+  display: inline-flex;
+  border: 1px solid white;
+  flex-direction: row;
+  border-radius: 15px;
+  padding-bottom: 1rem;
+}
+
+.loot-container {
+  background-color: rgba(23, 23, 46, 1);
+  border-radius: 15px;
+  min-height: 25vh;
+  margin-right: 1rem;
+}
+
+.equipment {
+  margin-top: 1rem;
+  width: 5rem;
+  height: 5rem;
+}
+
+.collect {
+  right: 0;
+}
+

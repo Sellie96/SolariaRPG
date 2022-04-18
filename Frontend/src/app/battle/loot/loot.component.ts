@@ -5,6 +5,8 @@ import {
   OnInit,
   SimpleChanges,
 } from '@angular/core';
+import { Character } from 'src/app/_modules/Character';
+import { CharacterService } from 'src/app/_Services/character.service';
 
 @Component({
   selector: 'app-loot',
@@ -12,13 +14,13 @@ import {
   styleUrls: ['./loot.component.css'],
 })
 export class LootComponent implements OnInit {
-  @Input() player;
+  @Input() player: Character;
 
   backpack: any = [];
   numbers = [];
-  backpackLimit;
+  backpackLimit: string | any[];
 
-  constructor() {}
+  constructor(private characterService: CharacterService) {}
 
   ngOnInit(): void {
     setInterval(async () => {
@@ -37,6 +39,7 @@ export class LootComponent implements OnInit {
     test.splice(number, 1);
     this.player.backpack = test;
     this.loadBackpack();
+    this.characterService.saveCharacter(this.player);
   }
 
   loadBackpack() {
@@ -49,59 +52,81 @@ export class LootComponent implements OnInit {
   }
 
   equipItem(item, number) {
-    let test = Object.assign([], this.player.equipment);
-    let x = JSON.parse(JSON.stringify(test));
+    let equipment = Object.assign([], this.player.equipment);
+    let equipmentHolder = JSON.parse(JSON.stringify(equipment));
 
-    let test2 = Object.assign([], this.player.backpack);
+    let backpack = Object.assign([], this.player.backpack);
 
     switch (this.player.backpack[number].type) {
       case 'weapon':
-        x.splice(0, 1, this.player.backpack[number]);
-        test2.push(this.player.equipment[0]);
+        if(Object.keys(this.player.equipment[0]).length !== 0) {
+          backpack.push(this.player.equipment[0]);
+        }
+        equipmentHolder.splice(0, 1, this.player.backpack[number]);
         break;
       case 'shield':
-        x.splice(1, 1, this.player.backpack[number]);
-        test2.push(this.player.equipment[1]);
+        equipmentHolder.splice(1, 1, this.player.backpack[number]);
+        if(Object.keys(this.player.equipment[1]).length !== 0) {
+          backpack.push(this.player.equipment[1]);
+        }
         break;
       case 'helm':
-        x.splice(2, 1, this.player.backpack[number]);
-        test2.push(this.player.equipment[2]);
+        equipmentHolder.splice(2, 1, this.player.backpack[number]);
+        if(Object.keys(this.player.equipment[2]).length !== 0) {
+          backpack.push(this.player.equipment[2]);
+        }
         break;
       case 'body':
-        x.splice(3, 1, this.player.backpack[number]);
-        test2.push(this.player.equipment[3]);
+        equipmentHolder.splice(3, 1, this.player.backpack[number]);
+        if(Object.keys(this.player.equipment[3]).length !== 0) {
+          backpack.push(this.player.equipment[3]);
+        }
         break;
       case 'legs':
-        x.splice(4, 1, this.player.backpack[number]);
-        test2.push(this.player.equipment[4]);
+        equipmentHolder.splice(4, 1, this.player.backpack[number]);
+        if(Object.keys(this.player.equipment[4]).length !== 0) {
+          backpack.push(this.player.equipment[4]);
+        }
         break;
       case 'boots':
-        x.splice(5, 1, this.player.backpack[number]);
-        test2.push(this.player.equipment[5]);
+        equipmentHolder.splice(5, 1, this.player.backpack[number]);
+        if(Object.keys(this.player.equipment[5]).length !== 0) {
+          backpack.push(this.player.equipment[5]);
+        }
         break;
       case 'gloves':
-        x.splice(6, 1, this.player.backpack[number]);
-        test2.push(this.player.equipment[6]);
+        equipmentHolder.splice(6, 1, this.player.backpack[number]);
+        if(Object.keys(this.player.equipment[6]).length !== 0) {
+          backpack.push(this.player.equipment[6]);
+        }
         break;
       case 'necklace':
-        x.splice(7, 1, this.player.backpack[number]);
-        test2.push(this.player.equipment[7]);
+        equipmentHolder.splice(7, 1, this.player.backpack[number]);
+        if(Object.keys(this.player.equipment[7]).length !== 0) {
+          backpack.push(this.player.equipment[7]);
+        }
         break;
       case 'ring':
-        x.splice(8, 1, this.player.backpack[number]);
-        test2.push(this.player.equipment[8]);
+        equipmentHolder.splice(8, 1, this.player.backpack[number]);
+        if(Object.keys(this.player.equipment[8]).length !== 0) {
+          backpack.push(this.player.equipment[8]);
+        }
         break;
       case 'cape':
-        x.splice(9, 1, this.player.backpack[number]);
-        test2.push(this.player.equipment[9]);
+        equipmentHolder.splice(9, 1, this.player.backpack[number]);
+        if(Object.keys(this.player.equipment[0]).length !== 0) {
+          backpack.push(this.player.equipment[0]);
+        }
         break;
     }
 
-    this.player.backpack = test2;
-    let test3 = Object.assign([], this.player.backpack);
-    test3.splice(number, 1);
-    this.player.backpack = test3;
-    this.player.equipment = x;
+    this.player.backpack = backpack;
+
+    let newBackpack = Object.assign([], this.player.backpack);
+    newBackpack.splice(number, 1);
+    this.player.backpack = newBackpack;
+    this.player.equipment = equipmentHolder;
     this.loadBackpack();
+    this.characterService.saveCharacter(this.player);
   }
 }

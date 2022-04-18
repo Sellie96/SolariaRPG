@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const characterScheme = mongoose.Schema({
+    characterName: {type: String, require: true},
     level: {type: Number, require: true},
     hpMax: {type: Number, require: true},
     hpCurrent: {type: Number, require: true},
@@ -22,6 +23,6 @@ const characterScheme = mongoose.Schema({
     equipment: {type: Object, writable: true},
     backpack: {type: Object, writable: true},
     userId: {type: mongoose.Schema.Types.ObjectId, ref: "User" ,require: true}
-});
+}, {minimize: false});
 
 module.exports = mongoose.model('Character', characterScheme);

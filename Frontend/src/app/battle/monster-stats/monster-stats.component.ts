@@ -7,9 +7,9 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class MonsterStatsComponent implements OnInit {
   
-  @Input() monster;
-  @Input() stat;
-  @Input() description;
+  @Input() monster: string;
+  @Input() stat: number;
+  @Input() description: string;
   
   constructor() { }
 

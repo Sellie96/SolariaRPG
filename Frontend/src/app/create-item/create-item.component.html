@@ -1,13 +1,15 @@
+<div class="container">
 <form [formGroup]="$any(registerForm)" (ngSubmit)="registerForm.valid && createItem()" autocomplete="off">
     <h2>Create new Item</h2>
     <hr>
     <app-text-input [formControl]='$any(registerForm.controls)["name"]' [label]='"name"'></app-text-input>
+    <app-text-input [formControl]='$any(registerForm.controls)["type"]' [label]='"type"'></app-text-input>
     <app-text-input [formControl]='$any(registerForm.controls)["level"]' [label]='"level"'></app-text-input>
-    <app-text-input [formControl]='$any(registerForm.controls)["stats"]' [label]='"stat1"'></app-text-input>
-    <app-text-input [formControl]='$any(registerForm.controls)["stats"]' [label]='"stat2"'></app-text-input>
-    <app-text-input [formControl]='$any(registerForm.controls)["stats"]' [label]='"stat3"'></app-text-input>
-    <app-text-input [formControl]='$any(registerForm.controls)["stats"]' [label]='"stat4"'></app-text-input>
-    <app-text-input [formControl]='$any(registerForm.controls)["description"]' [label]='"description"'></app-text-input>
+    <app-text-input [formControl]='$any(registerForm.controls)["damage"]' [label]='"damage"'></app-text-input>
+    <app-text-input [formControl]='$any(registerForm.controls)["accuracy"]' [label]='"accuracy"'></app-text-input>
+    <app-text-input [formControl]='$any(registerForm.controls)["maxHp"]' [label]='"maxHp"'></app-text-input>
+    <app-text-input [formControl]='$any(registerForm.controls)["armour"]' [label]='"armour"'></app-text-input>
+    <app-text-input [formControl]='$any(registerForm.controls)["value"]' [label]='"value"'></app-text-input>
 
 
     <div class=" text-center">
@@ -20,7 +22,4 @@
 
 <p>Form value: {{registerForm.status | json}}</p>
 
-<div class=" text-center">
-    <button (click)="createItem()" class="btn btn-success mr-2">Create Item</button>
-    <button class="btn btn-default mr-2" (click)="cancel()" type="button">Cancel</button>
 </div>

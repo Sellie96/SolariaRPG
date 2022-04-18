@@ -1,29 +1,62 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  OnInit,
+  Output,
+  TemplateRef,
+} from '@angular/core';
+import {
+  AbstractControl,
+  FormBuilder,
+  FormGroup,
+  ValidatorFn,
+  Validators,
+} from '@angular/forms';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { AccountService } from '../_Services/account.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  @Output() cancelLogin = new EventEmitter;
   modalRef?: BsModalRef;
-  model: any = {}
+  loginForm: FormGroup;
+  validationErrors: string[] = [];
+  model: any = {};
 
-  constructor(private accountService: AccountService) { }
+  constructor(
+    private modalService: BsModalService,
+    private accountService: AccountService,
+    private fb: FormBuilder
+  ) {}
 
   ngOnInit(): void {
+    this.initialiseForm();
+  }
+
+  initialiseForm() {
+    this.loginForm = this.fb.group({
+      username: ['', Validators.required],
+      password: ['',[Validators.required, Validators.minLength(4)],
+      ],
+    });
+  }
+
+  matchValues(matchTo: string): ValidatorFn {
+    return (control: AbstractControl) => {
+      return control?.value === control?.parent?.controls[matchTo].value
+        ? null
+        : { isMatching: true };
+    };
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
   }
 
   login() {
-    this.cancelLogin.emit();
-    this.accountService.login(this.model)
+    this.accountService.login(this.loginForm.value);
   }
-
-  cancel() {
-    this.cancelLogin.emit(false);
-  }
-
 }

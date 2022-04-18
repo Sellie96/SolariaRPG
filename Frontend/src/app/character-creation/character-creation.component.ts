@@ -1,6 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
+import { catchError, take } from 'rxjs/operators';
 import { UserState } from '../state/user.state';
 import { Character } from '../_modules/Character';
 import { CharacterService } from '../_Services/character.service';
@@ -11,74 +13,55 @@ import { CharacterService } from '../_Services/character.service';
   styleUrls: ['./character-creation.component.css'],
 })
 export class CharacterCreationComponent implements OnInit, OnDestroy {
-  characters: any[];
+  characters: Character[];
   character: Character;
   user$: Observable<any> = this.store.select(UserState);
+  characterNameForm: FormGroup;
+
+  newCharacter: boolean = false;
 
   constructor(
     private characterService: CharacterService,
-    private store: Store
+    private store: Store,
+    private fb: FormBuilder
   ) {}
   ngOnDestroy(): void {
-    this.characters = [];
   }
 
   ngOnInit(): void {
     this.loadCharacter();
+    this.characterNameForm = this.fb.group({
+      characterName: ['', Validators.required],
+    });
   }
 
   onDelete(characterId: string) {
     this.characterService.killCharacter(characterId);
-    location.reload();
+    console.log(characterId);
+    this.loadCharacter();
   }
 
   createCharacter() {
-    this.characterService.createNewCharacter();
-    location.reload();
+    this.characterService.createNewCharacter(this.characterNameForm.value);
+    this.loadCharacter();
+    this.newCharacter = false;
   }
 
   async loadCharacter() {
-    this.characters = this.characterService.getCharacters();
+    this.characterService.getCharacters().pipe(
+      catchError((err) => {
+        return throwError(() => err);
+      }),
+      take(1)
+    ).subscribe((characters: Character[]) => {
+      this.characters = characters;
+    });
   }
 
   async selectCharacter(
-    level: number,
-    hpCurrent: number,
-    hpMax: number,
-    xpCurrent: number,
-    xpMax: number,
-    damage: number,
-    accuracy: number,
-    armour: number,
-    evasion: number,
-    critChance: number,
-    gold: number,
-    potions: any,
-    equipment: any,
-    backpack: any,
-    characterId: string
+    character: Character
   ) {
-    this.characterService.saveCharacter(
-      level,
-      hpCurrent,
-      hpMax,
-      xpCurrent,
-      xpMax,
-      damage,
-      accuracy,
-      armour,
-      evasion,
-      critChance,
-      gold,
-      potions,
-      equipment,
-      backpack,
-      characterId
-    );
+    this.characterService.saveCharacter(character);
     window.location.href = "/battle"
-  }
-
-  delay(ms: number) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
   }
 }

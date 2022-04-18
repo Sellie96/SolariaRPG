@@ -1,6 +1,6 @@
 :root {
   font-size: 16px;
-  font-family: "Open Sans";
+  font-family: 'Open Sans';
   --text-primary: #b6b6b6;
   --text-secondary: #ececec;
   --bg-primary: #23232e;
@@ -16,15 +16,15 @@ body {
 }
 
 ::-webkit-scrollbar {
-    width: 0.25rem;
+  width: 0.25rem;
 }
 
 ::-webkit-scrollbar-track {
-    background: #1e1e24;
+  background: #1e1e24;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #1e1e24;
+  background: #1e1e24;
 }
 
 main {
@@ -34,20 +34,41 @@ main {
 
 .navbar {
   position: fixed;
-  background-color: #23232e;
+  background-color: rgba(23, 23, 46, 1);
   transition: width 600ms ease;
-  overflow: scroll;
-  z-index: 1000;
+  z-index: 900;
+  width: 15rem;
+  height: 100vh;
+  border-right: black solid 1px;
+}
+
+.side-nav {
+	position: fixed;
+	top: 60px;
+  width: 13rem;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	z-index: 101;
+	border: 1px solid #2c2c40;
+	border-left: none;
+  background-color: rgba(23, 23, 46, 1);
+	display: flex;
+	flex: 1 1;
+	flex-direction: column;
+	scrollbar-width: thin;
+	scrollbar-color: hsla(0,0%,100%,.3) hsla(0,0%,100%,0);
+	overflow-x: hidden;
+	overflow-y: auto;
+	height: calc(100% - 60px);
 }
 
 .navbar-nav {
-  list-style: none;
-  padding: 0;
-  margin: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
   height: 100%;
+  width: 100%;
 }
 
 .nav-item {
@@ -68,11 +89,6 @@ main {
   filter: grayscale(0%) opacity(1);
   background: var(--bg-secondary);
   color: var(--text-secondary);
-}
-
-.link-text {
-  display: none;
-  margin-left: 1rem;
 }
 
 .nav-link svg {
@@ -114,7 +130,6 @@ main {
 .logo-text {
   display: inline;
   position: absolute;
-  left: -999px;
   transition: var(--transition-speed);
 }
 
@@ -122,11 +137,14 @@ main {
   transform: rotate(-180deg);
 }
 
+.link-text {
+  margin-left: 1rem;
+}
+
 /* Small screens */
 @media only screen and (max-width: 600px) {
   .navbar {
     bottom: 0;
-    width: 100vw;
     height: 5rem;
   }
 
@@ -151,24 +169,11 @@ main {
 @media only screen and (min-width: 600px) {
   .navbar {
     top: 0;
-    width: 5rem;
+    width: 13rem;
     height: 100vh;
   }
-
-  .navbar:hover {
-    width: 14rem;
-  }
-
   .navbar:hover .link-text {
     display: inline;
-  }
-
-  .navbar:hover .logo svg {
-    margin-left: 11rem;
-  }
-
-  .navbar:hover .logo-text {
-    left: 0px;
   }
 }
 
@@ -207,4 +212,60 @@ main {
 
 .solar #solarIcon {
   display: block;
+}
+
+.side-nav-title {
+  min-width: 36px;
+  height: 30px;
+  flex: 0 0 30px;
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.side-nav .site-navigator .side-link:not(:last-child) {
+	margin-bottom: 16px;
+}
+
+a, a:active, a:focus, a:hover, a:visited {
+	text-decoration: none;
+	outline: none;
+	color: #bbbedb;
+}
+
+.side-nav {
+	scrollbar-color: hsla(0,0%,100%,.3) hsla(0,0%,100%,0);
+	color: #bbbedb;
+  text-align: center;
+}
+
+.side-nav .site-navigator {
+	display: flex;
+	flex-direction: column;
+	padding: 16px 12px;
+	flex: 0 0 auto;
+  border-bottom: 1px solid #2c2c40;
+}
+
+.side-nav_footer .connect-with-us {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 1.2rem;
+	padding: 24px;
+	width: 100%;
+	border-left-style: solid;
+	border-right-style: solid;
+	border-top-style: solid;
+	border: 1px hidden var(--border-color-grey);
+	border-bottom: 1px solid var(--border-color-grey);
+}
+
+.social-media-icon {
+	width: 20px;
+	height: 20px;
+  display: inline-flex;
+  margin: 0.4rem;
+
 }

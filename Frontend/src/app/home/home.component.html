@@ -1,34 +1,11 @@
-<div class="container home">
-    <div *ngIf="!registerMode" style="text-align: center;">
-        <h1
-            style="color: whitesmoke; font-family: 'Helvetica Neue', sans-serif; font-size: 60px; letter-spacing: -1px; line-height: 1; text-align: center;">
-            Solaria Idle</h1>
-        <h2
-            class="color: #111; font-family: 'Helvetica Neue', sans-serif; font-size: 50px; letter-spacing: -1px; line-height: 1; text-align: center;">
-            Fight monsters, collect loot and become the strongest adventurer in the land</h2>  
+<div class="home">
+  <div *ngIf="!registerMode" style="text-align: center">
+    <a href="#" class="nav-link mb-5">
+      <span class="link-text logo-text text-center">Solaria RPG</span>
+    </a>
 
-        <div class="text center">
-            <button type="button" class="btn btn-danger btn-lrg mr-2 button"
-                (click)="openModal(login)">Login</button>
-        </div>    
-        <div class="text center">
-            <button type="button" class="btn btn-danger btn-lrg mr-2 button"
-                (click)="openModal(register)">Register</button>
-        </div>
-
-
+    <div class="text-center container" style="width: 20%;">
+      <app-login></app-login>
     </div>
-
-    <ng-template #login>
-        <div class="modal-body">
-            <app-login (cancelLogin)="cancelLoginMode($event)"></app-login>
-        </div>
-    </ng-template>
-
-    <ng-template #register>
-        <div class="modal-body">
-            <app-register (cancelRegister)="cancelRegisteredMode($event)"></app-register>
-        </div>
-    </ng-template>
-
+  </div>
 </div>

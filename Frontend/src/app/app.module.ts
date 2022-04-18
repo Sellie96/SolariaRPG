@@ -9,7 +9,6 @@ import { NavComponent } from './nav/nav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
-import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 import { SharedModule } from './_modules/shared.module';
 import { TestErrorsComponent } from './errors/test-errors/test-errors.component';
@@ -48,6 +47,7 @@ import { EquipmentSlotComponent } from './battle/equipment-slot/equipment-slot.c
 import { LootComponent } from './battle/loot/loot.component';
 import { EquipmentitemComponent } from './battle/equipment-slot/equipmentitem/equipmentitem.component';
 import { MonsterStatsComponent } from './battle/monster-stats/monster-stats.component';
+import { BackpackComponent } from './backpack/backpack.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +55,6 @@ import { MonsterStatsComponent } from './battle/monster-stats/monster-stats.comp
     NavComponent,
     HomeComponent,
     RegisterComponent,
-    ListsComponent,
     MessagesComponent,
     TestErrorsComponent,
     NotFoundComponent,
@@ -76,7 +75,8 @@ import { MonsterStatsComponent } from './battle/monster-stats/monster-stats.comp
     EquipmentSlotComponent,
     LootComponent,
     EquipmentitemComponent,
-    MonsterStatsComponent
+    MonsterStatsComponent,
+    BackpackComponent
   ],
   imports: [
     BrowserModule,

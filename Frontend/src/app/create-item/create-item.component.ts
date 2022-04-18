@@ -20,13 +20,18 @@ export class CreateItemComponent implements OnInit {
   initialiseForm() {
     this.registerForm = this.fb.group({
       name: ['', Validators.required],
+      type: ['', Validators.required],
       level: ['', Validators.required],
-      stats: [[], Validators.required],
-      description: ['', Validators.required],
+      damage: [''],
+      accuracy: [''],
+      maxHp: [''],
+      armour: [''],
+      value: ['']
     });
   }
 
   createItem() {
+    this.itemService.createItem(this.registerForm.value)
   }
 
   cancel() {

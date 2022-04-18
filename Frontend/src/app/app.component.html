@@ -1,13 +1,26 @@
 <div *ngIf="user$ | async; let user" class="home">
-<ngx-spinner>
+  <ngx-spinner>
     <h3>Loading...</h3>
-</ngx-spinner>
+  </ngx-spinner>
 
-<div *ngIf="getShowNav()">
-    <app-nav></app-nav>
-</div>
+  <div>
+    <app-nav *ngIf="getShowNav()"></app-nav>
 
-<div class="displayArea">
-    <router-outlet></router-outlet>
-</div>
+    <div *ngIf="user$ | async; let user" class="masthead-container">
+      <a style="border-right: 1px solid #2c2c40;" href="#" class="nav-link">
+        <span class="link-text logo-text">Solaria RPG</span>
+      </a>
+
+      <p class="mr-3" style="font-size: 1rem;">
+        {{user.userId}}
+      </p>
+
+    </div>
+  </div>
+
+  <div class="displayArea">
+    <span>
+      <router-outlet></router-outlet>
+    </span>
+  </div>
 </div>

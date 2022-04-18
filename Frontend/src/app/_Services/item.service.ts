@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { Item } from '../_modules/item';
 
 @Injectable({
   providedIn: 'root',
@@ -8,42 +9,19 @@ import { environment } from 'src/environments/environment';
 export class ItemService {
   baseUrl = environment.apiUrl;
 
+  item: Item;
+
   constructor(private http: HttpClient) {}
 
   getItem(itemName: string) {
-    this.http.post<{ message: string; item: any }>(this.baseUrl + '/item/' + itemName, itemName).subscribe(ItemData => {
-      console.log(ItemData.item);
-      localStorage.setItem('heldItem', JSON.stringify(ItemData.item));
+    return this.http.post<{item: Item }>(this.baseUrl + '/item/' + itemName, itemName);
+  }
+
+  createItem(modal: any) {
+    this.http.post(this.baseUrl + '/item/create', modal).subscribe(ItemData => {
+      console.log(ItemData);
     });
-  }
 
-  Swords(name) {
-    let item;
-    switch (name) {
-      case "Bronze Sword": item = {name: "Bronze Sword", type: "weapon", level: 1, damage: 5, accuracy: 9, value: 1}; break;
-      case "Steel Sword": item = {name: "Steel Sword", type: "weapon", level: 5, damage: 9, accuracy: 15, value: 5}; break;
-      case "Dark Sword": item = {name: "Dark Sword", type: "weapon", level: 15, damage: 17, accuracy: 20, value: 15}; break;
-      case "DragonsBane Sword": item = {name: "DragonsBane Sword", type: "weapon", level: 50, damage: 63, accuracy: 65, value: 50}; break;
-      case "Elven Sword": item = {name: "Elven Sword", type: "weapon", level: 25, damage: 23, accuracy: 30, value: 25}; break;
-      case "Ice Sword": item = {name: "Ice Sword", type: "weapon", level: 35, damage: 40, accuracy: 15, value: 30}; break;
-    }
-
-    return item;
-  }
-
-  
-  Gloves(name) {
-    let item;
-    switch (name) {
-      case "Bronze Gloves": item = {name: "Bronze Gloves", type: "gloves", level: 1, damage: 5, accuracy: 9, value: 1}; break;
-      case "Steel Gloves": item = {name: "Steel Gloves", type: "gloves", level: 5, damage: 9, accuracy: 15, value: 5}; break;
-      case "Dark Gloves": item = {name: "Dark Gloves", type: "gloves", level: 15, damage: 17, accuracy: 20, value: 15}; break;
-      case "DragonsBane Gloves": item = {name: "DragonsBane Gloves", type: "gloves", level: 50, damage: 63, accuracy: 65, value: 50}; break;
-      case "Elven Gloves": item = {name: "Elven Gloves", type: "gloves", level: 25, damage: 23, accuracy: 30, value: 25}; break;
-      case "Ice Gloves": item = {name: "Ice Gloves", type: "gloves", level: 35, damage: 40, accuracy: 15, value: 30}; break;
-    }
-
-    return item;
   }
 
   Helm(name) {
@@ -102,56 +80,57 @@ export class ItemService {
     return item;
   }
 
-  getDrop(monster){
-   let item;
+  getDrop(monster: string) {
+   let item: string;
    let randomNumber = Math.round(Math.random() * 5);
     switch(monster) {
       case 'Goblin': 
       switch (randomNumber) {
-        case 0: item = this.Swords("Bronze Sword"); break;
-        case 1: item = this.Swords("Steel Sword"); break;
-        case 2: item = this.Swords("Dark Sword"); break;
-        case 3: item = this.Swords("DragonsBane Sword"); break;
-        case 4: item = this.Swords("Elven Sword"); break;
-        case 5: item = this.Swords("Ice Sword"); break;
+        case 0: item = "Bronze Sword"; break;
+        case 1: item = "Bronze Sword"; break;
+        case 2: item = "Bronze Sword"; break;
+        case 3: item = "Bronze Gloves"; break;
+        case 4: item = "Bronze Gloves"; break;
+        case 5: item = "Bronze Gloves"; break;
       } break;
       case 'Goblin Archer': 
       switch (randomNumber) {
-        case 0: item = this.Gloves("Bronze Gloves"); break;
-        case 1: item = this.Gloves("Steel Gloves"); break;
-        case 2: item = this.Gloves("Dark Gloves"); break;
-        case 3: item = this.Gloves("DragonsBane Gloves"); break;
-        case 4: item = this.Gloves("Elven Gloves"); break;
-        case 5: item = this.Gloves("Ice Gloves"); break;
+        case 0: item = "Bronze Gloves"; break;
+        case 1: item = "Steel Gloves"; break;
+        case 2: item = "Dark Gloves"; break;
+        case 3: item = "DragonsBane Gloves"; break;
+        case 4: item = "Elven Gloves"; break;
+        case 5: item = "Ice Gloves"; break;
       } break;
       case 'Goblin Berserker': 
       switch (randomNumber) {
-        case 0: item = this.Helm("Bronze Helm"); break;
-        case 1: item = this.Helm("Steel Helm"); break;
-        case 2: item = this.Helm("Dark Helm"); break;
-        case 3: item = this.Helm("DragonsBane Helm"); break;
-        case 4: item = this.Helm("Elven Helm"); break;
-        case 5: item = this.Helm("Ice Helm"); break;
+        case 0: item = "Bronze Helm"; break;
+        case 1: item = "Steel Helm"; break;
+        case 2: item = "Dark Helm"; break;
+        case 3: item = "DragonsBane Helm"; break;
+        case 4: item = "Elven Helm"; break;
+        case 5: item = "Ice Helm"; break;
       } break;
       case 'Hobgoblin': 
       switch (randomNumber) {
-        case 0: item = this.Body("Bronze Body"); break;
-        case 1: item = this.Body("Steel Body"); break;
-        case 2: item = this.Body("Dark Body"); break;
-        case 3: item = this.Body("DragonsBane Body"); break;
-        case 4: item = this.Body("Elven Body"); break;
-        case 5: item = this.Body("Ice Body"); break;
+        case 0: item = "Bronze Body"; break;
+        case 1: item = "Steel Body"; break;
+        case 2: item = "Dark Body"; break;
+        case 3: item = "DragonsBane Body"; break;
+        case 4: item = "Elven Body"; break;
+        case 5: item = "Ice Body"; break;
       } break;
       case 'Goblin Chief': 
       switch (randomNumber) {
-        case 0: item = this.Legs("Bronze Legs"); break;
-        case 1: item = this.Legs("Steel Legs"); break;
-        case 2: item = this.Legs("Dark Legs"); break;
-        case 3: item = this.Legs("DragonsBane Legs"); break;
-        case 4: item = this.Legs("Elven Legs"); break;
-        case 5: item = this.Legs("Ice Legs"); break;
+        case 0: item = "Bronze Legs"; break;
+        case 1: item = "Steel Legs"; break;
+        case 2: item = "Dark Legs"; break;
+        case 3: item = "DragonsBane Legs"; break;
+        case 4: item = "Elven Legs"; break;
+        case 5: item = "Ice Legs"; break;
       } break;
     }
+
     return item;
   }
 
