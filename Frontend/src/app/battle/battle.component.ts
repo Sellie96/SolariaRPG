@@ -1,10 +1,9 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { ProgressbarConfig } from 'ngx-bootstrap/progressbar';
 import { ToastrService } from 'ngx-toastr';
-import { Observable, timer } from 'rxjs';
-import { map, takeWhile } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 import { CharacterState } from '../state/character.state';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { MonsterState, MonsterStateModel } from '../state/monster.state';
@@ -13,7 +12,6 @@ import { CharacterService } from '../_Services/character.service';
 import { ItemService } from '../_Services/item.service';
 import { MonsterService } from '../_Services/monster.service';
 import { Title } from '@angular/platform-browser';
-import { Item } from '../_modules/item';
 
 export function getProgressbarConfig(): ProgressbarConfig {
   return Object.assign(new ProgressbarConfig(), {
@@ -29,7 +27,7 @@ export function getProgressbarConfig(): ProgressbarConfig {
   styleUrls: ['./battle.component.css'],
   providers: [{ provide: ProgressbarConfig, useFactory: getProgressbarConfig }],
 })
-export class BattleComponent implements OnInit {
+export class BattleComponent implements OnInit, OnDestroy {
   player: Character;
   playerBonus: any;
   monster: any;
@@ -41,7 +39,8 @@ export class BattleComponent implements OnInit {
 
   value: number = 0;
   width: number = 0;
-  sub;
+
+  private _interval;
 
   fighting: boolean = true;
 
@@ -67,8 +66,12 @@ export class BattleComponent implements OnInit {
     this.calculateEquipmentStats();
   }
 
+  ngOnDestroy() {
+    clearInterval(this._interval);
+}
+
   gameLoop() {
-    setInterval(async () => {
+    this._interval = setInterval(async () => {
       untilDestroyed(this)
       this.loadCharacter();
       if (this.fighting) {
@@ -102,7 +105,7 @@ export class BattleComponent implements OnInit {
     this.toastr.error("Oh dear you've died");
   }
 
-  calculateRandomDropChances = (chanceInPercentage) => {
+  calculateRandomDropChances = (chanceInPercentage: number) => {
     return chanceInPercentage > Math.random() * 100;
   };
 

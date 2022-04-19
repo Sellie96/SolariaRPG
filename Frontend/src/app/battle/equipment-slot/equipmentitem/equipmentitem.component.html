@@ -17,10 +17,11 @@
       Hp: {{ player.equipment[item]?.hpMax }}
     </div>
   </div>
-  <span *ngIf="!player.equipment[item].name">Empty</span>
+  <span *ngIf="!player?.equipment[item]?.name">Empty</span>
 </ng-template>
-<div *ngIf="player.equipment[item].name">
+<div *ngIf="player?.equipment[item]?.name">
   <img
+  (click)="unequip(player.equipment[item])"
   src="../../../assets/items/{{ player.equipment[item].name }}.png"
   alt="?"
   class="equipment"
@@ -28,7 +29,7 @@
 />
 </div>
 
-<div *ngIf="!player.equipment[item].name">
+<div *ngIf="!player?.equipment[item]?.name">
   <img
   src="../../../assets/items/empty.png"
   alt="?"
